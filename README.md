@@ -61,7 +61,7 @@ Hello everyone, we are a group of 5 members cloning a website 'Yoox' in our cons
 - [Sathan Kumar]()
 - [Swapnil Kushwaha]()
 - [Radhe Shyam Soni]()
-- [Sanjay Gupta]()
+- [Sanjay Gupta](https://www.linkedin.com/in/iamsanjaygupta/)
 
 
 ## Feedback
