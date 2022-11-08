@@ -1,4 +1,4 @@
-## Dot & Key Clone
+## Yoox Clone
 
 Hello everyone, we are a group of 5 members cloning a website 'Yoox' in our construct week at Masai School.
 - Vercel Link:- 
