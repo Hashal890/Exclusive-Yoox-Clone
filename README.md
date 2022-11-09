@@ -1,9 +1,9 @@
 ## Yoox Clone
 
-Hello everyone, we are a group of 5 members cloning a website 'Yoox' in our construct week at Masai School.
-- Vercel Link:- 
-- Backend Link:- 
-
+Hello everyone, we are a group of 5 members cloning a website [Yoox](https://www.yoox.com/us) in our construct week at Masai School.
+- Vercel Link:- http://yoox-clone-by-exclusive.vercel.app/
+- Backend Link of user:- http://yoox-clone-by-exclusive.vercel.app/api/user
+- Backend Link of product:- http://yoox-clone-by-exclusive.vercel.app/api/product
 
 ## Features
 
