@@ -1,8 +1,11 @@
 import React from "react";
 import { Grid, Image, SimpleGrid, Text } from "@chakra-ui/react";
 import data from "../../utils/data";
+import Products from "../../components/product/Products";
 const ProductPage = () => {
   return (
+    <div>
+    <Products/>
     <SimpleGrid style={["2","3","3","4"]}>
       <Grid gap={"2rem"}>
         {data.products.map((product) => (
@@ -13,6 +16,7 @@ const ProductPage = () => {
         ))}
       </Grid>
     </SimpleGrid>
+    </div>
   );
 };
 
