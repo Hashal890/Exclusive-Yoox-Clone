@@ -1,7 +1,8 @@
-import { Box, Heading, Flex, Text } from "@chakra-ui/react";
+import { Box, Heading, Flex, Text, Checkbox, Avatar } from "@chakra-ui/react";
 import React from "react";
+import BottomSection from "../../components/cart/BottomSection";
 import CartNavbarFooter from "../../components/cart/CartNavbarFooter";
-import CartProductCard from "../../components/cart/CartProductCard";
+import CartTable from "../../components/cart/CartTable";
 
 const CartPage = () => {
   return (
@@ -31,8 +32,48 @@ const CartPage = () => {
             <Text>ITEMS ADDED TO YOUR SHOPPING BAG (0)</Text>
           </Flex>
         </Box>
-        <CartProductCard />
+        {/* <CartTable /> */}
+        <Box bg={"#f3f3f3"} p={"18px 10px"} textAlign={"start"}>
+          <Checkbox colorScheme={"messenger"}>
+            <Text textTransform={"uppercase"} fontWeight={700} color={"#333"}>
+              buying a gift
+            </Text>
+          </Checkbox>
+        </Box>
+        <Box
+          mt={25}
+          mb={25}
+          bg={"#fffe94"}
+          h={"55px"}
+          lineHeight={"55px"}
+          textAlign={"center"}
+          fontWeight={400}
+        >
+          FREE STANDARD SHIPPING ON ORDERS OVER $250
+        </Box>
+        <Box pl={2} borderTop={"5px solid #f3f3f3"} mt={5}>
+          <Flex
+            gap={2}
+            fontWeight={700}
+            mb={"10px"}
+            mt={"10px"}
+            fontSize={"20px"}
+            alignItems={"center"}
+          >
+            <Text>2</Text>
+            <Text>|</Text>
+            <Text>SELECT SHIPPING METHOD</Text>
+          </Flex>
+        </Box>
+        <BottomSection />
         <CartNavbarFooter />
+        <Box mt={20} mb={5} fontSize={"14px"}>
+          <Text fontWeight={"bold"}>CUSTOMER CARE</Text>
+          <Text>
+            If you have any questions call us at our toll-free number
+            18555294494 (Mon-Fri, 9am to 11pm EST)
+          </Text>
+        </Box>
       </Box>
     </Box>
   );
