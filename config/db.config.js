@@ -30,10 +30,9 @@ async function disconnect() {
       await mongoose.disconnect();
       connection.isConnected = false;
     } else {
-      console.log("You're already connected");
+      console.log("You're already disconnected");
     }
   }
 }
 
-const db = { connect, disconnect };
-export default db;
+export default { connect, disconnect };
