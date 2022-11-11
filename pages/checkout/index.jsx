@@ -1,7 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
+import { Box, HStack } from "@chakra-ui/react";
+import FaqAccordion from "../../components/checkout/FaqAccordion";
+import RightSection from "../../components/checkout/RightSection";
+import LeftSection from "../../components/checkout/LeftSection";
 
 const CheckoutPage = () => {
-  return <div>CheckoutPage</div>;
+  return (
+    <>
+      <Box bg={"#f3f3f3"} pt={10}>
+        <HStack
+          w={["100%", "90%", "90%"]}
+          m={"auto"}
+          gap={10}
+          alignItems={"start"}
+        >
+          <LeftSection />
+          <RightSection />
+        </HStack>
+      </Box>
+      <FaqAccordion />
+    </>
+  );
 };
 
 export default CheckoutPage;
