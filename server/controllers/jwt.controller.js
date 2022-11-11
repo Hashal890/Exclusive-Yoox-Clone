@@ -31,4 +31,12 @@ const getTokens = (userid, name, email) => {
   return { accessToken, refreshToken };
 };
 
-module.exports = { getTokens, getAccessToken, getRefreshToken };
+const verifyAccessToken = (token) => {
+  try {
+    return jwt.verify(token, process.env.ACCESS_TOKEN_SECRET_KEY);
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+module.exports = { getTokens, getAccessToken, getRefreshToken, verifyAccessToken };

@@ -1,6 +1,11 @@
 const { checkAccount, createAccount } = require("./user.controllers");
 const { sendEmail } = require("./email.controller");
-const { getAccessToken, getRefreshToken, getTokens } = require("./jwt.controller");
+const {
+  getAccessToken,
+  getRefreshToken,
+  getTokens,
+  verifyAccessToken,
+} = require("./jwt.controller");
 const passport = require("./google.controller");
 
 module.exports = {
@@ -10,5 +15,6 @@ module.exports = {
   getAccessToken,
   getRefreshToken,
   getTokens,
+  verifyAccessToken,
   passport,
 };
