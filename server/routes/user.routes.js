@@ -1,12 +1,13 @@
 const express = require("express");
-const { checkAccount, createAccount } = require("../controllers");
+const { sendError } = require("next/dist/server/api-utils");
+const { checkAccount, createAccount, getTokens } = require("../controllers");
 const { sendRequiredFieldError } = require("../helper");
 const { userModel } = require("../models");
 
 const user = express.Router();
 
 user.get("/", async (req, res) => {
-  res.send("Hello Hi By");
+  res.send("login, signup etc. request");
 });
 
 user.post("/signup", async (req, res) => {
@@ -21,7 +22,34 @@ user.post("/signup", async (req, res) => {
       await createAccount(firstName, lastName, email, password);
       res.send({ message: "Account created Successfully. Email sent for account activation" });
     }
-  } catch (error) {}
+  } catch (error) {
+    return sendError(res, error);
+  }
+});
+
+user.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) sendRequiredFieldError(res);
+  try {
+    let user = await userModel.findOne({ email: email.toLowerCase(), password });
+    if (user) {
+      const { accessToken, refreshToken } = getTokens(user.id, user.firstName, user.email);
+      res.send({
+        message: "Login Successfull",
+        data: {
+          accessToken,
+          refreshToken,
+          name: user.firstName + " " + user.lastName,
+          email: user.email,
+        },
+      });
+    } else {
+      return res.status(401).send({ status: false, message: "Credentials mismatch" });
+    }
+  } catch (error) {
+    return sendError(res, error);
+  }
 });
 
 module.exports = user;
