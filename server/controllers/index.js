@@ -8,6 +8,7 @@ const {
 } = require("./jwt.controller");
 const passport = require("./google.controller");
 const { getProducts, getProductById } = require("./product.controller");
+const { addOrder } = require("./order.controller");
 
 module.exports = {
   checkAccount,
@@ -20,4 +21,5 @@ module.exports = {
   passport,
   getProducts,
   getProductById,
+  addOrder,
 };
