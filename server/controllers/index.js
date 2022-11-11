@@ -7,7 +7,7 @@ const {
   verifyAccessToken,
 } = require("./jwt.controller");
 const passport = require("./google.controller");
-const { getProducts } = require("./product.controller");
+const { getProducts, getProductById } = require("./product.controller");
 
 module.exports = {
   checkAccount,
@@ -19,4 +19,5 @@ module.exports = {
   verifyAccessToken,
   passport,
   getProducts,
+  getProductById,
 };

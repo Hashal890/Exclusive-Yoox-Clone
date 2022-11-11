@@ -12,4 +12,12 @@ const getProducts = async (page, limit, sortBy, order) => {
   }
 };
 
-module.exports = { getProducts };
+const getProductById = async (id) => {
+  try {
+    return await productModel.findById(id);
+  } catch (error) {
+    throw new Error((error.message = "Product not found"));
+  }
+};
+
+module.exports = { getProducts, getProductById };

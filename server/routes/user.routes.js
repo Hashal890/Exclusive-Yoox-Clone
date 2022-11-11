@@ -1,9 +1,8 @@
 const express = require("express");
-const { sendError } = require("next/dist/server/api-utils");
 const { v4 } = require("uuid");
 const { checkAccount, createAccount, getTokens, passport } = require("../controllers");
 const { getGithubData } = require("../controllers/github.controller");
-const { sendRequiredFieldError } = require("../helper");
+const { sendRequiredFieldError, sendError } = require("../helper");
 const { userModel } = require("../models");
 
 const user = express.Router();
