@@ -1,6 +1,7 @@
 const express = require("express");
 const { sendError } = require("next/dist/server/api-utils");
-const { checkAccount, createAccount, getTokens } = require("../controllers");
+const { v4 } = require("uuid");
+const { checkAccount, createAccount, getTokens, passport } = require("../controllers");
 const { getGithubData } = require("../controllers/github.controller");
 const { sendRequiredFieldError } = require("../helper");
 const { userModel } = require("../models");
@@ -57,15 +58,52 @@ user.get("/github", async (req, res) => {
   const userData = await getGithubData(req.query.code);
   try {
     let user = await checkAccount("email", userData.email.toLowerCase());
-    if (!user._id) user = await createAccount(userData.name, userData.email, v4(), true);
+    if (!user) user = await createAccount(userData.name, "", userData.email, v4(), true);
     const { accessToken, refreshToken } = getTokens(user._id, user.name, user.email);
     return res.send({
       message: "Login Successfull",
-      data: { accessToken, refreshToken, name: user.name, email: user.email },
+      data: {
+        accessToken,
+        refreshToken,
+        name: user.firstName + " " + user.lastName,
+        email: user.email,
+      },
     });
   } catch (error) {
     return sendError(res, error);
   }
 });
+
+user.get("/google", passport.authenticate("google", { scope: ["profile", "email"] }));
+
+user.get(
+  "/google/callback",
+  passport.authenticate("google", { failureRedirect: "/login", session: false }),
+  async function (req, res) {
+    try {
+      let user = await checkAccount("email", req.user.email.toLowerCase());
+      if (!user)
+        user = await createAccount(
+          req.user.given_name,
+          req.user.family_name,
+          req.user.email,
+          v4(),
+          true
+        );
+      const { accessToken, refreshToken } = getTokens(user._id, user.name, user.email);
+      return res.send({
+        message: "Login Successfull",
+        data: {
+          accessToken,
+          refreshToken,
+          name: user.firstName + " " + user.lastName,
+          email: user.email,
+        },
+      });
+    } catch (error) {
+      return sendError(res, error);
+    }
+  }
+);
 
 module.exports = user;
