@@ -3,13 +3,13 @@ import { appReducer } from "./AppContext.Reducer";
 
 const AppContext = createContext();
 
-let initData;
+const initData = {
+  token: "",
+  email: "EMAIL-ID",
+};
 
-if (typeof window !== undefined) {
-  initData = {
-    token: localStorage.getItem("token") || "",
-    email: "EMAIL-ID",
-  };
+if (typeof window === undefined) {
+  initData.token = localStorage.getItem("token") || "";
 }
 
 const AppContextProvider = ({ children }) => {
