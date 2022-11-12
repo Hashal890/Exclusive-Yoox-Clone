@@ -6,6 +6,18 @@ const AppContext = createContext();
 const initData = {
   token: "",
   email: "EMAIL-ID",
+  addressData: {
+    firstName: "",
+    lastName: "",
+    phoneNumber: "",
+    address: "",
+    zipCode: "",
+    city: "",
+    state: "",
+    country: "",
+  },
+  orderType: "",
+  addressData: {}
 };
 
 if (typeof window === undefined) {

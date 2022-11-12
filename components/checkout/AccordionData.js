@@ -1,4 +1,4 @@
-export const AccordionItems = [
+export const ShippingAccordionItems = [
   {
     id: 1,
     title: "CAN I DECIDE AT WHAT TIME I WANT THE PACKAGE DELIVERED?",
@@ -23,5 +23,18 @@ export const AccordionItems = [
     id: 5,
     title: "DO I RECEIVE AN INVOICE FOR MY ORDER?",
     desc: "For every order you will receive the invoice by e-mail, when the package is shipped. If you want to enter specific billing details deflag the checkbox:- The Billing Address is the same as the Shipping Address found on this page.",
+  },
+];
+
+export const PaymentAccordionItems = [
+  {
+    id: 1,
+    title: "IS IT SAFE TO ENTER MY CREDIT / DEBIT CARD DATA?",
+    desc: "YOOX can guarantee every payment transaction is absolutely safe: we have adopted the SSL3 protocol for the transmission of sensitive information, currently the highest of security standards. You can read the Trustwave and VeriSign certificates which guarantee the reliability of our servers and site. Your card data will be totally illegible to third parties.",
+  },
+  {
+    id: 2,
+    title: "HOW CAN I ACCESS FAST CHECKOUT?",
+    desc: "If you are registered with MYOOX, you can save your Credit or Debit Card details from the Shopping Bag and take advantage of our Fast Checkout for your future orders: this page will already be filled in for you. At any time you can update or delete the payment details through MYOOX.",
   },
 ];
