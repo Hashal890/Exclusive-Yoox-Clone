@@ -1,9 +1,7 @@
 import { ChakraProvider } from "@chakra-ui/react";
-// import { BrowserRouter } from "react-router-dom";
-// import { Provider } from "react-redux";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-// import { store } from "../store/index";
+import ScrollTop from "../components/ScrollTop";
 import "../styles/globals.css";
 import { AppContextProvider } from "../hoc/AppContext";
 
@@ -14,6 +12,7 @@ function MyApp({ Component, pageProps }) {
         <AppContextProvider>
           <ChakraProvider>
             <Navbar />
+            <ScrollTop/>
             <Component {...pageProps} />
             <Footer />
           </ChakraProvider>
