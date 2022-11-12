@@ -13,9 +13,19 @@ order.post("/", async (req, res) => {
     items = [],
     deliveredDate = "",
     deliveredBy = "",
+    ...others
   } = req.body;
   if (!customer) sendRequiredFieldError(res);
-  let data = { customer, amount, deliveryAddress, status, items, deliveredDate, deliveredBy };
+  let data = {
+    customer,
+    amount,
+    deliveryAddress,
+    status,
+    items,
+    deliveredDate,
+    deliveredBy,
+    others,
+  };
   try {
     let order = await addOrder(data);
     res.send({ message: "Order Successfull", data: order });
