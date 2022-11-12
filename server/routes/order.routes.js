@@ -6,7 +6,7 @@ const order = express.Router();
 
 order.post("/", async (req, res) => {
   const {
-    customer,
+    userId,
     amount = 0,
     deliveryAddress = "",
     status = "Processing",
@@ -14,9 +14,9 @@ order.post("/", async (req, res) => {
     deliveredDate = "",
     deliveredBy = "",
   } = req.body;
-  if (!customer) sendRequiredFieldError(res);
+  if (!customer) return sendRequiredFieldError(res);
   let data = {
-    customer,
+    customer: userId,
     amount,
     deliveryAddress,
     status,
@@ -28,7 +28,7 @@ order.post("/", async (req, res) => {
     let order = await addOrder(data);
     res.send({ message: "Order Successfull", data: order });
   } catch (error) {
-    sendError(res);
+    return sendError(res);
   }
 });
 
