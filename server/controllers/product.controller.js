@@ -1,14 +1,17 @@
 const { productModel } = require("../models");
 
 const getProducts = async (page, limit, sortBy, order, others) => {
-  console.log(others);
   try {
     let data = await productModel
       .aggregate([
         { $match: { ...others } },
         {
           $facet: {
-            data: [{ $skip: (page - 1) * limit }, { $limit: limit }],
+            data: [
+              { $sort: { [sortBy]: order == "asc" ? 1 : -1 } },
+              { $skip: (page - 1) * limit },
+              { $limit: limit },
+            ],
             totalCount: [{ $count: "count" }],
           },
         },
