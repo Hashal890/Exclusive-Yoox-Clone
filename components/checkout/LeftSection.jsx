@@ -100,7 +100,6 @@ const LeftSection = () => {
         Review and complete
       </Box>
       <Flex p={2} mb={10} alignItems={"center"}>
-        <Link href={"/checkout/shipping"}>
         <Text
           color={"#666666"}
           lineHeight={"15px"}
@@ -108,7 +107,7 @@ const LeftSection = () => {
           alignItems={"center"}
         >
           SECURE CHECKOUT
-        </Text></Link>
+        </Text>
         <Spacer />
         <Text color={"blue.500"} fontSize={"70px"}>
           <FaCcVisa />

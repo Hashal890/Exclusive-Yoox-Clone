@@ -8,6 +8,7 @@ import {
   Text,
   Checkbox,
 } from "@chakra-ui/react";
+import Link from "next/link";
 import React from "react";
 
 const CheckoutForm = ({
@@ -144,18 +145,20 @@ const CheckoutForm = ({
         Set as default
       </Checkbox>
       <Flex flexDir={"row-reverse"}>
-        <Button
-          onClick={handleSubmit}
-          bg={"#333333"}
-          p={"12px 60px"}
-          minW={"120px"}
-          minH={"48px"}
-          borderRadius={"none"}
-          _hover={{ color: "#ffffff", bg: "#333333" }}
-          color={"#ffffff"}
-        >
-          SHIP TO THIS ADDRESS
-        </Button>
+        <Link href={"/checkout/payments"}>
+          <Button
+            onClick={handleSubmit}
+            bg={"#333333"}
+            p={"12px 60px"}
+            minW={"120px"}
+            minH={"48px"}
+            borderRadius={"none"}
+            _hover={{ color: "#ffffff", bg: "#333333" }}
+            color={"#ffffff"}
+          >
+            SHIP TO THIS ADDRESS
+          </Button>
+        </Link>
       </Flex>
     </Box>
   );

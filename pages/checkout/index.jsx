@@ -3,6 +3,7 @@ import { Box, HStack } from "@chakra-ui/react";
 import FaqAccordion from "../../components/checkout/FaqAccordion";
 import RightSection from "../../components/checkout/RightSection";
 import LeftSection from "../../components/checkout/LeftSection";
+import { ShippingAccordionItems } from "../../components/checkout/AccordionData";
 
 const CheckoutPage = () => {
   return (
@@ -18,7 +19,7 @@ const CheckoutPage = () => {
           <RightSection />
         </HStack>
       </Box>
-      <FaqAccordion />
+      <FaqAccordion data={ShippingAccordionItems} />
     </>
   );
 };

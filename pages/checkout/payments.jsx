@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Box, HStack } from "@chakra-ui/react";
 import FaqAccordion from "../../components/checkout/FaqAccordion";
 import PaymentLeftSection from "../../components/checkout/PaymentLeftSection";
 import RightSection from "../../components/checkout/RightSection";
+import { PaymentAccordionItems } from "../../components/checkout/AccordionData";
 
 const Payment = () => {
   return (
@@ -18,7 +19,7 @@ const Payment = () => {
           <RightSection />
         </HStack>
       </Box>
-      <FaqAccordion />
+      <FaqAccordion data={PaymentAccordionItems} />
     </>
   );
 };
