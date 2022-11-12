@@ -6,7 +6,7 @@ const product = express.Router();
 product.get("/", async (req, res) => {
   const { page = 1, limit = 20, sortBy = "_id", order = "asc", ...others } = req.query;
   try {
-    let products = await getProducts(page, limit, sortBy, order, others);
+    let products = await getProducts(page, +limit, sortBy, order, others);
     return res.send({
       message: "Product found",
       data: products.data,

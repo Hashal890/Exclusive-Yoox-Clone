@@ -21,6 +21,7 @@ export const appReducer = (state, action) => {
         ...state,
         isAuth: true,
         token: action.payload.token,
+        email: action.payload.email
       };
     }
     case LOGIN_FAILURE: {
