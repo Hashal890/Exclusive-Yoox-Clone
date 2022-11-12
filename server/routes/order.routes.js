@@ -13,7 +13,6 @@ order.post("/", async (req, res) => {
     items = [],
     deliveredDate = "",
     deliveredBy = "",
-    ...others
   } = req.body;
   if (!customer) sendRequiredFieldError(res);
   let data = {
@@ -24,7 +23,6 @@ order.post("/", async (req, res) => {
     items,
     deliveredDate,
     deliveredBy,
-    others,
   };
   try {
     let order = await addOrder(data);
