@@ -4,6 +4,7 @@ import ProductViewCard from "./ProductViewCard";
 
 const initSampleChekckoutData = [
   {
+    _id: 1,
     image: "https://www.yoox.com/images/items/16/16154424AV_10_F.jpg",
     title: "VALENTINO",
     type: "Overcoats",

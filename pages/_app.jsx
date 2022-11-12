@@ -1,17 +1,24 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import ScrollTop from "../components/ScrollTop";
 import "../styles/globals.css";
+import { AppContextProvider } from "../hoc/AppContext";
 import Script from "next/script";
+import HomeNav from "../components/HomeNav";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <ChakraProvider>
+    <AppContextProvider>
       <Script src="https://checkout.razorpay.com/v1/checkout.js" />
-      <Navbar />
-      <Component {...pageProps} />
-      <Footer />
-    </ChakraProvider>
+      <ChakraProvider>
+        <HomeNav />
+        <Navbar />
+        <ScrollTop />
+        <Component {...pageProps} />
+        <Footer />
+      </ChakraProvider>
+    </AppContextProvider>
   );
 }
 
