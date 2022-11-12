@@ -9,15 +9,21 @@ import { Box ,Text,
   Heading,
   SimpleGrid,
   StackDivider,
-  ListItem,} from '@chakra-ui/react'
+  ListItem,
+  HStack,} from '@chakra-ui/react'
+  import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
   import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
 import { MdLocalShipping } from 'react-icons/md';
 import React from 'react'
 import ImageGallery from 'react-image-gallery'
 import "react-image-gallery/styles/css/image-gallery.css"
+import { useState ,useEffect} from 'react'
 
 const SinglePage = ({data}) => {
-  console.log(data)
+  let m=data.data
+  let discount=Math.round(((m.original_price-m.current_price)/m.original_price)*100)
+  console.log(data.data)
   const images = [
     {
       original: 'https://picsum.photos/id/1018/1000/600/',
@@ -33,185 +39,80 @@ const SinglePage = ({data}) => {
     },
   ];
   return (
-    <Box display='flex'>
-        <Box marginLeft="40px"  w="500px">
-         <ImageGallery showPlayButton={false} showBullets={true} items={images} />
-        </Box>
-        <Box>
-        <Container maxW={'7xl'}>
-      <SimpleGrid
-        columns={{ base: 1, lg: 2 }}
-        spacing={{ base: 8, md: 10 }}
-        py={{ base: 18, md: 24 }}>
-        {/* <Flex>
-          <Image
-            rounded={'md'}
-            alt={'product image'}
-            src={
-              'https://images.unsplash.com/photo-1596516109370-29001ec8ec36?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyODE1MDl8MHwxfGFsbHx8fHx8fHx8fDE2Mzg5MzY2MzE&ixlib=rb-1.2.1&q=80&w=1080'
-            }
-            fit={'cover'}
-            align={'center'}
-            w={'100%'}
-            h={{ base: '100%', sm: '400px', lg: '500px' }}
-          />
-        </Flex> */}
-        <Stack spacing={{ base: 6, md: 10 }}>
-          <Box as={'header'}>
-            <Heading
-              lineHeight={1.1}
-              fontWeight={600}
-              fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}>
-              Automatic Watch
-            </Heading>
-            <Text
-              
-              fontWeight={300}
-              fontSize={'2xl'}>
-              $350.00 USD
-            </Text>
-          </Box>
+    // <Box display='flex'>
+    //     <Box marginLeft="40px"  w="500px">
+    //      <ImageGallery showPlayButton={false} showBullets={true} items={images} />
+    //     </Box>
+    //     <Box>
+    //     <Text>{m.size}</Text>
 
-          <Stack
-            spacing={{ base: 4, sm: 6 }}
-            direction={'column'}
-            divider={
-              <StackDivider
-                
-              />
-            }>
-            <VStack spacing={{ base: 4, sm: 6 }}>
-              <Text
-               
-                fontSize={'2xl'}
-                fontWeight={'300'}>
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                diam nonumy eirmod tempor invidunt ut labore
-              </Text>
-              <Text fontSize={'lg'}>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
-                aliquid amet at delectus doloribus dolorum expedita hic, ipsum
-                maxime modi nam officiis porro, quae, quisquam quos
-                reprehenderit velit? Natus, totam.
-              </Text>
-            </VStack>
-            <Box>
-              <Text
-                fontSize={{ base: '16px', lg: '18px' }}
-              
-                fontWeight={'500'}
-                textTransform={'uppercase'}
-                mb={'4'}>
-                Features
-              </Text>
+    //     </Box>
 
-              <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
-                <List spacing={2}>
-                  <ListItem>Chronograph</ListItem>
-                  <ListItem>Master Chronometer Certified</ListItem>{' '}
-                  <ListItem>Tachymeter</ListItem>
-                </List>
-                <List spacing={2}>
-                  <ListItem>Anti‑magnetic</ListItem>
-                  <ListItem>Chronometer</ListItem>
-                  <ListItem>Small seconds</ListItem>
-                </List>
-              </SimpleGrid>
-            </Box>
-            <Box>
-              <Text
-                fontSize={{ base: '16px', lg: '18px' }}
-                
-                fontWeight={'500'}
-                textTransform={'uppercase'}
-                mb={'4'}>
-                Product Details
-              </Text>
+    // </Box>
+    <Box mt='50px'>
+    <Box display={'flex'} justifyContent={'space-around'}>
+      <Box w='20%'>
+       
+        <Carousel  showArrows={true} showBullets={true} autoPlay interval="5000" transitionTime="2000" infiniteLoop>
+          {
+            m.images.map((el)=>{
+              return(
+                <Image w='5' src={el} alt={el}/>
+              )
+            })
+          }
+        </Carousel>
+      </Box>
+      <Box mt='20px'>
 
-              <List spacing={2}>
-                <ListItem>
-                  <Text as={'span'} fontWeight={'bold'}>
-                    Between lugs:
-                  </Text>{' '}
-                  20 mm
-                </ListItem>
-                <ListItem>
-                  <Text as={'span'} fontWeight={'bold'}>
-                    Bracelet:
-                  </Text>{' '}
-                  leather strap
-                </ListItem>
-                <ListItem>
-                  <Text as={'span'} fontWeight={'bold'}>
-                    Case:
-                  </Text>{' '}
-                  Steel
-                </ListItem>
-                <ListItem>
-                  <Text as={'span'} fontWeight={'bold'}>
-                    Case diameter:
-                  </Text>{' '}
-                  42 mm
-                </ListItem>
-                <ListItem>
-                  <Text as={'span'} fontWeight={'bold'}>
-                    Dial color:
-                  </Text>{' '}
-                  Black
-                </ListItem>
-                <ListItem>
-                  <Text as={'span'} fontWeight={'bold'}>
-                    Crystal:
-                  </Text>{' '}
-                  Domed, scratch‑resistant sapphire crystal with anti‑reflective
-                  treatment inside
-                </ListItem>
-                <ListItem>
-                  <Text as={'span'} fontWeight={'bold'}>
-                    Water resistance:
-                  </Text>{' '}
-                  5 bar (50 metres / 167 feet){' '}
-                </ListItem>
-              </List>
-            </Box>
-          </Stack>
+        <Text as='b'fontSize='20px'>{m.title}</Text>
+        <Text fontSize='2xl'>{m.product_type}</Text>
+        <HStack mt='30px' mb='20px'>
+          <Text as='del'>US$ {m.original_price}</Text>
+          <Text>{discount} % OFF</Text>
+        </HStack>
+        <Text as='b'fontSize='18px'>US$ {m.current_price}</Text>
+        <Text mt='20px'>{m.dominant_color}</Text>
+        <Text mb='20px' mt='20px'>{m.size_fit}</Text>
+        {
+          m.is_in_stock?<Button w='370px' borderRadius={"0px"} color={'white'} bgColor={'#333333'} variant='none'>ADD TO CART</Button>:<Button borderRadius={"0px"} color={'white'} bgColor={'#333333'} variant='none' disabled={true}>OUT OF STOCK</Button>
+        }
+        
+        <br/><Button fontSize='12px' mt='30px' w='370px' borderRadius={"0px"} color={'#333333'} bgColor={'#FFFE94'} variant='none'>This item is excluded from all promotional offers.</Button>
 
-          <Button
-            rounded={'none'}
-            w={'full'}
-            mt={8}
-            size={'lg'}
-            py={'7'}
-         
-            textTransform={'uppercase'}
-            _hover={{
-              transform: 'translateY(2px)',
-              boxShadow: 'lg',
-            }}>
-            Add to cart
-          </Button>
-
-          <Stack direction="row" alignItems="center" justifyContent={'center'}>
-            <MdLocalShipping />
-            <Text>2-3 business days delivery</Text>
-          </Stack>
-        </Stack>
-      </SimpleGrid>
-    </Container>
-
-        </Box>
+      </Box>
 
     </Box>
+    <hr/>
+    <Box> 
+      <Text>SPECIFICATIONS</Text>
+      <Text>{m.specifications}</Text>
+    </Box>
+   
+    <HStack>
+      <Box>
+        <Text>TYPE</Text>
+        <Text>{m.type}</Text>
+      </Box>
+      <Box>
+        <Text>DESCRIPTION</Text>
+        <Text>{m.product_details}</Text>
+      </Box>
+
+    </HStack>
+    <hr/>
+    </Box>
+    
   )
 }
 
 export default SinglePage
 export async function getStaticPaths() {
 
-    const data = await fetch("https://myownapitodo.herokuapp.com/Cosmetics").then((res) => res.json())
-  
+    const {data} = await fetch(`http://localhost:3000/api/products`).then((res) => res.json())
+   console.log(data)
     const paths = data.map((el) => ({
-      params: { id: el.id.toString() },
+      params: { id: el._id.toString() },
     }))
   
     return {
@@ -222,7 +123,8 @@ export async function getStaticPaths() {
   
 export const getStaticProps = async ({ params }) => {
     const id = params.id
-    let data = await fetch(`https://myownapitodo.herokuapp.com/Cosmetics/${id}`).then((res) => res.json())
+    console.log(id)
+    let data = await fetch(`http://localhost:3000/api/products/${id}`).then((res) => res.json())
   
     return {
       props: {
