@@ -5,16 +5,6 @@ import Products from "../../components/product/Products";
 const ProductPage = () => {
   return (
     <Products/>
-    // <SimpleGrid style={["2","3","3","4"]}>
-    //   <Grid gap={"2rem"}>
-    //     {data.products.map((product) => (
-    //       <Grid md={"4"} key={product.name}>
-    //         <Image w="200px" src={product.image}></Image>
-    //         <Text>{product.name}</Text>
-    //       </Grid>
-    //     ))}
-    //   </Grid>
-    // </SimpleGrid>
   );
 };
 
