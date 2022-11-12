@@ -17,7 +17,6 @@ const getProducts = async (page, limit, sortBy, order, others) => {
         },
       ])
       .collation({ locale: "en", strength: 2 });
-
     return { data: data[0].data, totalCount: data[0].totalCount[0].count };
   } catch (error) {
     throw new Error((error.message = "Product not found"));
