@@ -4,21 +4,21 @@ import Footer from "../components/Footer";
 import ScrollTop from "../components/ScrollTop";
 import "../styles/globals.css";
 import { AppContextProvider } from "../hoc/AppContext";
+import Script from "next/script";
+import HomeNav from "../components/HomeNav";
 
 function MyApp({ Component, pageProps }) {
   return (
-    // <BrowserRouter>
-    //   <Provider store={store}>
-        <AppContextProvider>
-          <ChakraProvider>
-            <Navbar />
-            <ScrollTop/>
-            <Component {...pageProps} />
-            <Footer />
-          </ChakraProvider>
-        </AppContextProvider>
-    //   </Provider>
-    // </BrowserRouter>
+    <AppContextProvider>
+      <Script src="https://checkout.razorpay.com/v1/checkout.js" />
+      <ChakraProvider>
+        <HomeNav />
+        <Navbar />
+        <ScrollTop />
+        <Component {...pageProps} />
+        <Footer />
+      </ChakraProvider>
+    </AppContextProvider>
   );
 }
 

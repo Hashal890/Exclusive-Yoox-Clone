@@ -16,7 +16,16 @@ const getCustomerCartItems = async (customer) => {
   try {
     return await cartModel
       .find({ customer })
-      .populate("items.item", ["size", "title", "images", "original_price", "current_price"]);
+      .populate("items.item", [
+        "size",
+        "brand",
+        "title",
+        "actual_color",
+        "type",
+        "images",
+        "original_price",
+        "current_price",
+      ]);
   } catch (error) {
     throw new Error(error);
   }

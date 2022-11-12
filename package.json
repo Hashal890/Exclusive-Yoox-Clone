@@ -26,6 +26,7 @@
     "nodemon": "^2.0.20",
     "passport": "^0.6.0",
     "passport-google-oauth20": "^2.0.0",
+    "razorpay": "^2.8.3",
     "react": "18.2.0",
     "react-chart": "^0.0.1",
     "react-chartjs-2": "^4.3.1",
