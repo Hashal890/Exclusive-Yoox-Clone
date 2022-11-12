@@ -3,7 +3,7 @@ const next = require("next");
 require("dotenv").config();
 
 const { dbConnect } = require("./config");
-const { userRouter } = require("./routes");
+const { userRouter, productRouter, orderRouter } = require("./routes");
 //next.js configuration
 const dev = process.env.NODE_DEV !== "production";
 const nextApp = next({ dev });
@@ -15,6 +15,8 @@ nextApp
     const app = express();
     app.use(express.json());
     app.use("/api/users", userRouter);
+    app.use("/api/products", productRouter);
+    app.use("/api/orders", orderRouter);
 
     //Keep in last
     app.get("*", (req, res) => {
