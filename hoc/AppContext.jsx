@@ -6,6 +6,8 @@ const AppContext = createContext();
 const initData = {
   token: "",
   email: "EMAIL-ID",
+  cartData: [],
+  addressData: [],
   addressData: {
     firstName: "",
     lastName: "",
@@ -17,7 +19,7 @@ const initData = {
     country: "",
   },
   orderType: "",
-  addressData: {}
+  totalCartPrice: 0.00,
 };
 
 if (typeof window === undefined) {

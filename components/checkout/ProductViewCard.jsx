@@ -11,7 +11,14 @@ const ProductViewCard = ({
   discount_price,
 }) => {
   return (
-    <Flex fontSize={"13px"} maxH={"200px"} pt={2} pb={2} overflowY={"scroll"}>
+    <Flex
+      fontSize={"13px"}
+      maxH={"200px"}
+      pt={2}
+      pb={2}
+      overflowY={"scroll"}
+      color={"#333"}
+    >
       <Avatar src={image} alt={title} />
       <Box>
         <Text fontWeight={700}>{title}</Text>

@@ -22,7 +22,7 @@ const PaymentOptions = () => {
   };
 
   return (
-    <>
+    <Box color={"#333"}>
       <Text mb={3}>Select payment method</Text>
       <RadioGroup onChange={radioHandleChange} defaultValue={"razorpay"}>
         <Flex pt={5} pb={5} alignItems={"center"}>
@@ -230,7 +230,7 @@ const PaymentOptions = () => {
           </Checkbox>
         </Box>
       )}
-    </>
+    </Box>
   );
 };
 

@@ -2,20 +2,29 @@ import {
   Avatar,
   Box,
   Button,
-  Checkbox,
   Flex,
   IconButton,
   Spacer,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import React, { useContext } from "react";
 import { BsCheckLg } from "react-icons/bs";
 import { AppContext } from "../../hoc/AppContext";
-import PaymentOptions from "./PaymentOptions";
 
-const PaymentLeftSection = () => {
+const ReviewLeftSection = () => {
   const { data } = useContext(AppContext);
+  const toast = useToast();
+
+  const checkoutDone = () => {
+    toast({
+      title: "Order placed successfully!",
+      status: "success",
+      isClosable: true,
+      position: `top`,
+    });
+  };
 
   return (
     <Box w={["100%", "70%", "70%"]} mb={5} color={"#333"}>
@@ -107,77 +116,112 @@ const PaymentLeftSection = () => {
           </Button>
         </Link>
       </Flex>
-      <Box mb={5} bg={"whiteAlpha.900"} p={"48px"}>
-        <Text color={"#333333"} fontSize={"26px"} fontWeight={"bold"} mb={3}>
-          Payment
+      <Flex
+        justifyContent={"space-between"}
+        mb={5}
+        bg={"whiteAlpha.900"}
+        p={"48px"}
+        pb={"35px"}
+      >
+        <Box>
+          <Flex alignItems={"center"} gap={3} mb={7}>
+            <IconButton
+              icon={<BsCheckLg />}
+              bg={"transparent"}
+              color={"rgb(36, 154, 65)"}
+              _hover={{ bg: "transparent", color: "rgb(36, 154, 65)" }}
+              fontSize={"2xl"}
+            />
+            <Text color={"#333333"} fontSize={"26px"} fontWeight={"bold"}>
+              Payment
+            </Text>
+          </Flex>
+          <Box>
+            <Text
+              fontWeight={"700"}
+              color={"gray.500"}
+              fontSize={"15px"}
+              mb={8}
+            >
+              1. PAYMENT METHOD :- {data.orderType}
+            </Text>
+          </Box>
+          <Box>
+            <Text
+              fontWeight={"700"}
+              color={"gray.500"}
+              fontSize={"15px"}
+              mb={3}
+            >
+              2. BILLING ADDRESS
+            </Text>
+            <Text fontSize={"14px"} mb={3}>
+              <span style={{ fontWeight: 600 }}>Name:-</span>
+              {data.addressData.firstName} {data.addressData.lastName}
+            </Text>
+            <Text fontSize={"14px"} mb={3}>
+              <span style={{ fontWeight: 600 }}>Address:-</span>{" "}
+              {data.addressData.address} - {data.addressData.zipCode} -{" "}
+              {data.addressData.city}
+            </Text>
+            <Text fontSize={"14px"} mb={3}>
+              <span style={{ fontWeight: 600 }}>Zip Code:-</span>{" "}
+              {data.addressData.zipCode}
+            </Text>
+            <Text fontSize={"14px"} mb={5}>
+              <span style={{ fontWeight: 600 }}>Delivery Duration:-</span>{" "}
+              Standard - 8-10 business days
+            </Text>
+          </Box>
+        </Box>
+        <Link href={"/checkout/payments"}>
+          <Button
+            textTransform={"uppercase"}
+            bg={"transparent"}
+            _hover={{ bg: "transparent" }}
+          >
+            modify
+          </Button>
+        </Link>
+      </Flex>
+      <Box p={"48px"} bg={"whiteAlpha.900"} mb={5} lineHeight={1.5}>
+        <Text fontWeight={"bold"} fontSize={"24px"}>
+          Review and complete
         </Text>
-        <PaymentOptions />
-        <Box mt={3} fontSize={"13px"}>
-          <Text fontWeight={700} mb={3}>
-            BILLING ADDRESS
-          </Text>
-          <Checkbox defaultChecked={true}>Use shipping address</Checkbox>
-          <Text mt={5}>
-            The personal information provided by you when purchasing items will
-            be collected by YOOX in order to process your order and for other
-            steps necessary to it, including operations related to
-            administrative and fiscal obligations.
-          </Text>
-          <Text>
-            The telephone number you enter may be used to provide you with
-            information regarding the shipping of your order.
-          </Text>
-          <Text>
-            The data processors are the personnel responsible for managing the
-            site and the services related to it, marketing, IT systems and
-            administration.
-          </Text>
-          <Text>
-            Consult the{" "}
-            <span style={{ textDecoration: "underline" }}>
-              <a href="https://www.yoox.com/legal/PrivacyPolicy">
-                Privacy Policy
-              </a>
-            </span>{" "}
-            for more information about your rights.
-          </Text>
-          <Text>
-            Consult our{" "}
-            <span style={{ textDecoration: "underline" }}>
-              <a href="https://www.yoox.com/legal/SalesTerms">
-                General Terms and Conditions of Sale
-              </a>
-            </span>{" "}
-            .
+        <Box mt={10} p={5} pl={10} pr={10} border={"1px dotted gray"}>
+          <Text mb={3}>Check your information and place order</Text>
+          <Text fontWeight={"bold"}>
+            IF YOU CHANGE YOUR MIND, YOU CAN RETURN WITHIN 60 DAYS FROM
+            DELIVERY.
           </Text>
         </Box>
-        <Flex justifyContent={"flex-end"} mt={3}>
-          <Link href={"/checkout/review"}>
+        <Text mt={10} pr={15}>
+          By <span style={{ fontWeight: "bold" }}>completing your order</span>,
+          you declare that you are familiar with and accept YOOX General Terms
+          and Conditions of Sale.
+        </Text>
+        <Flex fontWeight={"bold"} mt={6}>
+          <Text>ORDER TOTAL</Text>
+          <Spacer />
+          <Text>$ {data.totalCartPrice}</Text>
+        </Flex>
+        <Flex flexDir={"row-reverse"}>
+          <Link href={"/men"}>
             <Button
-              p={"12px 150px"}
+              p={"12px 100px"}
               bg={"#333333"}
               color={"#ffffff"}
               _hover={{ bg: "#333333", color: "gray.600" }}
               minW={"120px"}
               minH={"48px"}
               borderRadius={0}
+              mt={10}
+              onClick={checkoutDone}
             >
-              PROCEED
+              COMPLETE YOUR ORDER
             </Button>
           </Link>
         </Flex>
-      </Box>
-      <Box
-        p={"48px"}
-        bg={"whiteAlpha.900"}
-        mb={5}
-        lineHeight={1.5}
-        color={"gray.400"}
-        fontWeight={"bold"}
-        fontSize={"24px"}
-        pb={"70px"}
-      >
-        Review and complete
       </Box>
       <Flex p={2} mb={10} alignItems={"center"}>
         <Link href={"/checkout/payments"}>
@@ -240,4 +284,4 @@ const PaymentLeftSection = () => {
   );
 };
 
-export default PaymentLeftSection;
+export default ReviewLeftSection;
