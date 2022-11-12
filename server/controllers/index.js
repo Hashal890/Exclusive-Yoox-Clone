@@ -9,6 +9,7 @@ const {
 const passport = require("./google.controller");
 const { getProducts, getProductById } = require("./product.controller");
 const { addOrder } = require("./order.controller");
+const { updateCart, getCustomerCartItems } = require("./cart.controller");
 
 module.exports = {
   checkAccount,
@@ -22,4 +23,6 @@ module.exports = {
   getProducts,
   getProductById,
   addOrder,
+  updateCart,
+  getCustomerCartItems,
 };
