@@ -31,11 +31,7 @@
     "react-dom": "18.2.0",
     "react-icons": "^4.6.0",
     "react-image-gallery": "^1.2.11",
-<<<<<<< HEAD
     "react-responsive-carousel": "^3.2.23",
-=======
-    "react-redux": "^8.0.5",
->>>>>>> 9de4a60c10df0592f9f7c8885de41c264e161da0
     "react-router-dom": "^6.4.3",
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.2",
