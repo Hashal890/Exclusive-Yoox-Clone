@@ -4,9 +4,8 @@ const { addOrder } = require("../controllers");
 const { authMiddleware } = require("../middlewares");
 const order = express.Router();
 
-order.post("/", async (req, res) => {
+order.post("/", authMiddleware, async (req, res) => {
   const {
-    userId,
     amount = 0,
     deliveryAddress = "",
     status = "Processing",
@@ -14,9 +13,9 @@ order.post("/", async (req, res) => {
     deliveredDate = "",
     deliveredBy = "",
   } = req.body;
-  if (!customer) return sendRequiredFieldError(res);
+  if (!items.length) return sendRequiredFieldError(res);
   let data = {
-    customer: userId,
+    customer: req.body.userId,
     amount,
     deliveryAddress,
     status,
