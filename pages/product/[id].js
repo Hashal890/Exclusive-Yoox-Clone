@@ -39,16 +39,6 @@ const SinglePage = ({data}) => {
     },
   ];
   return (
-    // <Box display='flex'>
-    //     <Box marginLeft="40px"  w="500px">
-    //      <ImageGallery showPlayButton={false} showBullets={true} items={images} />
-    //     </Box>
-    //     <Box>
-    //     <Text>{m.size}</Text>
-
-    //     </Box>
-
-    // </Box>
     <Box mt='50px'>
     <Box display={'flex'} justifyContent={'space-around'}>
       <Box w='20%'>
