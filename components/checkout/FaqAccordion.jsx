@@ -4,7 +4,7 @@ import AccordionComponent from "./AccordionComponent";
 
 const FaqAccordion = ({ data }) => {
   return (
-    <Box w={["100%", "80%", "80%"]} m={"auto"} mt={"64px"}>
+    <Box w={["100%", "80%", "80%"]} m={"auto"} mt={"64px"} color={"#333"}>
       <Text
         mb={9}
         fontSize={"30px"}

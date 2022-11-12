@@ -21,7 +21,7 @@ export const appReducer = (state, action) => {
         ...state,
         isAuth: true,
         token: action.payload.token,
-        email: action.payload.email
+        email: action.payload.email,
       };
     }
     case LOGIN_FAILURE: {
@@ -52,7 +52,9 @@ export const appReducer = (state, action) => {
         isLoading: false,
       };
     }
-    default:
+    
+    default: {
       return state;
+    }
   }
 };

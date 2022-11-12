@@ -32,7 +32,7 @@ const LeftSection = () => {
   const handleSubmit = () => {};
 
   return (
-    <Box w={["100%", "70%", "70%"]} mb={5}>
+    <Box w={["100%", "70%", "70%"]} mb={5} color={"#333"}>
       <Flex
         justifyContent={"space-between"}
         mb={5}

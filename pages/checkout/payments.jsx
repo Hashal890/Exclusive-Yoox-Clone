@@ -8,7 +8,7 @@ import { PaymentAccordionItems } from "../../components/checkout/AccordionData";
 const Payment = () => {
   return (
     <>
-      <Box bg={"#f3f3f3"} pt={10}>
+      <Box bg={"#f3f3f3"} pt={10} color={"#333"}>
         <HStack
           w={["100%", "90%", "90%"]}
           m={"auto"}

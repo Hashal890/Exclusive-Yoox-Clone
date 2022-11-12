@@ -18,7 +18,7 @@ const CheckoutForm = ({
   handleSubmit,
 }) => {
   return (
-    <Box mb={5} bg={"whiteAlpha.900"} p={"48px"}>
+    <Box mb={5} bg={"whiteAlpha.900"} p={"48px"} color={"#333"}>
       <Heading mb={4}>Shipping</Heading>
       <Text mb={7}>Enter shipping details</Text>
       <Flex
