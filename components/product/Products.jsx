@@ -15,7 +15,7 @@ import { Accordion, AccordionButton, HStack, Button,AccordionItem, AccordionPane
       let d=m.then(res=>{setData(res.data)})
       
      },[page])
-     console.log(data) 
+   
   
     return (
   <Box>
@@ -167,11 +167,7 @@ import { Accordion, AccordionButton, HStack, Button,AccordionItem, AccordionPane
                       <Box display="flex" justifyContent="space-between">
                           <Box  ml='5' p='2'><FiHeart/></Box>
                           {/* <GrView /> */}
-                         
-  
-       
-     
-  
+
                           <Box display="flex" mr='7'>
                           <Text as='b'>-</Text>
                           <Text as='b'>NEW</Text>
