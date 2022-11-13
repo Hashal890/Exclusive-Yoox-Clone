@@ -1,16 +1,16 @@
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
 import { getLocalStorageItem } from "../utils/localStorage";
 import { appReducer } from "./AppContext.Reducer";
+import { SET_LOCAL_ITEMS } from "./AppContext.Types";
 
 const AppContext = createContext();
-let initData = "";
 
-if (typeof window == undefined) {
-  initData = {
-    accessToken: getLocalStorageItem("accessToken") || "",
-    refreshToken: getLocalStorageItem("accessToken") || "",
-    email: getLocalStorageItem("email") || "",
-    name: getLocalStorageItem("name") || "",
+const AppContextProvider = ({ children }) => {
+  let initData = {
+    accessToken: "",
+    refreshToken: "",
+    email: "",
+    name: "",
     cartData: [],
     addressData: [],
     addressData: {
@@ -26,10 +26,19 @@ if (typeof window == undefined) {
     orderType: "",
     totalCartPrice: 0,
   };
-}
-
-const AppContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(appReducer, initData);
+
+  useEffect(() => {
+    if (getLocalStorageItem("accessToken")) {
+      let payload = {
+        accessToken: getLocalStorageItem("accessToken"),
+        refreshToken: getLocalStorageItem("refreshToken"),
+        email: getLocalStorageItem("email"),
+        name: getLocalStorageItem("name"),
+      };
+      dispatch({ type: SET_LOCAL_ITEMS, payload });
+    }
+  }, []);
 
   return <AppContext.Provider value={{ state, dispatch }}>{children}</AppContext.Provider>;
 };
