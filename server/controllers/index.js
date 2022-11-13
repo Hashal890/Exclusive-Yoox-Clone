@@ -8,8 +8,8 @@ const {
 } = require("./jwt.controller");
 const passport = require("./google.controller");
 const { getProducts, getProductById } = require("./product.controller");
-const { addOrder } = require("./order.controller");
-const { updateCart, getCustomerCartItems } = require("./cart.controller");
+const { addOrder, getOrder } = require("./order.controller");
+const { updateCart, getCustomerCartItems, clearCustomerCart } = require("./cart.controller");
 const { createOrder, verifyOrder } = require("./payment.controller");
 
 module.exports = {
@@ -24,8 +24,10 @@ module.exports = {
   getProducts,
   getProductById,
   addOrder,
+  getOrder,
   updateCart,
   getCustomerCartItems,
+  clearCustomerCart,
   createOrder,
   verifyOrder,
 };
