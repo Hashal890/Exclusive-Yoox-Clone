@@ -11,6 +11,7 @@ import {
   SET_LOCAL_ITEMS,
   GET_CART_SUCCESS,
   POST_PATCH_CART_SUCCESS,
+  DELETE_CART_SUCCESS,
   CHECKOUT_SUCCESS,
 } from "./AppContext.Types";
 
@@ -91,12 +92,24 @@ export const appReducer = (state, action) => {
     case POST_PATCH_CART_SUCCESS: {
       return {
         ...state,
-        cartData: [...cartData, payload.data],
+        cartData: payload.data,
+        totalCartPrice: payload.total,
+      };
+    }
+    case DELETE_CART_SUCCESS: {
+      return {
+        ...state,
+        cartData: payload.data,
         totalCartPrice: payload.total,
       };
     }
     case CHECKOUT_SUCCESS: {
-      return {};
+      return {
+        ...state,
+        cartData: [],
+        totalCartPrice: 0,
+        orderType: "",
+      };
     }
     default: {
       return state;
