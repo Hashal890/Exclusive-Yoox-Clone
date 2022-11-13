@@ -1,10 +1,18 @@
-import { Box, Heading, Flex, Text, Checkbox, Avatar } from "@chakra-ui/react";
-import React from "react";
+import { Box, Heading, Flex, Text, Checkbox } from "@chakra-ui/react";
+import React, { useContext, useEffect } from "react";
 import BottomSection from "../../components/cart/BottomSection";
+import { getCartItems } from "../../components/cart/Cart.Controller";
 import CartNavbarFooter from "../../components/cart/CartNavbarFooter";
 import CartTable from "../../components/cart/CartTable";
+import { AppContext } from "../../hoc/AppContext";
 
 const CartPage = () => {
+  const { state, dispatch } = useContext(AppContext);
+
+  useEffect(() => {
+    getCartItems(dispatch);
+  }, []);
+
   return (
     <Box bgColor={"white"}>
       <Box w={["100%", "90%", "70%"]} m={"auto"} color={"#333"}>
@@ -29,11 +37,18 @@ const CartPage = () => {
           >
             <Text>1</Text>
             <Text>|</Text>
-            <Text>ITEMS ADDED TO YOUR SHOPPING BAG (0)</Text>
+            <Text>
+              ITEMS ADDED TO YOUR SHOPPING BAG ({state.cartData.length})
+            </Text>
           </Flex>
         </Box>
-        {/* <CartTable /> */}
-        <Box bg={"#f3f3f3"} p={"18px 10px"} textAlign={"start"}>
+        {state.cartData.length > 0 && <CartTable />}
+        <Box
+          bg={"#f3f3f3"}
+          p={"18px 10px"}
+          textAlign={"start"}
+          mt={state.cartData.length > 0 ? 5 : 8}
+        >
           <Checkbox colorScheme={"messenger"}>
             <Text textTransform={"uppercase"} fontWeight={700} color={"#333"}>
               buying a gift

@@ -8,6 +8,9 @@ import {
   LOGIN_SUCCESS,
   LOGOUT,
   SET_LOCAL_ITEMS,
+  GET_CART_SUCCESS,
+  POST_PATCH_CART_SUCCESS,
+  CHECKOUT_SUCCESS,
 } from "./AppContext.Types";
 
 export const appReducer = (state, action) => {
@@ -76,7 +79,24 @@ export const appReducer = (state, action) => {
         isLoading: false,
       };
     }
-
+    case GET_CART_SUCCESS: {
+      // console.log("setting cart items", payload.data);
+      return {
+        ...state,
+        cartData: payload.data,
+        totalCartPrice: payload.total,
+      };
+    }
+    case POST_PATCH_CART_SUCCESS: {
+      return {
+        ...state,
+        cartData: [...cartData, payload.data],
+        totalCartPrice: payload.total,
+      };
+    }
+    case CHECKOUT_SUCCESS: {
+      return {};
+    }
     default: {
       return state;
     }
