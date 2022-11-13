@@ -51,7 +51,6 @@ const NavLink = ({ children }) => (
 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
   return (
     <Box bg={useColorModeValue("white", "gray.900")} position={"sticky"} top="0" zIndex={"1000"}>
       <Flex w={"85%"} m="auto" h={16} alignItems={"center"} justifyContent={"space-between"}>

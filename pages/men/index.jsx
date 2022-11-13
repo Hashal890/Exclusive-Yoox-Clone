@@ -5,6 +5,7 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { Threebox_div } from "../../components/Threebox_div";
 import { MensSlider } from "../../components/Slider/MensSlider";
 import { MensBanSlider } from "../../components/Slider/MensBanSlider";
+import BottomNavbar from "../../components/BottomNavbar";
 const Home = () => {
   var object = [
     {
@@ -127,7 +128,7 @@ const Home = () => {
             <Splide aria-label="My Favorite Images" options={{ perPage: 1, pagination: 0 }}>
               {object.map((e) => {
                 return (
-                  <SplideSlide>
+                  <SplideSlide key={e.name}>
                     <Box bg={"white"} textAlign={"center"}>
                       <Img src={e.img} textAlign={"center"} />
                       <Text fontWeight="500">{e.name} </Text>

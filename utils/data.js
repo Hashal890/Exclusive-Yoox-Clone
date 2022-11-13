@@ -122,4 +122,40 @@ const data = {
     },
   ],
 };
+
+export const bottonLinks = [
+  {
+    name: "NER ARRIVALS",
+    path: "newArrivals",
+  },
+  {
+    name: "DESIGNERS",
+    path: "designers",
+  },
+  {
+    name: "CLOTHING",
+    path: "clothing",
+  },
+  {
+    name: "ACCESSORIES & BAG",
+    path: "accessoriesAndBag",
+  },
+  {
+    name: "8 BY EXCLUSIVE",
+    path: "exclusive8",
+  },
+  {
+    name: "EXCLUSIVE GEN",
+    path: "exclusiveGen",
+  },
+  {
+    name: "COLLABORATIONS",
+    path: "collaborations",
+  },
+  {
+    name: "BEST DEALS",
+    path: "bestDeals",
+  },
+];
+
 export default data;

@@ -1,5 +1,6 @@
 import { clearLocalStorage, setLocalStorageItem } from "../utils/localStorage";
 import {
+  CHANGE_SELECTED_TYPE,
   GET_PRODUCTS_FAILURE,
   GET_PRODUCTS_REQUEST,
   GET_PRODUCTS_SUCCESS,
@@ -76,7 +77,9 @@ export const appReducer = (state, action) => {
         isLoading: false,
       };
     }
-
+    case CHANGE_SELECTED_TYPE: {
+      return { ...state, selectedType: payload };
+    }
     default: {
       return state;
     }

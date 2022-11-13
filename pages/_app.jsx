@@ -6,6 +6,7 @@ import "../styles/globals.css";
 import { AppContextProvider } from "../hoc/AppContext";
 import Script from "next/script";
 import HomeNav from "../components/HomeNav";
+import BottomNavbar from "../components/BottomNavbar";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -14,6 +15,7 @@ function MyApp({ Component, pageProps }) {
       <ChakraProvider>
         <HomeNav />
         <Navbar />
+        <BottomNavbar />
         <ScrollTop />
         <Component {...pageProps} />
         <Footer />

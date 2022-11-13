@@ -127,7 +127,7 @@ const Home = () => {
             <Splide aria-label="My Favorite Images" options={{ perPage: 1, pagination: 0 }}>
               {object.map((e) => {
                 return (
-                  <SplideSlide>
+                  <SplideSlide key={e.name}>
                     <Box bg={"white"} textAlign={"center"}>
                       <Img src={e.img} textAlign={"center"} />
                       <Text fontWeight="500">{e.name} </Text>
