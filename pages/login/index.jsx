@@ -126,6 +126,7 @@ function Login() {
             h="40px"
             fontWeight={500}
             name="password"
+            type="password"
             onChange={handleChange}
           />
           <Text

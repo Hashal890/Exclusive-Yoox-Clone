@@ -26,6 +26,4 @@ cart.patch("/", authMiddleware, async (req, res) => {
   }
 });
 
-
-
 module.exports = cart;

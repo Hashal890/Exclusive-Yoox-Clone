@@ -2,6 +2,7 @@ const { v4 } = require("uuid");
 const { userModel } = require("../models/");
 const { sendEmail } = require("./email.controller");
 const Redis = require("ioredis");
+const { welcomeEmailTemplate } = require("../helper");
 const redis = new Redis(process.env.REDIS_DB);
 
 const checkAccount = async (key, vaule) => {
@@ -24,7 +25,7 @@ const createAccount = async (firstName, lastName, email, password, emailVerified
     });
     delete newUser["password"];
     if (emailVerified) return newUser;
-    else return await sendVarificationLink(newUser.id, firstName, email);
+    else return await sendVarificationLink(newUser.id, firstName + " " + lastName, email);
   } catch (error) {
     throw new Error(error);
   }
@@ -37,7 +38,7 @@ const sendVarificationLink = async (userid, firstName, email) => {
     const message = {
       to: email,
       subject: "Welcome to Yoox",
-      html: "accountVarificationTemplate({ name, token: v4id })",
+      html: welcomeEmailTemplate({ name: firstName, token: v4id }),
     };
     return await sendEmail(message);
   } catch (error) {
