@@ -1,5 +1,13 @@
-import { Box, Image, Img, Link, SimpleGrid, Stack, Text } from "@chakra-ui/react";
-import HomeNav from "../components/HomeNav";
+import {
+  Box,
+  Image,
+  Img,
+  Link,
+  SimpleGrid,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
+
 const HomeData = [
   {
     img: "https://www.yoox.com/images/yoox80/banners/5569_24_splash_W.jpg?634485886601286852",
@@ -26,6 +34,7 @@ const HomeData = [
     path: "/men",
   },
 ];
+
 export default function Home() {
   return (
     <Box w={"100%"}>
@@ -48,7 +57,12 @@ export default function Home() {
         </Box>
       </Stack>
 
-      <SimpleGrid w={"80%"} margin={"auto"} columns={{ base: 2, sm: 2, md: 4 }} spacing={2}>
+      <SimpleGrid
+        w={"80%"}
+        margin={"auto"}
+        columns={{ base: 2, sm: 2, md: 4 }}
+        spacing={2}
+      >
         {HomeData.map((item) => {
           return (
             <Stack key={item.name}>
@@ -64,7 +78,11 @@ export default function Home() {
                 >
                   <Text>{item.name}</Text>
                 </Box>
-                <Box fontWeight={"bold.800"} textAlign={"center"} padding={"1rem 0rem"}>
+                <Box
+                  fontWeight={"bold.800"}
+                  textAlign={"center"}
+                  padding={"1rem 0rem"}
+                >
                   <Text>{item.desc}</Text>
                 </Box>
               </Link>

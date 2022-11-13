@@ -18,11 +18,11 @@ const CartProductCard = ({
     <Tr border={"none"}>
       <Td>
         <Flex>
-          <Avatar src={image} alt={"sample"} />
-          <Box>
-            <Text fontWeight={700}>{title}</Text>
-            <Text>{type}</Text>
-            <Text fontWeight={700}>{available}</Text>
+          <Avatar src={image} alt={"sample"} size={"xl"} />
+          <Box ml={3}>
+            <Text fontWeight={700} mb={2}>{title}</Text>
+            <Text mb={2}>{type}</Text>
+            <Text fontWeight={600} fontSize={"13px"}>{available}</Text>
           </Box>
         </Flex>
       </Td>
@@ -75,10 +75,10 @@ const CartProductCard = ({
       <Td>
         <Box>
           <Text fontWeight={300} color={"gray.900"} textDecor={"line-through"}>
-            {actual_price}
+            Actual:- $ {actual_price}
           </Text>
           <Text fontWeight={"bold"}>{off_percentage}</Text>
-          <Text>{discount_price}</Text>
+          <Text>Discount:- $ {discount_price}</Text>
         </Box>
       </Td>
     </Tr>
