@@ -8,9 +8,9 @@ const BottomNavbar = () => {
   const router = useRouter();
   useEffect(() => {
     if (router.pathname.includes("women")) {
-      setType("womens");
-    } else if (router.pathname.includes("women")) {
-      setType("mens");
+      setType("/womens");
+    } else if (router.pathname.includes("men")) {
+      setType("/mens");
     } else {
       setType("/");
     }
@@ -32,7 +32,7 @@ const BottomNavbar = () => {
     >
       {bottonLinks.map((link) => {
         return (
-          <Link as="a" key={link.name} href={`/product/${type}`}>
+          <Link as="a" key={link.name} href={`/product${type}`}>
             {link.name}
           </Link>
         );
