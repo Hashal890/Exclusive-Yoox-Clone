@@ -1,6 +1,6 @@
 const express = require("express");
 const { sendRequiredFieldError, sendError } = require("../helper");
-const { addOrder, createOrder, getCustomerCartItems } = require("../controllers");
+const { addOrder, getCustomerCartItems, clearCustomerCart, getOrder } = require("../controllers");
 const { authMiddleware } = require("../middlewares");
 const Razorpay = require("razorpay");
 const crypto = require("crypto");
@@ -37,6 +37,7 @@ order.post("/", authMiddleware, async (req, res) => {
         return res.status(500).send({ message: "Something Went Wrong!" });
       }
       let customerOrder = await addOrder(orderData);
+      await clearCustomerCart(userId);
       return res.send({ data: order });
     });
   } catch (error) {
@@ -61,6 +62,16 @@ order.post("/verify", async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: "Internal Server Error!" });
     console.log(error);
+  }
+});
+
+order.get("/", authMiddleware, async (req, res) => {
+  let customer = req.body.userId;
+  try {
+    let customerOrder = await getOrder("customer", customer);
+    res.send({ message: "order found", data: customerOrder });
+  } catch (error) {
+    return sendError(error);
   }
 });
 

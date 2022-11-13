@@ -9,9 +9,9 @@ const test = () => {
       key: process.env.NEXT_PUBLIC_RAZORYPAY_KEY_ID,
       amount: data.amount,
       currency: data.currency,
-      name: "book.name",
+      name: "Yoox Order Payment",
       description: "Test Transaction",
-      image: "book.img",
+      image: "https://www.psdstamps.com/wp-content/uploads/2022/04/grunge-exclusive-label-png.png",
       order_id: data.id,
       handler: async (response) => {
         try {
@@ -31,8 +31,9 @@ const test = () => {
 
   const handlePayment = async () => {
     try {
-      const { data } = await axiosInstance.post("/api/orders", { address: "My address" });
-      initPayment(data.data);
+      const res = await axiosInstance.post("/api/orders", { address: "My address" });
+      console.log(res.data);
+      initPayment(res.data.data);
     } catch (error) {
       console.log(error);
     }
