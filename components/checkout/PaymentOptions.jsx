@@ -12,13 +12,18 @@ import {
   Spacer,
   Text,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { AppContext } from "../../hoc/AppContext";
+import { ADD_CHECKOUT_OPTION } from "../../hoc/AppContext.Types";
 
 const PaymentOptions = () => {
+  const { dispatch } = useContext(AppContext);
   const [radioValue, setRadioValue] = useState("razorpay");
 
   const radioHandleChange = (e) => {
     setRadioValue(e);
+    // console.log(radioValue);
+    dispatch({ type: ADD_CHECKOUT_OPTION, payload: { radioValue: e } });
   };
 
   return (

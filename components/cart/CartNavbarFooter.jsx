@@ -1,9 +1,20 @@
 import React from "react";
-import { Button, Flex, Image, Text } from "@chakra-ui/react";
+import { Button, Flex, Image, Text, useToast } from "@chakra-ui/react";
 import { GoChevronRight } from "react-icons/go";
 import Link from "next/link";
 
 const CartNavbarFooter = () => {
+  const toast = useToast();
+
+  const giveAlertRedirect = () => {
+    toast({
+      title: "Moving to checkout page!",
+      status: "info",
+      position: "top",
+      isClosable: true,
+    });
+  };
+
   return (
     <Flex justifyContent={"space-between"}>
       <Link href={"/product"}>
@@ -25,7 +36,7 @@ const CartNavbarFooter = () => {
         </Button>
       </Link>
       <Flex alignItems={"center"} gap={3}>
-        <Link href={"/payment"}>
+        <Link href={"/checkout"}>
           <Button
             color={"gray.700"}
             textTransform={"uppercase"}
@@ -34,6 +45,7 @@ const CartNavbarFooter = () => {
             _hover={{ bg: "#ffc439" }}
             borderRadius={0}
             p={6}
+            onClick={giveAlertRedirect}
           >
             <Image
               src={
@@ -59,6 +71,7 @@ const CartNavbarFooter = () => {
             rightIcon={<GoChevronRight />}
             borderRadius={0}
             p={6}
+            onClick={giveAlertRedirect}
           >
             <Text>proceed with your order</Text>
           </Button>

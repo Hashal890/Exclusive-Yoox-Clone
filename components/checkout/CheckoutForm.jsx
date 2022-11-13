@@ -7,16 +7,68 @@ import {
   Input,
   Text,
   Checkbox,
+  useToast,
 } from "@chakra-ui/react";
 import Link from "next/link";
-import React from "react";
+import React, { useContext, useState } from "react";
+import { AppContext } from "../../hoc/AppContext";
+import { ADD_CHECKOUT_ADDRESS } from "../../hoc/AppContext.Types";
 
-const CheckoutForm = ({
-  email,
-  checkoutDetails,
-  handleCheckoutDetailsChange,
-  handleSubmit,
-}) => {
+const initCheckoutDetails = {
+  firstName: "",
+  lastName: "",
+  phoneNumber: "",
+  address: "",
+  zipCode: "",
+  city: "",
+  state: "",
+  country: "",
+};
+
+const CheckoutForm = () => {
+  const { state, dispatch } = useContext(AppContext);
+  const [checkoutDetails, setCheckoutDetails] = useState(initCheckoutDetails);
+  const toast = useToast();
+
+  const handleCheckoutDetailsChange = (e) => {
+    const { name, value } = e.target;
+    setCheckoutDetails({
+      ...checkoutDetails,
+      [name]: value,
+    });
+  };
+
+  const giveAlert = ({ title, status }) => {
+    return toast({
+      title: title,
+      status: status,
+      position: "top",
+      isClosable: true,
+    });
+  };
+
+  const handleSubmit = () => {
+    // console.log(checkoutDetails);
+    if (
+      checkoutDetails.firstName === "" ||
+      checkoutDetails.lastName === "" ||
+      checkoutDetails.phoneNumber === "" ||
+      checkoutDetails.address === "" ||
+      checkoutDetails.zipCode === "" ||
+      checkoutDetails.city === "" ||
+      checkoutDetails.state === "" ||
+      checkoutDetails.country === ""
+    ) {
+      giveAlert({ title: "Fill all input fields correctly!", status: "error" });
+    } else {
+      dispatch({
+        type: ADD_CHECKOUT_ADDRESS,
+        payload: { data: checkoutDetails },
+      });
+      giveAlert({ title: "Address added to backend!", status: "success" });
+    }
+  };
+
   return (
     <Box mb={5} bg={"whiteAlpha.900"} p={"48px"} color={"#333"}>
       <Heading mb={4}>Shipping</Heading>
@@ -134,7 +186,16 @@ const CheckoutForm = ({
           />
         </FormControl>
         <FormControl>
-          <Input type="email" defaultValue={email} disabled w={"400px"} />
+          <Input
+            type="email"
+            defaultValue={
+              state.email === undefined || state.email === ""
+                ? "EMAIL-ID"
+                : state.email
+            }
+            disabled
+            w={"400px"}
+          />
         </FormControl>
       </Flex>
       <Checkbox size={"lg"} colorScheme={"facebook"} defaultChecked mb={5}>
