@@ -30,11 +30,7 @@ const AppContextProvider = ({ children }) => {
     }
   }, []);
 
-  return (
-    <AppContext.Provider value={{ state, dispatch }}>
-      {children}
-    </AppContext.Provider>
-  );
+  return <AppContext.Provider value={{ state, dispatch }}>{children}</AppContext.Provider>;
 };
 
 export { AppContext, AppContextProvider };
