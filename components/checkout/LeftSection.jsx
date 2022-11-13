@@ -32,7 +32,7 @@ const LeftSection = () => {
   const handleSubmit = () => {};
 
   return (
-    <Box w={["100%", "70%", "70%"]} mb={5}>
+    <Box w={["100%", "70%", "70%"]} mb={5} color={"#333"}>
       <Flex
         justifyContent={"space-between"}
         mb={5}
@@ -100,7 +100,6 @@ const LeftSection = () => {
         Review and complete
       </Box>
       <Flex p={2} mb={10} alignItems={"center"}>
-        <Link href={"/checkout/shipping"}>
         <Text
           color={"#666666"}
           lineHeight={"15px"}
@@ -108,7 +107,7 @@ const LeftSection = () => {
           alignItems={"center"}
         >
           SECURE CHECKOUT
-        </Text></Link>
+        </Text>
         <Spacer />
         <Text color={"blue.500"} fontSize={"70px"}>
           <FaCcVisa />

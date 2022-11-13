@@ -1,11 +1,10 @@
 import { Accordion, Box, Text } from "@chakra-ui/react";
 import React from "react";
 import AccordionComponent from "./AccordionComponent";
-import { AccordionItems } from "./AccordionData";
 
-const FaqAccordion = () => {
+const FaqAccordion = ({ data }) => {
   return (
-    <Box w={["100%", "80%", "80%"]} m={"auto"} mt={"64px"}>
+    <Box w={["100%", "80%", "80%"]} m={"auto"} mt={"64px"} color={"#333"}>
       <Text
         mb={9}
         fontSize={"30px"}
@@ -16,7 +15,7 @@ const FaqAccordion = () => {
         Frequently Asked Questions
       </Text>
       <Accordion allowToggle mb={14}>
-        {AccordionItems.map((item) => (
+        {data.map((item) => (
           <AccordionComponent
             key={item.id}
             title={item.title}

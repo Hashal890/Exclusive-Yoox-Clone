@@ -1,24 +1,23 @@
 import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { AppContext } from "../../hoc/AppContext";
 import ProductViewCard from "./ProductViewCard";
 
-const initSampleChekckoutData = [
-  {
-    _id: 1,
-    image: "https://www.yoox.com/images/items/16/16154424AV_10_F.jpg",
-    title: "VALENTINO",
-    type: "Overcoats",
-    colors: ["Beige"],
-    qty: 1,
-    actual_price: "$ 3,229.00",
-    discount_price: "$ 1,594.00",
-  },
-];
+// const initSampleChekckoutData = [
+//   {
+//     _id: 1,
+//     image: "https://www.yoox.com/images/items/16/16154424AV_10_F.jpg",
+//     title: "VALENTINO",
+//     type: "Overcoats",
+//     colors: ["Beige"],
+//     qty: 1,
+//     actual_price: "$ 3,229.00",
+//     discount_price: "$ 1,594.00",
+//   },
+// ];
 
 const RightSection = () => {
-  const [userCheckoutBox, setUserCheckoutBox] = useState(
-    initSampleChekckoutData
-  );
+  const { data } = useContext(AppContext);
 
   return (
     <Box
@@ -29,19 +28,20 @@ const RightSection = () => {
       pb={8}
       pl={6}
       pr={6}
+      color={"#333"}
     >
       <Flex justifyContent={"space-between"} alignItems={"center"} mb={7}>
         <Heading fontSize={"25px"} fontWeight={600}>
           Your order
         </Heading>
-        <Text>{userCheckoutBox.length} items</Text>
+        <Text>{data.cartData.length} items</Text>
       </Flex>
       <Box mb={5}>
         <Text fontSize={"14px"} fontWeight={"bold"}>
           TOTAL FOR ITEMS
         </Text>
         <Text fontSize={"14px"} fontWeight={500}>
-          $ {}
+          $ {data.totalCartPrice}
         </Text>
       </Box>
       <Box mb={5}>
@@ -65,27 +65,31 @@ const RightSection = () => {
           ORDER TOTAL
         </Text>
         <Text fontSize={"20px"} fontWeight={500}>
-          $ {}
+          $ {data.totalCartPrice}
         </Text>
       </Box>
       <hr />
-      <Text pt={2} pb={2} fontSize={"14px"} fontWeight={"bold"} mt={5}>
-        YOU ARE PURCHASING:-
-      </Text>
-      {userCheckoutBox.map((product) => (
-        <ProductViewCard
-          key={product._id}
-          image={product.image}
-          title={product.title}
-          type={product.type}
-          colors={product.colors}
-          qty={product.qty}
-          actual_price={product.actual_price}
-          discount_price={product.discount_price}
-        />
-      ))}
-      <br />
-      <hr />
+      {data.length > 0 && (
+        <>
+          <Text pt={2} pb={2} fontSize={"14px"} fontWeight={"bold"} mt={5}>
+            YOU ARE PURCHASING:-
+          </Text>
+          {data.cartData.map((product) => (
+            <ProductViewCard
+              key={product._id}
+              image={product.image}
+              title={product.title}
+              type={product.type}
+              colors={product.colors}
+              qty={product.qty}
+              actual_price={product.actual_price}
+              discount_price={product.discount_price}
+            />
+          ))}
+          <br />
+          <hr />
+        </>
+      )}
       <Flex justifyContent={"center"} alignItems={"center"} mt={5}>
         <Button
           textTransform={"uppercase"}

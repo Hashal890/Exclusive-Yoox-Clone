@@ -6,6 +6,20 @@ const AppContext = createContext();
 const initData = {
   token: "",
   email: "EMAIL-ID",
+  cartData: [],
+  addressData: [],
+  addressData: {
+    firstName: "",
+    lastName: "",
+    phoneNumber: "",
+    address: "",
+    zipCode: "",
+    city: "",
+    state: "",
+    country: "",
+  },
+  orderType: "",
+  totalCartPrice: 0.00,
 };
 
 if (typeof window === undefined) {

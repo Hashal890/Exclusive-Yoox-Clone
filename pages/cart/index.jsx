@@ -67,7 +67,7 @@ const CartPage = () => {
         </Box>
         <BottomSection />
         <CartNavbarFooter />
-        <Box mt={20} mb={5} fontSize={"14px"}>
+        <Box mt={20} mb={5} fontSize={"14px"} pb={14}>
           <Text fontWeight={"bold"}>CUSTOMER CARE</Text>
           <Text>
             If you have any questions call us at our toll-free number

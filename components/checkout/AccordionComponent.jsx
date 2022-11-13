@@ -10,7 +10,7 @@ import React from "react";
 
 const AccordionComponent = ({ title, desc }) => {
   return (
-    <AccordionItem>
+    <AccordionItem color={"#333"}>
       <Heading>
         <AccordionButton
           fontSize={"14px"}
