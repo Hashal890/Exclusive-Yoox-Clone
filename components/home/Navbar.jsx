@@ -14,6 +14,7 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { BsBag } from "react-icons/bs";
 import { BiSearch } from "react-icons/bi";
 import RichLink from "next/link";
+
 const Links = [
   {
     name: "Men",
@@ -51,7 +52,6 @@ const NavLink = ({ children }) => (
 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
   return (
     <Box
       bg={useColorModeValue("white", "gray.900")}

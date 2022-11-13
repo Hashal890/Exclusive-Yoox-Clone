@@ -1,11 +1,12 @@
 import { ChakraProvider } from "@chakra-ui/react";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import ScrollTop from "../components/ScrollTop";
+import Navbar from "../components/home/Navbar";
+import Footer from "../components/home/Footer";
+import ScrollTop from "../components/home/ScrollTop";
 import "../styles/globals.css";
 import { AppContextProvider } from "../hoc/AppContext";
 import Script from "next/script";
-import HomeNav from "../components/HomeNav";
+import HomeNav from "../components/home/HomeNav";
+import BottomNavbar from "../components/home/BottomNavbar";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -14,6 +15,7 @@ function MyApp({ Component, pageProps }) {
       <ChakraProvider>
         <HomeNav />
         <Navbar />
+        <BottomNavbar />
         <ScrollTop />
         <Component {...pageProps} />
         <Footer />

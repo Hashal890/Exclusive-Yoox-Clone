@@ -1,5 +1,6 @@
 import { clearLocalStorage, setLocalStorageItem } from "../utils/localStorage";
 import {
+  CHANGE_SELECTED_TYPE,
   GET_PRODUCTS_FAILURE,
   GET_PRODUCTS_REQUEST,
   GET_PRODUCTS_SUCCESS,

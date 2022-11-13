@@ -3,8 +3,9 @@ import React, { useContext } from "react";
 import { FaPencilAlt } from "react-icons/fa";
 import { AiFillUnlock, AiFillCaretDown } from "react-icons/ai";
 import Darkmode from "./Darkmode";
-import { AppContext } from "../hoc/AppContext";
-import { LOGOUT } from "../hoc/AppContext.Types";
+import { AppContext } from "../../hoc/AppContext";
+import { LOGOUT } from "../../hoc/AppContext.Types";
+
 const HomeNav = () => {
   const { state, dispatch } = useContext(AppContext);
   const logout = () => {
@@ -32,6 +33,7 @@ const HomeNav = () => {
             <Button variant={"ghost"} onClick={logout}>
               Logout
             </Button>
+            <Darkmode />
           </HStack>
         ) : (
           <Flex gap={"1rem"} alignItems={"center"}>
