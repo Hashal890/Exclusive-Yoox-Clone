@@ -53,8 +53,19 @@ export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <Box bg={useColorModeValue("white", "gray.900")} position={"sticky"} top="0" zIndex={"1000"}>
-      <Flex w={"85%"} m="auto" h={16} alignItems={"center"} justifyContent={"space-between"}>
+    <Box
+      bg={useColorModeValue("white", "gray.900")}
+      position={"sticky"}
+      top="0"
+      zIndex={"1000"}
+    >
+      <Flex
+        w={"85%"}
+        m="auto"
+        h={16}
+        alignItems={"center"}
+        justifyContent={"space-between"}
+      >
         <IconButton
           size={"md"}
           icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
@@ -67,17 +78,20 @@ export default function Navbar() {
             <NavLink key={link.name}>{link}</NavLink>
           ))}
         </HStack>
-
-        <Box ml={{ base: "none", md: -32 }}>
-          <Image
-            src="https://www.psdstamps.com/wp-content/uploads/2022/04/grunge-exclusive-label-png.png"
-            width={"48"}
-          />
-        </Box>
+        <RichLink href={"/"}>
+          <Box ml={{ base: "none", md: -32 }}>
+            <Image
+              src="https://www.psdstamps.com/wp-content/uploads/2022/04/grunge-exclusive-label-png.png"
+              width={"48"}
+            />
+          </Box>
+        </RichLink>
         <HStack alignItems={"center"} spacing={8}>
           <BiSearch fontSize="25px" cursor={"pointer"} />
           <AiOutlineHeart fontSize="25px" cursor={"pointer"} />
-          <BsBag fontSize="25px" cursor={"pointer"} />
+          <RichLink href={"/cart"}>
+            <BsBag fontSize="25px" cursor={"pointer"} />
+          </RichLink>
         </HStack>
       </Flex>
 
