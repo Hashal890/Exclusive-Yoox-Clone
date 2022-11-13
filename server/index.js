@@ -1,7 +1,6 @@
 const express = require("express");
 const next = require("next");
 require("dotenv").config();
-
 const { dbConnect } = require("./config");
 const { userRouter, productRouter, orderRouter, cartRouter } = require("./routes");
 //next.js configuration
