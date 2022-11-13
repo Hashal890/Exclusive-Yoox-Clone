@@ -42,13 +42,12 @@ function Login() {
         });
       });
   };
-  
+
   useEffect(() => {
     if (router.query.code) setGitHubCode(router.query.code);
   }, []);
 
   useEffect(() => {
-    console.log(gitHubCode);
     if (gitHubCode) gitHubLogin(gitHubCode);
   }, [gitHubCode]);
 

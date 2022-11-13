@@ -1,5 +1,5 @@
 export const getLocalStorageItem = (key) => {
-  if (typeof window == undefined) {
+  if (typeof window !== undefined) {
     return JSON.parse(localStorage.getItem(key));
   }
 };
