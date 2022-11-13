@@ -13,6 +13,8 @@ import {
   POST_PATCH_CART_SUCCESS,
   DELETE_CART_SUCCESS,
   CHECKOUT_SUCCESS,
+  ADD_CHECKOUT_ADDRESS,
+  ADD_CHECKOUT_OPTION,
 } from "./AppContext.Types";
 
 export const appReducer = (state, action) => {
@@ -102,6 +104,18 @@ export const appReducer = (state, action) => {
         cartData: payload.data,
         totalCartPrice: payload.total,
       };
+    }
+    case ADD_CHECKOUT_ADDRESS : {
+      return {
+        ...state,
+        addressData: payload.data,
+      }
+    }
+    case ADD_CHECKOUT_OPTION : {
+      return {
+        ...state,
+        orderType: payload.radioValue,
+      }
     }
     case CHECKOUT_SUCCESS: {
       return {

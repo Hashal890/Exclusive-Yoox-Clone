@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Box, HStack, useColorModeValue } from "@chakra-ui/react";
 import FaqAccordion from "../../components/checkout/FaqAccordion";
 import RightSection from "../../components/checkout/RightSection";
 import LeftSection from "../../components/checkout/LeftSection";
 import { ShippingAccordionItems } from "../../components/checkout/AccordionData";
+import { AppContext } from "../../hoc/AppContext";
+import { getCartItems } from "../../components/cart/Cart.Controller";
 
 const CheckoutPage = () => {
+  const { dispatch } = useContext(AppContext);
+
+  useEffect(() => {
+    getCartItems(dispatch);
+  }, []);
+
   return (
     <>
       <Box

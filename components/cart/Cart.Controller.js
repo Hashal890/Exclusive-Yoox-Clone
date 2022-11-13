@@ -10,11 +10,12 @@ const getCartItems = async (dispatch) => {
     const res = await axiosInstance.get("/api/carts");
     const data = res.data.data[0].items;
     // console.log(data);
-    const total = data.reduce(
+    let total = data.reduce(
       (prev, curr) => prev + curr.item.current_price * curr.quantity,
       0
     );
     // console.log(total);
+    if (total <= 250) total += 9.95;
     dispatch({ type: GET_CART_SUCCESS, payload: { data, total } });
   } catch (err) {
     console.log(err.message);
@@ -35,7 +36,7 @@ const updateCartItems = async (dispatch, data) => {
       };
     });
     let res = await axiosInstance.patch("/api/carts", { items });
-    console.log(res);
+    // console.log(res);
   } catch (err) {
     console.log(err.message);
   }
@@ -43,7 +44,7 @@ const updateCartItems = async (dispatch, data) => {
 
 const deleteCartItem = async (dispatch, id) => {
   try {
-    // dispatch({ type: DELETE_CART_SUCCESS, payload: { data, total } });
+    dispatch({ type: DELETE_CART_SUCCESS, payload: { data, total } });
   } catch (err) {
     console.log(err.message);
   }

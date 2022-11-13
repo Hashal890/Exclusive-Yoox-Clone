@@ -13,7 +13,7 @@ const BottomSection = () => {
         <Box>
           <Text fontWeight={"bold"}>
             <span style={{ backgroundColor: "#fffe94", padding: "3px" }}>
-              STANDARD -$ 9.95 FREE
+              STANDARD -$ 9.95 {state.totalCartPrice > 250 ? "FREE" : ""}
             </span>
           </Text>
           <Text>8-10 business days</Text>
@@ -87,7 +87,7 @@ const BottomSection = () => {
             (The final amount will depend on the shipping method you choose)
           </Text>
         </Box>
-        <Text>Free</Text>
+        <Text>{state.totalCartPrice > 250 ? "FREE" : "9.95"}</Text>
       </Flex>
       <Flex
         justifyContent={"space-between"}

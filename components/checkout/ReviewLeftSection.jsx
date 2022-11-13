@@ -12,12 +12,58 @@ import Link from "next/link";
 import React, { useContext } from "react";
 import { BsCheckLg } from "react-icons/bs";
 import { AppContext } from "../../hoc/AppContext";
+import { CHECKOUT_SUCCESS } from "../../hoc/AppContext.Types";
+import { axiosInstance } from "../../utils/axiosConfig";
 
 const ReviewLeftSection = () => {
-  const { state } = useContext(AppContext);
+  const { state, dispatch } = useContext(AppContext);
   const toast = useToast();
 
-  const checkoutDone = () => {
+  const initPayment = (data) => {
+    const options = {
+      key: process.env.NEXT_PUBLIC_RAZORYPAY_KEY_ID,
+      amount: data.amount,
+      currency: data.currency,
+      name: "Yoox Order Payment",
+      description: "Test Transaction",
+      image:
+        "https://www.psdstamps.com/wp-content/uploads/2022/04/grunge-exclusive-label-png.png",
+      order_id: data.id,
+      handler: async (response) => {
+        try {
+          const { data } = await axiosInstance.post(
+            "/api/orders/verify",
+            response
+          );
+          // console.log(data);
+        } catch (error) {
+          console.log(error);
+        }
+      },
+      theme: {
+        color: "#C15CE5",
+      },
+    };
+    const rzp1 = new window.Razorpay(options);
+    rzp1.open();
+  };
+
+  const handleSubmit = async () => {
+    if (state.orderType == "razorpay") {
+      try {
+        const res = await axiosInstance.post("/api/orders", {
+          address: state.addressData,
+        });
+        console.log(res.data);
+        initPayment(res.data.data);
+      } catch (error) {
+        console.log(error);
+      }
+      dispatch({
+        type: CHECKOUT_SUCCESS,
+        payload: { address: state.addressData },
+      });
+    }
     toast({
       title: "Order placed successfully!",
       status: "success",
@@ -206,21 +252,21 @@ const ReviewLeftSection = () => {
           <Text>$ {state.totalCartPrice}</Text>
         </Flex>
         <Flex flexDir={"row-reverse"}>
-          <Link href={"/men"}>
-            <Button
-              p={"12px 100px"}
-              bg={"#333333"}
-              color={"#ffffff"}
-              _hover={{ bg: "#333333", color: "gray.600" }}
-              minW={"120px"}
-              minH={"48px"}
-              borderRadius={0}
-              mt={10}
-              onClick={checkoutDone}
-            >
-              COMPLETE YOUR ORDER
-            </Button>
-          </Link>
+          {/* <Link href={"/men"}> */}
+          <Button
+            p={"12px 100px"}
+            bg={"#333333"}
+            color={"#ffffff"}
+            _hover={{ bg: "#333333", color: "gray.600" }}
+            minW={"120px"}
+            minH={"48px"}
+            borderRadius={0}
+            mt={10}
+            onClick={handleSubmit}
+          >
+            COMPLETE YOUR ORDER
+          </Button>
+          {/* </Link> */}
         </Flex>
       </Box>
       <Flex p={2} mb={10} alignItems={"center"}>

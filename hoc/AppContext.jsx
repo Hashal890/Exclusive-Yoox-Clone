@@ -13,7 +13,7 @@ const AppContextProvider = ({ children }) => {
     name: "",
     cartData: [],
     addressData: {},
-    orderType: "",
+    orderType: "razorpay",
     totalCartPrice: 0,
   };
   const [state, dispatch] = useReducer(appReducer, initData);
