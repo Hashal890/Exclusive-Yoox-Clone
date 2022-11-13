@@ -1,65 +1,88 @@
-import React, { useContext, useState } from "react";
-import {
-  Box,
-  Button,
-  Checkbox,
-  Input,
-  SimpleGrid,
-  Text,
-} from "@chakra-ui/react";
+import React, { useContext, useEffect, useState } from "react";
+import { Box, Button, Checkbox, Input, SimpleGrid, Text, useToast } from "@chakra-ui/react";
 import { FcGoogle } from "react-icons/fc";
-import { FaFacebookF } from "react-icons/fa";
+import { FaFacebookF, FaGithub } from "react-icons/fa";
 import { AppContext } from "../../hoc/AppContext";
 import { LOGIN_SUCCESS } from "../../hoc/AppContext.Types";
-import axios from "axios";
-export const Logins = async (data) => {
-    console.log("action:", data);
-  
-    try {
-      let response = await axios.post(
-        "http://localhost:3000/api/users/login",
-        data
-      );
-      console.log(response);
-    //   dispatch({ type: LOGIN_SUCCESS, payload: response.data.token });
-    } catch (err) {
-      console.log(err);
-    }
-  };
+import { axiosInstance } from "../../utils/axiosConfig";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 function Login() {
-    const [values, setValues] = useState({});
-    // console.log(data,dispatch)
-    const {dispatch} = useContext(AppContext);
+  const [values, setValues] = useState({});
+  const { state, dispatch } = useContext(AppContext);
+  const toast = useToast();
+  const router = useRouter();
+  const [gitHubCode, setGitHubCode] = useState(null);
 
+  useEffect(() => {
+    if (state.accessToken) {
+      router.push("/");
+    }
+  }, [state]);
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setValues({
-          ...values,
-          [name]: value,
+  const gitHubLogin = (code) => {
+    axiosInstance
+      .get(`/api/users/github?code=${code}`)
+      .then((res) => {
+        dispatch({ type: LOGIN_SUCCESS, payload: res.data.data });
+        toast({
+          title: res.data.message,
+          status: "success",
+          duration: 5000,
+          isClosable: true,
         });
-      };
-      // console.log(data);
-      const handleClick = () => {
-        dispatch(Logins(values));
-      };
+      })
+      .catch((err) => {
+        toast({
+          title: err.response.data.message,
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
+      });
+  };
+  useEffect(() => {
+    if (router.query.code) setGitHubCode(router.query.code);
+  }, []);
 
+  useEffect(() => {
+    console.log(gitHubCode);
+    if (gitHubCode) gitHubLogin(gitHubCode);
+  }, [gitHubCode]);
+
+  const login = (data) => {
+    axiosInstance
+      .post("/api/users/login", data)
+      .then((res) => {
+        dispatch({ type: LOGIN_SUCCESS, payload: res.data.data });
+        toast({
+          title: res.data.message,
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
+      })
+      .catch((err) => {
+        toast({
+          title: err.response.data.message,
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
+      });
+  };
+
+  const handleClick = () => login(values);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setValues({ ...values, [name]: value });
+  };
   return (
     <div>
       <SimpleGrid columns={{ base: 1, sm: 1, md: 2 }} margin="auto" w={"70%"}>
-        <Box
-          width={"70%"}
-          h="90%"
-          border={"0px solid"}
-          m="auto"
-          mt={"4rem"}
-          textAlign="center"
-        >
-          <Text
-            fontSize={{ base: "2sd", sm: "2xl", md: "10xl" }}
-            fontWeight="700"
-          >
+        <Box width={"70%"} h="90%" border={"0px solid"} m="auto" mt={"4rem"} textAlign="center">
+          <Text fontSize={{ base: "2sd", sm: "2xl", md: "10xl" }} fontWeight="700">
             ARE YOU REGISTERED?
           </Text>
           <Text
@@ -143,15 +166,17 @@ function Login() {
           <Text color={"grey"} mt="1rem" fontSize={"0.8rem"} fontWeight={600}>
             or login in with
           </Text>
-          <Button
-            colorScheme="facebook"
-            borderRadius={"none"}
-            w={"100%"}
-            mt="1rem"
-            fontSize={"0.7rem"}
-          >
-            <FaFacebookF size={"1.5rem"} />
-          </Button>
+          <Link href="https://github.com/login/oauth/authorize?client_id=c2f67dde713515d40dc2">
+            <Button
+              colorScheme="gray"
+              borderRadius={"none"}
+              w={"100%"}
+              mt="1rem"
+              fontSize={"0.7rem"}
+            >
+              <FaGithub size={"1.5rem"} />
+            </Button>
+          </Link>
           <Button
             colorScheme="#e9ecef"
             borderRadius={"none"}
@@ -165,18 +190,8 @@ function Login() {
           </Button>
         </Box>
 
-        <Box
-          width={"70%"}
-          h="90%"
-          border={"0px solid"}
-          m="auto"
-          mt={"4rem"}
-          textAlign="center"
-        >
-          <Text
-            fontSize={{ base: "2sd", sm: "2xl", md: "2xl" }}
-            fontWeight="700"
-          >
+        <Box width={"70%"} h="90%" border={"0px solid"} m="auto" mt={"4rem"} textAlign="center">
+          <Text fontSize={{ base: "2sd", sm: "2xl", md: "2xl" }} fontWeight="700">
             ARE YOU NEW
           </Text>
           <Text
@@ -209,8 +224,8 @@ function Login() {
               fontSize={{ base: "xs", sm: "xs", md: "5md" }}
               fontStyle="italic"
             >
-              I consent to recive YOOX newsletters via email.For further
-              information,please consult the Privacy Policy.
+              I consent to recive YOOX newsletters via email.For further information,please consult
+              the Privacy Policy.
             </Text>
           </Box>
 
@@ -232,8 +247,8 @@ function Login() {
             fontSize={"0.6rem"}
             fontWeight={600}
           >
-            Want to Checkout faster? Sign up for MYOOX and get speedy checkout{" "}
-            <br /> on future purchase
+            Want to Checkout faster? Sign up for MYOOX and get speedy checkout <br /> on future
+            purchase
           </Text>
           <Button
             colorScheme="#e9ecef"
