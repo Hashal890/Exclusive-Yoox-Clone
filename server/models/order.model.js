@@ -5,7 +5,7 @@ const orderSchema = new mongoose.Schema(
     customer: { type: mongoose.Schema.Types.ObjectId, ref: "user", required: true },
     amount: { type: Number, required: true },
     deliveryAddress: { type: String },
-    status: {
+    orderStatus: {
       type: String,
       enum: [
         "Disptaching",

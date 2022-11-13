@@ -1,11 +1,12 @@
 import { Button } from "@chakra-ui/react";
 import axios from "axios";
 import React from "react";
+import { axiosInstance } from "../utils/axiosConfig";
 
 const test = () => {
   const initPayment = (data) => {
     const options = {
-      key: "YOUR_RAZORPAY_KEY",
+      key: process.env.NEXT_PUBLIC_RAZORYPAY_KEY_ID,
       amount: data.amount,
       currency: data.currency,
       name: "book.name",
@@ -14,33 +15,27 @@ const test = () => {
       order_id: data.id,
       handler: async (response) => {
         try {
-          const verifyUrl = "http://localhost:3000/api/orders/verify";
-          const { data } = await axios.post(verifyUrl, response);
+          const { data } = await axiosInstance.post("/api/orders/verify", response);
           console.log(data);
         } catch (error) {
           console.log(error);
         }
       },
       theme: {
-        color: "#3399cc",
+        color: "#C15CE5",
       },
     };
     const rzp1 = new window.Razorpay(options);
     rzp1.open();
   };
 
-  const handlePayment = () => {
-    const orderUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/orders`;
-    fetch(orderUrl, {
-      method: "POST",
-      body: JSON.stringify({ amount: 1111 }),
-    })
-      .then((resp) => resp.json())
-      .then((res) => {
-        console.log(res);
-        // initPayment(data.data);
-      })
-      .catch((e) => console.log(e));
+  const handlePayment = async () => {
+    try {
+      const { data } = await axiosInstance.post("/api/orders", { address: "My address" });
+      initPayment(data.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
