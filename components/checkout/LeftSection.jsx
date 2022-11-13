@@ -1,9 +1,10 @@
 import { Box, Button, Flex, IconButton, Spacer, Text } from "@chakra-ui/react";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { BsCheckLg } from "react-icons/bs";
 import { FaCcMastercard, FaCcPaypal, FaCcVisa } from "react-icons/fa";
 import { SiPaytm, SiRazorpay } from "react-icons/si";
+import { AppContext } from "../../hoc/AppContext";
 import CheckoutForm from "./CheckoutForm";
 
 const initCheckoutDetails = {
@@ -18,7 +19,7 @@ const initCheckoutDetails = {
 };
 
 const LeftSection = () => {
-  const email = "";
+  const { state } = useContext(AppContext);
   const [checkoutDetails, setCheckoutDetails] = useState(initCheckoutDetails);
 
   const handleCheckoutDetailsChange = (e) => {
@@ -55,7 +56,7 @@ const LeftSection = () => {
           <Text>
             You are ordering as{" "}
             <span style={{ fontWeight: "bold" }}>
-              {email === undefined || email === "" ? "EMAIL-ID" : email}
+              {state.email === undefined || state.email === "" ? "EMAIL-ID" : state.email}
             </span>
           </Text>
         </Box>
@@ -70,7 +71,7 @@ const LeftSection = () => {
         </Link>
       </Flex>
       <CheckoutForm
-        email={email === undefined || email === "" ? "EMAIL-ID" : email}
+        email={state.email === undefined || state.email === "" ? "EMAIL-ID" : state.email}
         checkoutDetails={checkoutDetails}
         handleCheckoutDetailsChange={handleCheckoutDetailsChange}
         handleSubmit={handleSubmit}

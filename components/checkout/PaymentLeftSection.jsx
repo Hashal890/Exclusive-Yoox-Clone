@@ -15,7 +15,7 @@ import { AppContext } from "../../hoc/AppContext";
 import PaymentOptions from "./PaymentOptions";
 
 const PaymentLeftSection = () => {
-  const { data } = useContext(AppContext);
+  const { state } = useContext(AppContext);
 
   return (
     <Box w={["100%", "70%", "70%"]} mb={5} color={"#333"}>
@@ -41,9 +41,9 @@ const PaymentLeftSection = () => {
           <Text>
             You are ordering as{" "}
             <span style={{ fontWeight: "bold" }}>
-              {data.email === undefined || data.email === ""
+              {state.email === undefined || state.email === ""
                 ? "EMAIL-ID"
-                : data.email}
+                : state.email}
             </span>
           </Text>
         </Box>
@@ -81,14 +81,14 @@ const PaymentLeftSection = () => {
             RECIPIENT
           </Text>
           <Text fontWeight={"bold"} fontSize={"14px"} mb={3}>
-            {data.addressData.firstName} {data.addressData.lastName}
+            {state.addressData.firstName} {state.addressData.lastName}
           </Text>
           <Text fontSize={"14px"} mb={3}>
-            {data.addressData.address} - {data.addressData.zipCode} -{" "}
-            {data.addressData.city}
+            {state.addressData.address} - {state.addressData.zipCode} -{" "}
+            {state.addressData.city}
           </Text>
           <Text fontSize={"14px"} mb={5}>
-            {data.addressData.zipCode}
+            {state.addressData.zipCode}
           </Text>
           <Text fontWeight={"bold"} fontSize={"14px"} mb={3}>
             SHIPPING METHOD

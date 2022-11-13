@@ -14,7 +14,7 @@ import { BsCheckLg } from "react-icons/bs";
 import { AppContext } from "../../hoc/AppContext";
 
 const ReviewLeftSection = () => {
-  const { data } = useContext(AppContext);
+  const { state } = useContext(AppContext);
   const toast = useToast();
 
   const checkoutDone = () => {
@@ -50,9 +50,9 @@ const ReviewLeftSection = () => {
           <Text>
             You are ordering as{" "}
             <span style={{ fontWeight: "bold" }}>
-              {data.email === undefined || data.email === ""
+              {state.email === undefined || state.email === ""
                 ? "EMAIL-ID"
-                : data.email}
+                : state.email}
             </span>
           </Text>
         </Box>
@@ -90,14 +90,14 @@ const ReviewLeftSection = () => {
             RECIPIENT
           </Text>
           <Text fontWeight={"bold"} fontSize={"14px"} mb={3}>
-            {data.addressData.firstName} {data.addressData.lastName}
+            {state.addressData.firstName} {state.addressData.lastName}
           </Text>
           <Text fontSize={"14px"} mb={3}>
-            {data.addressData.address} - {data.addressData.zipCode} -{" "}
-            {data.addressData.city}
+            {state.addressData.address} - {state.addressData.zipCode} -{" "}
+            {state.addressData.city}
           </Text>
           <Text fontSize={"14px"} mb={5}>
-            {data.addressData.zipCode}
+            {state.addressData.zipCode}
           </Text>
           <Text fontWeight={"bold"} fontSize={"14px"} mb={3}>
             SHIPPING METHOD
@@ -143,7 +143,7 @@ const ReviewLeftSection = () => {
               fontSize={"15px"}
               mb={8}
             >
-              1. PAYMENT METHOD :- {data.orderType}
+              1. PAYMENT METHOD :- {state.orderType}
             </Text>
           </Box>
           <Box>
@@ -157,16 +157,16 @@ const ReviewLeftSection = () => {
             </Text>
             <Text fontSize={"14px"} mb={3}>
               <span style={{ fontWeight: 600 }}>Name:-</span>
-              {data.addressData.firstName} {data.addressData.lastName}
+              {state.addressData.firstName} {state.addressData.lastName}
             </Text>
             <Text fontSize={"14px"} mb={3}>
               <span style={{ fontWeight: 600 }}>Address:-</span>{" "}
-              {data.addressData.address} - {data.addressData.zipCode} -{" "}
-              {data.addressData.city}
+              {state.addressData.address} - {state.addressData.zipCode} -{" "}
+              {state.addressData.city}
             </Text>
             <Text fontSize={"14px"} mb={3}>
               <span style={{ fontWeight: 600 }}>Zip Code:-</span>{" "}
-              {data.addressData.zipCode}
+              {state.addressData.zipCode}
             </Text>
             <Text fontSize={"14px"} mb={5}>
               <span style={{ fontWeight: 600 }}>Delivery Duration:-</span>{" "}
@@ -203,7 +203,7 @@ const ReviewLeftSection = () => {
         <Flex fontWeight={"bold"} mt={6}>
           <Text>ORDER TOTAL</Text>
           <Spacer />
-          <Text>$ {data.totalCartPrice}</Text>
+          <Text>$ {state.totalCartPrice}</Text>
         </Flex>
         <Flex flexDir={"row-reverse"}>
           <Link href={"/men"}>
