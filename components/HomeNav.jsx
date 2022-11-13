@@ -1,13 +1,4 @@
-import {
-  Button,
-  Divider,
-  Flex,
-  HStack,
-  Link,
-  Stack,
-  Text,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { Button, Divider, Flex, HStack, Link, Text, useColorModeValue } from "@chakra-ui/react";
 import React, { useContext } from "react";
 import { FaPencilAlt } from "react-icons/fa";
 import { AiFillUnlock, AiFillCaretDown } from "react-icons/ai";
@@ -15,7 +6,6 @@ import Darkmode from "./Darkmode";
 import { AppContext } from "../hoc/AppContext";
 const HomeNav = () => {
   const { state, dispatch } = useContext(AppContext);
-  console.log(state, "aaa");
   return (
     <>
       <HStack
@@ -32,7 +22,7 @@ const HomeNav = () => {
           </HStack>
           <Text cursor={"pointer"}>CUSTOMER CARE</Text>
         </Flex>
-        {state.accessToken ? (
+        {state?.accessToken ? (
           <HStack>
             <Text>{state.name}</Text>
             <Button variant={"ghost"}>Logout</Button>

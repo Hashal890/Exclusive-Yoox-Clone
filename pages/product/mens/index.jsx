@@ -26,21 +26,19 @@ const Products = () => {
   const handleChange = (e) => {
     setSort(e.target.value);
   };
-  //   sortBy=current_price&order=desc
+
   let m = fetch(
     `http://localhost:3000/api/products?ideal_for=men&page=${page}&sortBy=current_price&order=${sort}`
   ).then((res) => res.json());
 
-  useEffect(
-    (page, sort) => {
-      let d = m.then((res) => {
-        setData(res.data);
-      });
-    },
-    [page, sort]
-  );
-  
-  
+  useEffect(() => {
+    console.log(m);
+    let d = m.then((res) => {
+      console.log(res);
+      setData(res.data);
+    });
+  }, [page, sort]);
+
   return (
     <Box>
       <HStack justifyContent={"center"} as="b" fontSize="24px" mb="10" mt="5">
@@ -97,7 +95,7 @@ const Products = () => {
           <option value="desc">High to Low</option>
         </Select>
       </HStack>
-      <Box display="flex" gap="2%" justifyContent={'space-between'}>
+      <Box display="flex" gap="2%" justifyContent={"space-between"}>
         <Box ml="2%" width="20%">
           <Accordion allowToggle>
             <AccordionItem>
@@ -110,12 +108,18 @@ const Products = () => {
                 </AccordionButton>
               </h2>
               <AccordionPanel pb={4}>
-                <Checkbox type="linkedin">Activewear</Checkbox><br/>
-                <Checkbox type="linkedin">Coats & Jackets</Checkbox><br/>
-                <Checkbox type="linkedin">Jeans and Denims</Checkbox><br/>
-                <Checkbox type="linkedin">Jumpsuits and Overalls</Checkbox><br/>
-                <Checkbox type="linkedin">Pants</Checkbox><br/>
-                <Checkbox type="linkedin">Shirts</Checkbox><br/>
+                <Checkbox type="linkedin">Activewear</Checkbox>
+                <br />
+                <Checkbox type="linkedin">Coats & Jackets</Checkbox>
+                <br />
+                <Checkbox type="linkedin">Jeans and Denims</Checkbox>
+                <br />
+                <Checkbox type="linkedin">Jumpsuits and Overalls</Checkbox>
+                <br />
+                <Checkbox type="linkedin">Pants</Checkbox>
+                <br />
+                <Checkbox type="linkedin">Shirts</Checkbox>
+                <br />
               </AccordionPanel>
             </AccordionItem>
 
@@ -129,12 +133,18 @@ const Products = () => {
                 </AccordionButton>
               </h2>
               <AccordionPanel pb={4}>
-              <Checkbox type="linkedin">Activewear</Checkbox><br/>
-                <Checkbox type="linkedin">Coats & Jackets</Checkbox><br/>
-                <Checkbox type="linkedin">Jeans and Denims</Checkbox><br/>
-                <Checkbox type="linkedin">Jumpsuits and Overalls</Checkbox><br/>
-                <Checkbox type="linkedin">Pants</Checkbox><br/>
-                <Checkbox type="linkedin">Shirts</Checkbox><br/>
+                <Checkbox type="linkedin">Activewear</Checkbox>
+                <br />
+                <Checkbox type="linkedin">Coats & Jackets</Checkbox>
+                <br />
+                <Checkbox type="linkedin">Jeans and Denims</Checkbox>
+                <br />
+                <Checkbox type="linkedin">Jumpsuits and Overalls</Checkbox>
+                <br />
+                <Checkbox type="linkedin">Pants</Checkbox>
+                <br />
+                <Checkbox type="linkedin">Shirts</Checkbox>
+                <br />
               </AccordionPanel>
             </AccordionItem>
 
@@ -148,12 +158,18 @@ const Products = () => {
                 </AccordionButton>
               </h2>
               <AccordionPanel pb={4}>
-                <Checkbox type="linkedin">Activewear</Checkbox><br/>
-                <Checkbox type="linkedin">Coats & Jackets</Checkbox><br/>
-                <Checkbox type="linkedin">Jeans and Denims</Checkbox><br/>
-                <Checkbox type="linkedin">Jumpsuits and Overalls</Checkbox><br/>
-                <Checkbox type="linkedin">Pants</Checkbox><br/>
-                <Checkbox type="linkedin">Shirts</Checkbox><br/>
+                <Checkbox type="linkedin">Activewear</Checkbox>
+                <br />
+                <Checkbox type="linkedin">Coats & Jackets</Checkbox>
+                <br />
+                <Checkbox type="linkedin">Jeans and Denims</Checkbox>
+                <br />
+                <Checkbox type="linkedin">Jumpsuits and Overalls</Checkbox>
+                <br />
+                <Checkbox type="linkedin">Pants</Checkbox>
+                <br />
+                <Checkbox type="linkedin">Shirts</Checkbox>
+                <br />
               </AccordionPanel>
             </AccordionItem>
 
@@ -167,30 +183,32 @@ const Products = () => {
                 </AccordionButton>
               </h2>
               <AccordionPanel pb={4}>
-                <Checkbox type="linkedin">Activewear</Checkbox><br/>
-                <Checkbox type="linkedin">Coats & Jackets</Checkbox><br/>
-                <Checkbox type="linkedin">Jeans and Denims</Checkbox><br/>
-                <Checkbox type="linkedin">Jumpsuits and Overalls</Checkbox><br/>
-                <Checkbox type="linkedin">Pants</Checkbox><br/>
-                <Checkbox type="linkedin">Shirts</Checkbox><br/>
+                <Checkbox type="linkedin">Activewear</Checkbox>
+                <br />
+                <Checkbox type="linkedin">Coats & Jackets</Checkbox>
+                <br />
+                <Checkbox type="linkedin">Jeans and Denims</Checkbox>
+                <br />
+                <Checkbox type="linkedin">Jumpsuits and Overalls</Checkbox>
+                <br />
+                <Checkbox type="linkedin">Pants</Checkbox>
+                <br />
+                <Checkbox type="linkedin">Shirts</Checkbox>
+                <br />
               </AccordionPanel>
             </AccordionItem>
           </Accordion>
         </Box>
 
-        <Box width="70%" mr={'10%'}>
-          <Grid  gridGap="10px" templateColumns="repeat(3, 1fr)">
+        <Box width="70%" mr={"10%"}>
+          <Grid gridGap="10px" templateColumns="repeat(3, 1fr)">
             {data.map((el) => {
               return (
                 <>
-                  <Box w="310px" mb={'20px'} borderWidth="1px">
+                  <Box w="310px" mb={"20px"} borderWidth="1px">
                     <Link href={`/product/${el._id}`}>
                       <HStack justifyContent={"center"}>
-                        <Image
-                          width="250px"
-                          src={el.images[0]}
-                          alt={el.name}
-                        />
+                        <Image width="250px" src={el.images[0]} alt={el.name} />
                       </HStack>
                     </Link>
                     <Box display="flex" justifyContent="space-between">
@@ -208,12 +226,14 @@ const Products = () => {
                     </HStack>
                     <Box>
                       <Text textAlign="center">{el.brand}</Text>
-                      <HStack ml={'20px'} >
-                       <Text as='del'>US$ {el.original_price}</Text>
-                       {/* <Text>{discount} % OFF</Text> */}
+                      <HStack ml={"20px"}>
+                        <Text as="del">US$ {el.original_price}</Text>
+                        {/* <Text>{discount} % OFF</Text> */}
                       </HStack>
-                      <Text ml={'20px'} as='b'fontSize='18px'>US$ {el.current_price}</Text>
-                      
+                      <Text ml={"20px"} as="b" fontSize="18px">
+                        US$ {el.current_price}
+                      </Text>
+
                       <Text textAlign="center">{el.title}</Text>
                       <Text textAlign="center">{el.product_type} </Text>
                       <HStack justifyContent={"center"}>
