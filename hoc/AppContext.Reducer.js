@@ -7,12 +7,15 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGOUT,
+  SET_LOCAL_ITEMS,
 } from "./AppContext.Types";
 
 export const appReducer = (state, action) => {
-  console.log(action, "acc");
   const { type, payload } = action;
   switch (type) {
+    case SET_LOCAL_ITEMS: {
+      return { ...state, ...payload };
+    }
     case LOGIN_REQUEST: {
       return {
         ...state,

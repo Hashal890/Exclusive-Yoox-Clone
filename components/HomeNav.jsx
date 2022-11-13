@@ -4,8 +4,12 @@ import { FaPencilAlt } from "react-icons/fa";
 import { AiFillUnlock, AiFillCaretDown } from "react-icons/ai";
 import Darkmode from "./Darkmode";
 import { AppContext } from "../hoc/AppContext";
+import { LOGOUT } from "../hoc/AppContext.Types";
 const HomeNav = () => {
   const { state, dispatch } = useContext(AppContext);
+  const logout = () => {
+    dispatch({ type: LOGOUT });
+  };
   return (
     <>
       <HStack
@@ -25,7 +29,9 @@ const HomeNav = () => {
         {state?.accessToken ? (
           <HStack>
             <Text>{state.name}</Text>
-            <Button variant={"ghost"}>Logout</Button>
+            <Button variant={"ghost"} onClick={logout}>
+              Logout
+            </Button>
           </HStack>
         ) : (
           <Flex gap={"1rem"} alignItems={"center"}>
