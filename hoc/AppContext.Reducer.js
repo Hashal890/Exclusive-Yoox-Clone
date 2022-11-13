@@ -1,4 +1,4 @@
-import { setLocalStorageItem } from "../utils/localStorage";
+import { clearLocalStorage, setLocalStorageItem } from "../utils/localStorage";
 import {
   GET_PRODUCTS_FAILURE,
   GET_PRODUCTS_REQUEST,
@@ -6,6 +6,7 @@ import {
   LOGIN_FAILURE,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
+  LOGOUT,
 } from "./AppContext.Types";
 
 export const appReducer = (state, action) => {
@@ -38,6 +39,17 @@ export const appReducer = (state, action) => {
         ...state,
         isAuth: false,
         token: null,
+      };
+    }
+    case LOGOUT: {
+      clearLocalStorage();
+      return {
+        ...state,
+        isAuth: false,
+        accessToken: "",
+        refreshToken: "",
+        email: "",
+        name: "",
       };
     }
     case GET_PRODUCTS_REQUEST: {

@@ -14,7 +14,7 @@ function Login() {
   const toast = useToast();
   const router = useRouter();
   const [gitHubCode, setGitHubCode] = useState(null);
-
+  console.log(state);
   useEffect(() => {
     if (state.accessToken) {
       router.push("/");
