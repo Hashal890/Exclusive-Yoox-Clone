@@ -14,7 +14,7 @@ function Login() {
   const toast = useToast();
   const router = useRouter();
   const [gitHubCode, setGitHubCode] = useState(null);
-  console.log(state);
+
   useEffect(() => {
     if (state.accessToken) {
       router.push("/");
@@ -42,6 +42,7 @@ function Login() {
         });
       });
   };
+  
   useEffect(() => {
     if (router.query.code) setGitHubCode(router.query.code);
   }, []);

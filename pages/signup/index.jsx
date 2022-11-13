@@ -3,7 +3,6 @@ import { Box, Button, Checkbox, Input, SimpleGrid, Text, Link, useToast } from "
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebookF } from "react-icons/fa";
 import { AppContext } from "../../hoc/AppContext";
-import axios from "axios";
 import { axiosInstance } from "../../utils/axiosConfig";
 import { useRouter } from "next/router";
 
