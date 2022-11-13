@@ -1,29 +1,12 @@
 const Razorpay = require("razorpay");
 const crypto = require("crypto");
 
-const createOrder = async (amount) => {
-  try {
-    const instance = new Razorpay({
-      key_id: process.env.RAZORYPAY_KEY_ID,
-      key_secret: process.env.RAZORYPAY_KEY_SECRET,
-    });
+let instance = new Razorpay({
+  key_id: process.env.RAZORYPAY_KEY_ID,
+  key_secret: process.env.RAZORYPAY_KEY_SECRET,
+});
 
-    const options = {
-      amount: amount,
-      currency: "INR",
-      receipt: crypto.randomBytes(10).toString("hex"),
-    };
-
-    instance.orders.create(options, (error, order) => {
-      if (error) {
-        throw new Error("Something Went Wrong!");
-      }
-      return order;
-    });
-  } catch (error) {
-    throw new Error("Internal Server Error!");
-  }
-};
+const createOrder = async (amount) => {};
 
 const verifyOrder = async (razorpay_order_id, razorpay_payment_id, razorpay_signature) => {
   try {
