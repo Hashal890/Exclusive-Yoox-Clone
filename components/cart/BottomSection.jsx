@@ -1,8 +1,11 @@
 import { Avatar, Box, Flex, Text } from "@chakra-ui/react";
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "../../hoc/AppContext";
 import BottomAccordion from "./BottomAccordion";
 
 const BottomSection = () => {
+  const { state } = useContext(AppContext);
+
   return (
     <Box>
       <Flex gap={3} alignItems={"start"} mb={5} mt={5}>
@@ -70,7 +73,7 @@ const BottomSection = () => {
         textAlign={"start"}
       >
         <Text>TOTAL FOR ITEMS</Text>
-        <Text>$</Text>
+        <Text>$ {state.totalCartPrice}</Text>
       </Flex>
       <Flex
         justifyContent={"space-between"}
@@ -93,7 +96,7 @@ const BottomSection = () => {
         textAlign={"start"}
       >
         <Text>PAYMENT</Text>
-        <Text>$ 0.00</Text>
+        <Text>$ {state.totalCartPrice}</Text>
       </Flex>
       <Flex
         justifyContent={"space-between"}
@@ -107,7 +110,7 @@ const BottomSection = () => {
         borderBottom={"2px solid black"}
       >
         <Text>ORDER TOTAL</Text>
-        <Text>$</Text>
+        <Text>$ {state.totalCartPrice}</Text>
       </Flex>
     </Box>
   );
