@@ -31,4 +31,12 @@ const getCustomerCartItems = async (customer) => {
   }
 };
 
-module.exports = { updateCart, getCustomerCartItems };
+const clearCustomerCart = async (customer) => {
+  try {
+    return await cartModel.deleteOne({ customer });
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+module.exports = { updateCart, getCustomerCartItems, clearCustomerCart };
