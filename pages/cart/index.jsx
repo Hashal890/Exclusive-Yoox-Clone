@@ -15,7 +15,7 @@ const CartPage = () => {
 
   return (
     <Box bgColor={"white"}>
-      <Box w={["100%", "90%", "70%"]} m={"auto"} color={"#333"}>
+      <Box w={["100%", "90%", "80%"]} m={"auto"} color={"#333"}>
         <Heading
           fontWeight={700}
           textTransform={"uppercase"}

@@ -12,7 +12,7 @@ const AppContextProvider = ({ children }) => {
     email: "",
     name: "",
     cartData: [],
-    addressData: [],
+    addressData: {},
     orderType: "",
     totalCartPrice: 0,
   };
