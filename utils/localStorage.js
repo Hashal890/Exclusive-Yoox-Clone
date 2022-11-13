@@ -1,15 +1,23 @@
 export const getLocalStorageItem = (key) => {
-  return JSON.parse(localStorage.getItem(key));
+  if (typeof window == undefined) {
+    return JSON.parse(localStorage.getItem(key));
+  }
 };
 
 export const setLocalStorageItem = (key, data) => {
-  localStorage.setItem(key, JSON.stringify(data));
+  if (typeof window !== undefined) {
+    localStorage.setItem(key, JSON.stringify(data));
+  }
 };
 
 export const removeLocalStorageItem = (key) => {
-  return localStorage.removeItem(key);
+  if (typeof window !== undefined) {
+    return localStorage.removeItem(key);
+  }
 };
 
 export const clearLocalStorage = () => {
-  return localStorage.clear();
+  if (typeof window !== undefined) {
+    return localStorage.clear();
+  }
 };

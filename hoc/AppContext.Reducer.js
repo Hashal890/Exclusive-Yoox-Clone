@@ -1,3 +1,4 @@
+import { clearLocalStorage, setLocalStorageItem } from "../utils/localStorage";
 import {
   GET_PRODUCTS_FAILURE,
   GET_PRODUCTS_REQUEST,
@@ -5,10 +6,13 @@ import {
   LOGIN_FAILURE,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
+  LOGOUT,
 } from "./AppContext.Types";
 
 export const appReducer = (state, action) => {
-  switch (action.type) {
+  console.log(action, "acc");
+  const { type, payload } = action;
+  switch (type) {
     case LOGIN_REQUEST: {
       return {
         ...state,
@@ -17,11 +21,17 @@ export const appReducer = (state, action) => {
       };
     }
     case LOGIN_SUCCESS: {
+      setLocalStorageItem("accessToken", payload.accessToken);
+      setLocalStorageItem("refreshToken", payload.refreshToken);
+      setLocalStorageItem("email", payload.email);
+      setLocalStorageItem("name", payload.name);
       return {
         ...state,
         isAuth: true,
-        token: action.payload.token,
-        email: action.payload.email,
+        accessToken: payload.accessToken,
+        refreshToken: payload.refreshToken,
+        email: payload.email,
+        name: payload.name,
       };
     }
     case LOGIN_FAILURE: {
@@ -29,6 +39,17 @@ export const appReducer = (state, action) => {
         ...state,
         isAuth: false,
         token: null,
+      };
+    }
+    case LOGOUT: {
+      clearLocalStorage();
+      return {
+        ...state,
+        isAuth: false,
+        accessToken: "",
+        refreshToken: "",
+        email: "",
+        name: "",
       };
     }
     case GET_PRODUCTS_REQUEST: {
@@ -52,7 +73,7 @@ export const appReducer = (state, action) => {
         isLoading: false,
       };
     }
-    
+
     default: {
       return state;
     }
