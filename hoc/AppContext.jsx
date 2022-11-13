@@ -13,16 +13,6 @@ const AppContextProvider = ({ children }) => {
     name: "",
     cartData: [],
     addressData: [],
-    addressData: {
-      firstName: "",
-      lastName: "",
-      phoneNumber: "",
-      address: "",
-      zipCode: "",
-      city: "",
-      state: "",
-      country: "",
-    },
     orderType: "",
     totalCartPrice: 0,
   };
@@ -40,7 +30,11 @@ const AppContextProvider = ({ children }) => {
     }
   }, []);
 
-  return <AppContext.Provider value={{ state, dispatch }}>{children}</AppContext.Provider>;
+  return (
+    <AppContext.Provider value={{ state, dispatch }}>
+      {children}
+    </AppContext.Provider>
+  );
 };
 
 export { AppContext, AppContextProvider };
