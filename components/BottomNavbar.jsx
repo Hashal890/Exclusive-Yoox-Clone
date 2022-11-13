@@ -11,6 +11,8 @@ const BottomNavbar = () => {
       setType("womens");
     } else if (router.pathname.includes("women")) {
       setType("mens");
+    } else {
+      setType("/");
     }
   });
 
