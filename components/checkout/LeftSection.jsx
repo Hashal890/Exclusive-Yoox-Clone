@@ -1,36 +1,14 @@
 import { Box, Button, Flex, IconButton, Spacer, Text } from "@chakra-ui/react";
 import Link from "next/link";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { BsCheckLg } from "react-icons/bs";
 import { FaCcMastercard, FaCcPaypal, FaCcVisa } from "react-icons/fa";
 import { SiPaytm, SiRazorpay } from "react-icons/si";
 import { AppContext } from "../../hoc/AppContext";
 import CheckoutForm from "./CheckoutForm";
 
-const initCheckoutDetails = {
-  firstName: "",
-  lastName: "",
-  phoneNumber: "",
-  address: "",
-  zipCode: "",
-  city: "",
-  state: "",
-  country: "",
-};
-
 const LeftSection = () => {
   const { state } = useContext(AppContext);
-  const [checkoutDetails, setCheckoutDetails] = useState(initCheckoutDetails);
-
-  const handleCheckoutDetailsChange = (e) => {
-    const { name, value } = e.target;
-    setCheckoutDetails({
-      ...checkoutDetails,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = () => {};
 
   return (
     <Box w={["100%", "70%", "70%"]} mb={5} color={"#333"}>
@@ -56,7 +34,9 @@ const LeftSection = () => {
           <Text>
             You are ordering as{" "}
             <span style={{ fontWeight: "bold" }}>
-              {state.email === undefined || state.email === "" ? "EMAIL-ID" : state.email}
+              {state.email === undefined || state.email === ""
+                ? "EMAIL-ID"
+                : state.email}
             </span>
           </Text>
         </Box>
@@ -70,12 +50,7 @@ const LeftSection = () => {
           </Button>
         </Link>
       </Flex>
-      <CheckoutForm
-        email={state.email === undefined || state.email === "" ? "EMAIL-ID" : state.email}
-        checkoutDetails={checkoutDetails}
-        handleCheckoutDetailsChange={handleCheckoutDetailsChange}
-        handleSubmit={handleSubmit}
-      />
+      <CheckoutForm />
       <Box
         p={"48px"}
         bg={"whiteAlpha.900"}

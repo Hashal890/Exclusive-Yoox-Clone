@@ -146,7 +146,7 @@ const Home = () => {
                           color={"gray.600"}
                           textDecoration={"line-through"}
                         >
-                          ${e.cutprice}
+                          ₹{e.cutprice}
                         </Text>
                         <Text>{e.off}% OFF</Text>
                       </Flex>

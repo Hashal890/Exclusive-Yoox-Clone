@@ -24,8 +24,8 @@ const createAccount = async (firstName, lastName, email, password, emailVerified
       status: emailVerified,
     });
     delete newUser["password"];
-    if (emailVerified) return newUser;
-    else return await sendVarificationLink(newUser.id, firstName + " " + lastName, email);
+    if (!emailVerified) await sendVarificationLink(newUser.id, firstName, email);
+    return newUser;
   } catch (error) {
     throw new Error(error);
   }

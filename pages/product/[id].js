@@ -4,13 +4,21 @@ import { Carousel } from "react-responsive-carousel";
 import React from "react";
 import axios from "axios";
 import "react-image-gallery/styles/css/image-gallery.css";
+
 const SinglePage = ({ data }) => {
   let m = data.data;
-  let discount = Math.round(((m.original_price - m.current_price) / m.original_price) * 100);
+  let discount = Math.round(
+    ((m.original_price - m.current_price) / m.original_price) * 100
+  );
 
   return (
     <Box mt={5}>
-      <Stack flexDir={"row"} justifyContent={"center"} alignItems="flex-start" gap="24">
+      <Stack
+        flexDir={"row"}
+        justifyContent={"center"}
+        alignItems="flex-start"
+        gap="24"
+      >
         <Box w="25%">
           <Carousel interval="5000" transitionTime="1000" autoPlay infiniteLoop>
             {m.images.map((el) => {
@@ -95,7 +103,12 @@ const SinglePage = ({ data }) => {
           </Text>
         </Box>
       </HStack>
-      <Box w={"70%"} margin={"auto"} display={"flex"} justifyContent={"space-around"}>
+      <Box
+        w={"70%"}
+        margin={"auto"}
+        display={"flex"}
+        justifyContent={"space-around"}
+      >
         <Box bg={"#F3EFEF"} w={"35%"} mt={"20px"}>
           <Text fontSize="18px" mt={"20px"} mr={"20px"} mb="20px" ml={"40px"}>
             TYPE

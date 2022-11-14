@@ -1,4 +1,5 @@
 import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
+import Link from "next/link";
 import React, { useContext, useState } from "react";
 import { AppContext } from "../../hoc/AppContext";
 import ProductViewCard from "./ProductViewCard";
@@ -12,8 +13,8 @@ const initSampleChekckoutData = [
     type: "Overcoats",
     colors: ["Beige"],
     qty: 1,
-    actual_price: "$ 3,229.00",
-    discount_price: "$ 1,594.00",
+    actual_price: "₹ 3,229.00",
+    discount_price: "₹ 1,594.00",
   },
 ];
 addressData: {
@@ -53,7 +54,7 @@ const RightSection = () => {
           TOTAL FOR ITEMS
         </Text>
         <Text fontSize={"14px"} fontWeight={500}>
-          $ {state.totalCartPrice}
+          ₹ {state.totalCartPrice === 9.95 ? "00" : state.totalCartPrice}
         </Text>
       </Box>
       <Box mb={5}>
@@ -77,39 +78,49 @@ const RightSection = () => {
           ORDER TOTAL
         </Text>
         <Text fontSize={"20px"} fontWeight={500}>
-          $ {state.totalCartPrice}
+          ₹ {state.totalCartPrice === 9.95 ? "00" : state.totalCartPrice}
         </Text>
       </Box>
       <hr />
-      {state.length > 0 && (
+      {state.cartData.length > 0 && (
         <>
           <Text pt={2} pb={2} fontSize={"14px"} fontWeight={"bold"} mt={5}>
             YOU ARE PURCHASING:-
           </Text>
-          {state.cartData.map((product) => (
-            <ProductViewCard
-              key={product._id}
-              image={product.image}
-              title={product.title}
-              type={product.type}
-              colors={product.colors}
-              qty={product.qty}
-              actual_price={product.actual_price}
-              discount_price={product.discount_price}
-            />
-          ))}
+          <Box maxH={"200px"} overflowY={"scroll"}>
+            {state.cartData.map((product) => {
+              const { _id, quantity, item } = product;
+              return (
+                <ProductViewCard
+                  key={_id}
+                  image={item.images[0]}
+                  title={item.title}
+                  type={item.brand}
+                  qty={quantity}
+                  available={item.type}
+                  color={item.actual_color}
+                  size={item.size}
+                  actual_price={item.original_price}
+                  discount_price={item.current_price}
+                />
+              );
+            })}
+          </Box>
           <br />
           <hr />
         </>
       )}
       <Flex justifyContent={"center"} alignItems={"center"} mt={5}>
-        <Button
-          textTransform={"uppercase"}
-          bg={"transparent"}
-          _hover={{ bg: "transparent" }}
-        >
-          <span style={{ borderBottom: "1px solid black" }}>modify</span>
-        </Button>
+        <Link href={"/cart"}>
+          <Button
+            textTransform={"uppercase"}
+            bg={"transparent"}
+            _hover={{ bg: "transparent" }}
+            disabled={!state.cartData.length}
+          >
+            <span style={{ borderBottom: "1px solid black" }}>modify</span>
+          </Button>
+        </Link>
       </Flex>
     </Box>
   );

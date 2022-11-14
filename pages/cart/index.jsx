@@ -15,7 +15,7 @@ const CartPage = () => {
 
   return (
     <Box bgColor={"white"}>
-      <Box w={["100%", "90%", "70%"]} m={"auto"} color={"#333"}>
+      <Box w={["100%", "90%", "80%"]} m={"auto"} color={"#333"}>
         <Heading
           fontWeight={700}
           textTransform={"uppercase"}
@@ -48,6 +48,7 @@ const CartPage = () => {
           p={"18px 10px"}
           textAlign={"start"}
           mt={state.cartData.length > 0 ? 5 : 8}
+          display={state.cartData.length > 0 ? "block" : "none"}
         >
           <Checkbox colorScheme={"messenger"}>
             <Text textTransform={"uppercase"} fontWeight={700} color={"#333"}>
@@ -64,7 +65,7 @@ const CartPage = () => {
           textAlign={"center"}
           fontWeight={400}
         >
-          FREE STANDARD SHIPPING ON ORDERS OVER $250
+          FREE STANDARD SHIPPING ON ORDERS OVER ₹250
         </Box>
         <Box pl={2} borderTop={"5px solid #f3f3f3"} mt={5}>
           <Flex

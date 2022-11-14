@@ -11,7 +11,10 @@ import {
   SET_LOCAL_ITEMS,
   GET_CART_SUCCESS,
   POST_PATCH_CART_SUCCESS,
+  DELETE_CART_SUCCESS,
   CHECKOUT_SUCCESS,
+  ADD_CHECKOUT_ADDRESS,
+  ADD_CHECKOUT_OPTION,
 } from "./AppContext.Types";
 
 export const appReducer = (state, action) => {
@@ -91,12 +94,36 @@ export const appReducer = (state, action) => {
     case POST_PATCH_CART_SUCCESS: {
       return {
         ...state,
-        cartData: [...cartData, payload.data],
+        cartData: payload.data,
         totalCartPrice: payload.total,
       };
     }
+    case DELETE_CART_SUCCESS: {
+      return {
+        ...state,
+        cartData: payload.data,
+        totalCartPrice: payload.total,
+      };
+    }
+    case ADD_CHECKOUT_ADDRESS : {
+      return {
+        ...state,
+        addressData: payload.data,
+      }
+    }
+    case ADD_CHECKOUT_OPTION : {
+      return {
+        ...state,
+        orderType: payload.radioValue,
+      }
+    }
     case CHECKOUT_SUCCESS: {
-      return {};
+      return {
+        ...state,
+        cartData: [],
+        totalCartPrice: 0,
+        orderType: "",
+      };
     }
     default: {
       return state;

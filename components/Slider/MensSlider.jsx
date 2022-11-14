@@ -66,11 +66,11 @@ export const MensSlider = () => {
                     <Text fontWeight="500">{e.name} </Text>
                     <Flex justifyContent={"center"} gap={"20px"}>
                       <Text color={"gray.600"} textDecoration={"line-through"}>
-                        US${e.cutprice}
+                        ₹{e.cutprice}
                       </Text>
                       <Text>{e.off}% OFF</Text>
                     </Flex>
-                    <Text fontWeight="700">US${e.orginalprice}</Text>
+                    <Text fontWeight="700">₹{e.orginalprice}</Text>
                   </Box>
                 </SplideSlide>
               );

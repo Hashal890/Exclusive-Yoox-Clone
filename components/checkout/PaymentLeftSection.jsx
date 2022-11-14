@@ -7,6 +7,7 @@ import {
   IconButton,
   Spacer,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import React, { useContext } from "react";
@@ -16,6 +17,16 @@ import PaymentOptions from "./PaymentOptions";
 
 const PaymentLeftSection = () => {
   const { state } = useContext(AppContext);
+  const toast = useToast();
+
+  const handleSubmit = () => {
+    toast({
+      title: "Moving to payment page.",
+      status: "info",
+      position: "top-right",
+      isClosable: true,
+    });
+  };
 
   return (
     <Box w={["100%", "70%", "70%"]} mb={5} color={"#333"}>
@@ -161,6 +172,8 @@ const PaymentLeftSection = () => {
               minW={"120px"}
               minH={"48px"}
               borderRadius={0}
+              onClick={handleSubmit}
+              disabled={!state.cartData.length}
             >
               PROCEED
             </Button>
