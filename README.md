@@ -7,42 +7,68 @@ Hello everyone, we are a group of 5 members cloning a website [Yoox](https://www
 
 ## Features
 
+- Google and GitHub oauth on login page.
 - Animations on carousels.
-- Manual and automatic carousels.
-- Sort & filter by many options on product page.
-- Offcanvas on cart page.
+- Manual and automatic carousels on home, mens and womens pages .
+- Sort & filter on product page.
+- Add and remove items from cart in cart as well as product pages.
+- Payment methods done by razorpay and credit card.
 - Get a smooth experience in payment, login & signup process.
 
 
 ## Screenshots
 
-### 1. Home Page
+### 1. Signup Page
 
-![Home Page](./assets/homePage.png)
+![Signup Page](./assets/signupPage.png)
 
 ### 2. Login Page
 
 ![Login Page](./assets/loginPage.png)
 
-### 3. Signup Page
+### 3. Home Page
 
-![Signup Page](./assets/signupPage.png)
+![Home Page](./assets/homePage.png)
 
-### 4. Products Page
+### 4. Mens View Page
 
-![Products Page](./assets/productsPage.png)
+![Mens View Page](./assets/mensDetailsPage.png)
 
-### 5. Product View Page
+### 5. Womens View Page
 
-![Product View Page](./assets/singleProductPage.png)
+![Womens View Page](./assets/womensDetailsPage.png)
 
-### 6. Cart Modal
+### 6. All Products Page
 
-![Cart Modal](./assets/cartModal.png)
+![Products Page](./assets/allProductsPage.png)
 
-### 6. Checkout Page
+### 7. Mens Products Page
 
-![Checkout Page](./assets/checkoutPage.png)
+![Mens Products Page](./assets/mensProductsPage.png)
+
+### 8. Womens Products Page
+
+![Womens Products Page](./assets/womensProductsPage.png)
+
+### 9. Cart Page
+
+![Cart Page](./assets/cartPage.png)
+
+### 10. Checkout Details Page
+
+![Checkout Details Page](./assets/shippingPage.png)
+
+### 11. Checkout Payment Page
+![Checkout Payment Page](./assets/paymentPage.png)
+
+### 12. Checkout Review and Order Page
+![Checkout Review and Order Page](./assets/reviewAndOrderPage.png)
+
+### 13. Checkout Payment Page
+![Checkout Payment Page](./assets/paymentPage.png)
+
+### 14. Rezorpay Integration
+![Rezorpay Payment Page](./assets/rezorpayPaymentIntegration.png)
 
 
 ## Tech Stack
@@ -53,6 +79,7 @@ Hello everyone, we are a group of 5 members cloning a website [Yoox](https://www
 - [NextJS](https://nextjs.org/)
 - [MongoDB](https://www.mongodb.com/)
 - [Chakra-UI](https://chakra-ui.com/)
+- [Rezorpay Integration](https://roopamgarg.medium.com/how-to-integrate-razorpay-payment-gateway-with-react-js-and-node-js-98244b9c0a87)
 
 
 ## Connect with authors

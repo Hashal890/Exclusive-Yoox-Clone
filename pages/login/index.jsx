@@ -15,6 +15,7 @@ import { LOGIN_SUCCESS } from "../../hoc/AppContext.Types";
 import { axiosInstance } from "../../utils/axiosConfig";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import Head from "next/head";
 
 function Login() {
   const [values, setValues] = useState({});
@@ -86,8 +87,13 @@ function Login() {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
   };
+
   return (
     <div>
+      <Head>
+        <title>Exclusive | Login</title>
+        <meta property="og:title" content="My page title" key="title" />
+      </Head>
       <SimpleGrid columns={{ base: 1, sm: 1, md: 2 }} margin="auto" w={"70%"}>
         <Box
           width={"70%"}

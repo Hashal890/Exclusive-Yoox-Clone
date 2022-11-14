@@ -1,4 +1,13 @@
-import { Box, Image, Img, Link, SimpleGrid, Stack, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Image,
+  Img,
+  Link,
+  SimpleGrid,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
+import Head from "next/head";
 
 const HomeData = [
   {
@@ -29,50 +38,65 @@ const HomeData = [
 
 export default function Home() {
   return (
-    <Box w={"100%"}>
-      <Stack w={"100%"}>
-        <Box h={"10rem"} w={"20%"} margin={"auto"}>
-          <Image
-            margin={"auto"}
-            h={{ base: "100", sm: "140", md: "140px" }}
-            w={{ base: "120", sm: "180", md: "180px" }}
-            src="https://www.psdstamps.com/wp-content/uploads/2022/04/grunge-exclusive-label-png.png"
-          />
-          <Text
-            fontWeight={"bolder"}
-            mt={"-2rem"}
-            fontSize={{ base: "xs", sm: "xs", md: "sm" }}
-            textAlign={"center"}
-          >
-            SHOP FASHION / DESIGN+ART
-          </Text>
-        </Box>
-      </Stack>
+    <>
+      <Head>
+        <title>YOOX | Shop Fashion / Design+Art</title>
+        <meta property="og:title" content="My page title" key="title" />
+      </Head>
+      <Box w={"100%"}>
+        <Stack w={"100%"}>
+          <Box h={"10rem"} w={"20%"} margin={"auto"} mt={"30px"}>
+            <Image
+              margin={"auto"}
+              h={{ base: "100", sm: "140", md: "140px" }}
+              w={{ base: "120", sm: "180", md: "180px" }}
+              src="https://www.psdstamps.com/wp-content/uploads/2022/04/grunge-exclusive-label-png.png"
+            />
+            <Text
+              fontWeight={"bolder"}
+              mt={"-2rem"}
+              fontSize={{ base: "xs", sm: "xs", md: "sm" }}
+              textAlign={"center"}
+            >
+              SHOP FASHION / DESIGN+ART
+            </Text>
+          </Box>
+        </Stack>
 
-      <SimpleGrid w={"80%"} margin={"auto"} columns={{ base: 2, sm: 2, md: 4 }} spacing={2}>
-        {HomeData.map((item) => {
-          return (
-            <Stack key={item.name}>
-              <Link href={item.path}>
-                <Box>
-                  <Img src={item.img} />
-                </Box>
-                <Box
-                  textAlign={"center"}
-                  padding={"2rem 0rem"}
-                  backgroundColor={"gray.900"}
-                  color={"white"}
-                >
-                  <Text>{item.name}</Text>
-                </Box>
-                <Box fontWeight={"bold.800"} textAlign={"center"} padding={"1rem 0rem"}>
-                  <Text>{item.desc}</Text>
-                </Box>
-              </Link>
-            </Stack>
-          );
-        })}
-      </SimpleGrid>
-    </Box>
+        <SimpleGrid
+          w={"80%"}
+          margin={"auto"}
+          columns={{ base: 2, sm: 2, md: 4 }}
+          spacing={2}
+        >
+          {HomeData.map((item) => {
+            return (
+              <Stack key={item.name}>
+                <Link href={item.path}>
+                  <Box>
+                    <Img src={item.img} />
+                  </Box>
+                  <Box
+                    textAlign={"center"}
+                    padding={"2rem 0rem"}
+                    backgroundColor={"gray.900"}
+                    color={"white"}
+                  >
+                    <Text>{item.name}</Text>
+                  </Box>
+                  <Box
+                    fontWeight={"bold.800"}
+                    textAlign={"center"}
+                    padding={"1rem 0rem"}
+                  >
+                    <Text>{item.desc}</Text>
+                  </Box>
+                </Link>
+              </Stack>
+            );
+          })}
+        </SimpleGrid>
+      </Box>
+    </>
   );
 }

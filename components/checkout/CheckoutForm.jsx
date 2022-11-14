@@ -44,6 +44,7 @@ const CheckoutForm = () => {
       status: status,
       position: "top-right",
       isClosable: true,
+      duration: 3000
     });
   };
 
@@ -65,7 +66,7 @@ const CheckoutForm = () => {
         type: ADD_CHECKOUT_ADDRESS,
         payload: { data: checkoutDetails },
       });
-      giveAlert({ title: "Moving to payment page.", status: "success" });
+      giveAlert({ title: "Added address.", status: "success" });
     }
   };
 
