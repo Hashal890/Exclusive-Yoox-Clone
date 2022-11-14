@@ -20,7 +20,6 @@ import { FiHeart } from "react-icons/fi";
 import { GrView } from "react-icons/gr";
 import Head from "next/head";
 import { axiosInstance } from "../../../utils/axiosConfig";
-
 const Products = () => {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
