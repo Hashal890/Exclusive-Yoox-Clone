@@ -8,6 +8,9 @@ import {
   Text,
 } from "@chakra-ui/react";
 import Head from "next/head";
+import { useContext, useEffect } from "react";
+import { getCartItems } from "../components/cart/Cart.Controller";
+import { AppContext } from "../hoc/AppContext";
 
 const HomeData = [
   {
@@ -37,6 +40,12 @@ const HomeData = [
 ];
 
 export default function Home() {
+  const { dispatch } = useContext(AppContext);
+
+  useEffect(() => {
+    getCartItems(dispatch);
+  }, []);
+
   return (
     <>
       <Head>

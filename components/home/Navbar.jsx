@@ -8,20 +8,23 @@ import {
   useColorModeValue,
   Stack,
   Image,
+  Badge,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BsBag } from "react-icons/bs";
 import { BiSearch } from "react-icons/bi";
 import RichLink from "next/link";
+import { useContext } from "react";
+import { AppContext } from "../../hoc/AppContext";
 
 const Links = [
   {
-    name: "Men",
+    name: "MENS",
     path: "/men",
   },
   {
-    name: "Women",
+    name: "WOMENS",
     path: "/women",
   },
   {
@@ -52,6 +55,8 @@ const NavLink = ({ children }) => (
 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { state } = useContext(AppContext);
+
   return (
     <Box
       bg={useColorModeValue("white", "gray.900")}
@@ -89,9 +94,22 @@ export default function Navbar() {
         <HStack alignItems={"center"} spacing={8}>
           <BiSearch fontSize="25px" cursor={"pointer"} />
           <AiOutlineHeart fontSize="25px" cursor={"pointer"} />
-          <RichLink href={"/cart"}>
-            <BsBag fontSize="25px" cursor={"pointer"} />
-          </RichLink>
+          <Flex>
+            <RichLink href={"/cart"}>
+              <BsBag fontSize="25px" cursor={"pointer"} />
+            </RichLink>
+            <Box ml="3">
+              <Badge
+                ml="-4"
+                mt="-6"
+                colorScheme="red"
+                zIndex="1000"
+                rounded="100%"
+              >
+                {state.cartData.length}
+              </Badge>
+            </Box>
+          </Flex>
         </HStack>
       </Flex>
 

@@ -6,6 +6,7 @@ import { Threebox_div } from "../../components/home/Threebox_div";
 import { MensSlider } from "../../components/Slider/MensSlider";
 import { MensBanSlider } from "../../components/Slider/MensBanSlider";
 import Head from "next/head";
+import Link from "next/link";
 
 const Home = () => {
   var object = [
@@ -63,28 +64,36 @@ const Home = () => {
       <Box
         w={"100%"}
         // height={{base:"60vh",sm:"80vh",md:"100vh"}}
-        bgImage={"https://secure.social.yoox.it/yspecial/NATALE/2022/hero_v6.png?v=1"}
+        bgImage={
+          "https://secure.social.yoox.it/yspecial/NATALE/2022/hero_v6.png?v=1"
+        }
         bgPosition={"center"}
         bgRepeat="none"
         bgSize="cover"
       >
-        <Box textAlign={"center"} pt={{ base: "40vh", sm: "50vh", md: "65vh" }} color={"white"}>
+        <Box
+          textAlign={"center"}
+          pt={{ base: "40vh", sm: "50vh", md: "65vh" }}
+          color={"white"}
+        >
           <Text fontSize={{ base: "0.6rem", sm: "1rem", md: "1.3rem" }}>
-            Light on! Follow Landon Barker into our fun-filled <br /> Holiday Fair and find the
-            perfect presents
+            Light on! Follow Landon Barker into our fun-filled <br /> Holiday
+            Fair and find the perfect presents
           </Text>
-          <Button
-            colorScheme={"#b4fed7"}
-            bg={"transparent"}
-            borderRadius="30px"
-            color={"#b4fed7"}
-            border="3px solid #b4fed7"
-            w={{ base: "7rem", sm: "12rem", md: "15rem" }}
-            mt={{ base: "1rem", sm: "1rem", md: "1.3rem" }}
-            fontSize={{ base: "0.5rem", sm: "1rem", md: "1.3rem" }}
-          >
-            LET THE SHOW BEGIN
-          </Button>
+          <Link href={"/product/mens"}>
+            <Button
+              colorScheme={"#b4fed7"}
+              bg={"transparent"}
+              borderRadius="30px"
+              color={"#b4fed7"}
+              border="3px solid #b4fed7"
+              w={{ base: "7rem", sm: "12rem", md: "15rem" }}
+              mt={{ base: "1rem", sm: "1rem", md: "1.3rem" }}
+              fontSize={{ base: "0.5rem", sm: "1rem", md: "1.3rem" }}
+            >
+              LET THE SHOW BEGIN
+            </Button>
+          </Link>
         </Box>
       </Box>
 
@@ -130,7 +139,10 @@ const Home = () => {
             mt="5rem"
             bg="white"
           >
-            <Splide aria-label="My Favorite Images" options={{ perPage: 1, pagination: 0 }}>
+            <Splide
+              aria-label="My Favorite Images"
+              options={{ perPage: 1, pagination: 0 }}
+            >
               {object.map((e) => {
                 return (
                   <SplideSlide key={e.name}>
@@ -138,7 +150,10 @@ const Home = () => {
                       <Img src={e.img} textAlign={"center"} />
                       <Text fontWeight="500">{e.name} </Text>
                       <Flex justifyContent={"center"} gap={"20px"}>
-                        <Text color={"gray.600"} textDecoration={"line-through"}>
+                        <Text
+                          color={"gray.600"}
+                          textDecoration={"line-through"}
+                        >
                           ₹{e.cutprice}
                         </Text>
                         <Text>{e.off}% OFF</Text>

@@ -6,6 +6,7 @@ import { Product_slider } from "../../components/home/Product_slider";
 import { Threebox_div } from "../../components/home/Threebox_div";
 import { WomenSlider } from "../../components/Slider/WomenSlider";
 import Head from "next/head";
+import Link from "next/link";
 
 const Home = () => {
   var object = [
@@ -72,6 +73,7 @@ const Home = () => {
             Light on! Follow Landon Barker into our fun-filled <br /> Holiday Fair and find the
             perfect presents
           </Text>
+          <Link href={"/product/womens"}>
           <Button
             colorScheme={"#b4fed7"}
             bg={"transparent"}
@@ -84,6 +86,7 @@ const Home = () => {
           >
             LET THE SHOW BEGIN
           </Button>
+          </Link>
         </Box>
       </Box>
 
