@@ -8,6 +8,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import Head from "next/head";
+import { Box, Image, Img, Link, SimpleGrid, Stack, Text } from "@chakra-ui/react";
 
 const HomeData = [
   {

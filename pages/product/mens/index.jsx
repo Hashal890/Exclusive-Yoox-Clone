@@ -8,22 +8,47 @@ import {
   Box,
   Checkbox,
   Grid,
-  GridItem,
   Text,
   Image,
   Select,
+  useToast,
 } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import Link from "next/link";
 import { FiHeart } from "react-icons/fi";
 import { GrView } from "react-icons/gr";
 import Head from "next/head";
+import { axiosInstance } from "../../../utils/axiosConfig";
+
 const Products = () => {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
   const [sort, setSort] = useState("asc");
+  const toast = useToast();
+
+  const addToCart = (itemId) => {
+    axiosInstance
+      .post(`/api/carts/${itemId}`)
+      .then((res) => {
+        toast({
+          title: "Item added to cart.",
+          status: "success",
+          duration: 4000,
+          isClosable: true,
+          position: "top-right",
+        });
+      })
+      .catch((err) => {
+        toast({
+          title: er.response.data.message,
+          status: "error",
+          duration: 4000,
+          isClosable: true,
+          position: "top-right",
+        });
+      });
+  };
   const handleChange = (e) => {
     setSort(e.target.value);
   };
@@ -249,8 +274,8 @@ const Products = () => {
                           color={"#333333"}
                           bgColor={"#FFFE94"}
                           variant="none"
-                          mb="5"
-                          mt="5"
+                          my="5"
+                          onClick={() => addToCart(el._id)}
                         >
                           ADD TO DREAM BOX
                         </Button>
