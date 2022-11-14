@@ -1,12 +1,4 @@
-import {
-  Box,
-  Image,
-  Img,
-  Link,
-  SimpleGrid,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Image, Img, Link, SimpleGrid, Stack, Text } from "@chakra-ui/react";
 
 const HomeData = [
   {
@@ -39,7 +31,7 @@ export default function Home() {
   return (
     <Box w={"100%"}>
       <Stack w={"100%"}>
-        <Box h={"10rem"} w={"20%"} margin={"auto"} mt={"30px"}>
+        <Box h={"10rem"} w={"20%"} margin={"auto"}>
           <Image
             margin={"auto"}
             h={{ base: "100", sm: "140", md: "140px" }}
@@ -57,12 +49,7 @@ export default function Home() {
         </Box>
       </Stack>
 
-      <SimpleGrid
-        w={"80%"}
-        margin={"auto"}
-        columns={{ base: 2, sm: 2, md: 4 }}
-        spacing={2}
-      >
+      <SimpleGrid w={"80%"} margin={"auto"} columns={{ base: 2, sm: 2, md: 4 }} spacing={2}>
         {HomeData.map((item) => {
           return (
             <Stack key={item.name}>
@@ -78,11 +65,7 @@ export default function Home() {
                 >
                   <Text>{item.name}</Text>
                 </Box>
-                <Box
-                  fontWeight={"bold.800"}
-                  textAlign={"center"}
-                  padding={"1rem 0rem"}
-                >
+                <Box fontWeight={"bold.800"} textAlign={"center"} padding={"1rem 0rem"}>
                   <Text>{item.desc}</Text>
                 </Box>
               </Link>

@@ -95,10 +95,10 @@ const SinglePage = ({ data }) => {
       </HStack>
       <HStack justifyContent={"center"}>
         <Box w={"70%"} mt={"20px"}>
-          <Text as={"b"} mb="20px" ml={"40px"}>
+          <Text as={"b"} mb="20px">
             SPECIFICATIONS
           </Text>
-          <Text mr="200px" mt="30px" mb="20px">
+          <Text mt="30px" mb="20px">
             {m.specifications}
           </Text>
         </Box>

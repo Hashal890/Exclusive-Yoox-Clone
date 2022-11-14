@@ -16,7 +16,7 @@ user.post("/signup", async (req, res) => {
   if (!firstName || !email || !password) sendRequiredFieldError(res);
 
   try {
-    const user = await checkAccount("email", email.toLowerCase());
+    let user = await checkAccount("email", email.toLowerCase());
     if (user) {
       return res.status(409).send({ status: false, message: "Email Id already exist" });
     } else {
