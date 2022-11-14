@@ -1,5 +1,5 @@
 const express = require("express");
-const { updateCart, getCustomerCartItems } = require("../controllers");
+const { updateCart, getCustomerCartItems, addItemToCart } = require("../controllers");
 const { sendRequiredFieldError, sendError } = require("../helper");
 const { authMiddleware } = require("../middlewares");
 const cart = express.Router();
@@ -17,8 +17,6 @@ cart.get("/", authMiddleware, async (req, res) => {
 cart.patch("/", authMiddleware, async (req, res) => {
   let { userId, items } = req.body;
 
-  console.log(req.body)
-
   if (!userId || !items) return sendRequiredFieldError(res);
   try {
     let cartItem = await updateCart(userId, items);
@@ -28,6 +26,19 @@ cart.patch("/", authMiddleware, async (req, res) => {
   }
 });
 
-
+cart.post("/:itemId", authMiddleware, async (req, res) => {
+  const customer = req.body.userId;
+  const itemId = req.params.itemId;
+  try {
+    let cartItems = await getCustomerCartItems(customer);
+    let checkItemExist = cartItems[0].items;
+    console.log(checkItemExist);
+    return res.send(cartItems);
+    let item = await addItemToCart(customer, itemId);
+    res.send({ message: "Item added successfully", data: item });
+  } catch (error) {
+    return sendError(res, error);
+  }
+});
 
 module.exports = cart;

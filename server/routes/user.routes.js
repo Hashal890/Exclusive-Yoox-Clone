@@ -1,6 +1,6 @@
 const express = require("express");
 const { v4 } = require("uuid");
-const { checkAccount, createAccount, getTokens, passport } = require("../controllers");
+const { checkAccount, createAccount, getTokens, passport, updateCart } = require("../controllers");
 const { getGithubData } = require("../controllers/github.controller");
 const { sendRequiredFieldError, sendError } = require("../helper");
 const { userModel } = require("../models");
@@ -20,7 +20,8 @@ user.post("/signup", async (req, res) => {
     if (user) {
       return res.status(409).send({ status: false, message: "Email Id already exist" });
     } else {
-      await createAccount(firstName, lastName, email, password);
+      user = await createAccount(firstName, lastName, email, password);
+      await updateCart(user._id, []);
       res.send({ message: "Account created Successfully. Email sent for account activation" });
     }
   } catch (error) {
