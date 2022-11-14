@@ -8,9 +8,9 @@ import {
   Box,
   Checkbox,
   Grid,
-  GridItem,
   Text,
   Image,
+  useToast,
 } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
 import React, { useState, useEffect } from "react";
@@ -18,13 +18,36 @@ import axios from "axios";
 import Link from "next/link";
 import { FiHeart } from "react-icons/fi";
 import { GrView } from "react-icons/gr";
+import { axiosInstance } from "../../utils/axiosConfig";
 const Products = () => {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
+  const toast = useToast();
 
-  let m = fetch(`http://localhost:3000/api/products?page=${page}`).then((res) =>
-    res.json()
-  );
+  const addToCart = (itemId) => {
+    axiosInstance
+      .post(`/api/carts/${itemId}`)
+      .then((res) => {
+        toast({
+          title: "Item added to cart.",
+          status: "success",
+          duration: 4000,
+          isClosable: true,
+          position: "top-right",
+        });
+      })
+      .catch((err) => {
+        toast({
+          title: err.response.data.message,
+          status: "error",
+          duration: 4000,
+          isClosable: true,
+          position: "top-right",
+        });
+      });
+  };
+
+  let m = fetch(`http://localhost:3000/api/products?page=${page}`).then((res) => res.json());
 
   useEffect(
     (page) => {
@@ -158,19 +181,13 @@ const Products = () => {
                   <Box w="sm" borderWidth="1px">
                     <Link href={`/product/${el._id}`}>
                       <HStack justifyContent={"center"}>
-                        <Image
-                          boxSize="200px"
-                          src={el.images[0]}
-                          alt={el.name}
-                        />
+                        <Image boxSize="200px" src={el.images[0]} alt={el.name} />
                       </HStack>
                     </Link>
                     <Box display="flex" justifyContent="space-between">
                       <Box ml="5" p="2">
                         <FiHeart />
                       </Box>
-                      {/* <GrView /> */}
-
                       <Box display="flex" mr="7">
                         <Text as="b">-</Text>
                         <Text as="b">NEW</Text>
@@ -186,7 +203,7 @@ const Products = () => {
                       <Text textAlign="center">{el.title}</Text>
                       <Text textAlign="center">{el.product_type} </Text>
                       <HStack justifyContent={"center"}>
-                        <Button mb="5" mt="5">
+                        <Button mb="5" mt="5" onClick={() => addToCart(el._id)}>
                           ADD TO DREAM BOX
                         </Button>
                       </HStack>

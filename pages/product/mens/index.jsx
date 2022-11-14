@@ -40,7 +40,7 @@ const Products = () => {
       })
       .catch((err) => {
         toast({
-          title: er.response.data.message,
+          title: err.response.data.message,
           status: "error",
           duration: 4000,
           isClosable: true,
