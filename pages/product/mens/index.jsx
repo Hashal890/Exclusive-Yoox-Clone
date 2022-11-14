@@ -227,11 +227,11 @@ const Products = () => {
                     <Box>
                       <Text textAlign="center">{el.brand}</Text>
                       <HStack ml={"20px"}>
-                        <Text as="del">US$ {el.original_price}</Text>
+                        <Text as="del">₹ {el.original_price}</Text>
                         {/* <Text>{discount} % OFF</Text> */}
                       </HStack>
                       <Text ml={"20px"} as="b" fontSize="18px">
-                        US$ {el.current_price}
+                        ₹ {el.current_price}
                       </Text>
 
                       <Text textAlign="center">{el.title}</Text>

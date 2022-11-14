@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button, Flex, Image, Text, useToast } from "@chakra-ui/react";
 import { GoChevronRight } from "react-icons/go";
 import Link from "next/link";
+import { AppContext } from "../../hoc/AppContext";
 
 const CartNavbarFooter = () => {
   const toast = useToast();
+  const { state } = useContext(AppContext);
 
   const giveAlertRedirect = () => {
     toast({
       title: "Moving to checkout page!",
       status: "info",
-      position: "top",
+      position: "top-right",
       isClosable: true,
     });
   };
@@ -46,6 +48,7 @@ const CartNavbarFooter = () => {
             borderRadius={0}
             p={6}
             onClick={giveAlertRedirect}
+            disabled={!state.cartData.length}
           >
             <Image
               src={
@@ -72,6 +75,7 @@ const CartNavbarFooter = () => {
             borderRadius={0}
             p={6}
             onClick={giveAlertRedirect}
+            disabled={!state.cartData.length}
           >
             <Text>proceed with your order</Text>
           </Button>

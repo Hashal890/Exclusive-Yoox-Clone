@@ -17,7 +17,7 @@ cart.get("/", authMiddleware, async (req, res) => {
 cart.patch("/", authMiddleware, async (req, res) => {
   let { userId, items } = req.body;
 
-  console.log(req.body)
+  // console.log(req.body)
 
   if (!userId || !items) return sendRequiredFieldError(res);
   try {

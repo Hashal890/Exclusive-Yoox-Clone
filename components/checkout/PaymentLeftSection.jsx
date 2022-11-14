@@ -21,9 +21,9 @@ const PaymentLeftSection = () => {
 
   const handleSubmit = () => {
     toast({
-      title: `${state.orderType} method is added and moving to confirmation page!`,
+      title: "Moving to payment page.",
       status: "info",
-      position: "top",
+      position: "top-right",
       isClosable: true,
     });
   };
@@ -173,6 +173,7 @@ const PaymentLeftSection = () => {
               minH={"48px"}
               borderRadius={0}
               onClick={handleSubmit}
+              disabled={!state.cartData.length}
             >
               PROCEED
             </Button>

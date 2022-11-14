@@ -66,11 +66,11 @@ export const WomenSlider = () => {
                     <Text fontWeight="500">{e.name} </Text>
                     <Flex justifyContent={"center"} gap={"20px"}>
                       <Text color={"gray.600"} textDecoration={"line-through"}>
-                        ${e.cutprice}
+                        ₹{e.cutprice}
                       </Text>
                       <Text>{e.off}% OFF</Text>
                     </Flex>
-                    <Text fontWeight="700">${e.orginalprice}</Text>
+                    <Text fontWeight="700">₹{e.orginalprice}</Text>
                   </Box>
                 </SplideSlide>
               );

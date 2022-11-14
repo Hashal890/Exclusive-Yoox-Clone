@@ -9,6 +9,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useContext } from "react";
 import { BsCheckLg } from "react-icons/bs";
 import { AppContext } from "../../hoc/AppContext";
@@ -18,6 +19,7 @@ import { axiosInstance } from "../../utils/axiosConfig";
 const ReviewLeftSection = () => {
   const { state, dispatch } = useContext(AppContext);
   const toast = useToast();
+  const router = useRouter();
 
   const initPayment = (data) => {
     const options = {
@@ -35,7 +37,7 @@ const ReviewLeftSection = () => {
             "/api/orders/verify",
             response
           );
-          // console.log(data);
+          console.log(data);
         } catch (error) {
           console.log(error);
         }
@@ -51,25 +53,35 @@ const ReviewLeftSection = () => {
   const handleSubmit = async () => {
     if (state.orderType == "razorpay") {
       try {
+        const address = Object.values(state.addressData).join(", ");
         const res = await axiosInstance.post("/api/orders", {
-          address: state.addressData,
+          address: address,
         });
-        console.log(res.data);
-        initPayment(res.data.data);
+        // console.log(res.data);
+        await initPayment(res.data.data);
+        toast({
+          title: "Order placed successfully!",
+          status: "success",
+          isClosable: true,
+          position: `top-right`,
+        });
+        await dispatch({
+          type: CHECKOUT_SUCCESS,
+          payload: { address: state.addressData },
+        });
+        setTimeout(() => {
+          router.push("/");
+        }, 5000);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
+        toast({
+          title: error.response.data.message,
+          status: "error",
+          isClosable: true,
+          position: `top-right`,
+        });
       }
-      dispatch({
-        type: CHECKOUT_SUCCESS,
-        payload: { address: state.addressData },
-      });
     }
-    toast({
-      title: "Order placed successfully!",
-      status: "success",
-      isClosable: true,
-      position: `top`,
-    });
   };
 
   return (
@@ -249,7 +261,7 @@ const ReviewLeftSection = () => {
         <Flex fontWeight={"bold"} mt={6}>
           <Text>ORDER TOTAL</Text>
           <Spacer />
-          <Text>$ {state.totalCartPrice}</Text>
+          <Text>₹ {state.totalCartPrice}</Text>
         </Flex>
         <Flex flexDir={"row-reverse"}>
           {/* <Link href={"/men"}> */}
@@ -263,6 +275,7 @@ const ReviewLeftSection = () => {
             borderRadius={0}
             mt={10}
             onClick={handleSubmit}
+            disabled={!state.cartData.length}
           >
             COMPLETE YOUR ORDER
           </Button>

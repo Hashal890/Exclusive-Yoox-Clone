@@ -13,7 +13,7 @@ const BottomSection = () => {
         <Box>
           <Text fontWeight={"bold"}>
             <span style={{ backgroundColor: "#fffe94", padding: "3px" }}>
-              STANDARD -$ 9.95 {state.totalCartPrice > 250 ? "FREE" : ""}
+              STANDARD - {state.totalCartPrice > 250 ? "FREE" : "₹ 9.95"}
             </span>
           </Text>
           <Text>8-10 business days</Text>
@@ -23,7 +23,7 @@ const BottomSection = () => {
       <Flex gap={3} alignItems={"start"}>
         <Box w={3} h={3} border={"2px"} borderRadius={10} mt={2}></Box>
         <Box>
-          <Text fontWeight={"bold"}>EXPRESS - $ 14.95</Text>
+          <Text fontWeight={"bold"}>EXPRESS - ₹ 14.95</Text>
           <Text>4-6 business days</Text>
         </Box>
       </Flex>
@@ -73,7 +73,7 @@ const BottomSection = () => {
         textAlign={"start"}
       >
         <Text>TOTAL FOR ITEMS</Text>
-        <Text>$ {state.totalCartPrice}</Text>
+        <Text>₹ {state.totalCartPrice}</Text>
       </Flex>
       <Flex
         justifyContent={"space-between"}
@@ -87,7 +87,7 @@ const BottomSection = () => {
             (The final amount will depend on the shipping method you choose)
           </Text>
         </Box>
-        <Text>{state.totalCartPrice > 250 ? "FREE" : "9.95"}</Text>
+        <Text>{state.totalCartPrice > 250 ? "FREE" : "₹9.95"}</Text>
       </Flex>
       <Flex
         justifyContent={"space-between"}
@@ -96,7 +96,7 @@ const BottomSection = () => {
         textAlign={"start"}
       >
         <Text>PAYMENT</Text>
-        <Text>$ {state.totalCartPrice}</Text>
+        <Text>₹ {state.totalCartPrice === 9.95 ? "00" : state.totalCartPrice}</Text>
       </Flex>
       <Flex
         justifyContent={"space-between"}
@@ -110,7 +110,7 @@ const BottomSection = () => {
         borderBottom={"2px solid black"}
       >
         <Text>ORDER TOTAL</Text>
-        <Text>$ {state.totalCartPrice}</Text>
+        <Text>₹ {state.totalCartPrice}</Text>
       </Flex>
     </Box>
   );
