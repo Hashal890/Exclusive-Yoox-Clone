@@ -1,32 +1,56 @@
-import { Box, Text, Image, Button, HStack, Stack } from "@chakra-ui/react";
+import { Box, Text, Image, Button, HStack, Stack, useToast } from "@chakra-ui/react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import React from "react";
 import axios from "axios";
 import "react-image-gallery/styles/css/image-gallery.css";
+import { axiosInstance } from "../../utils/axiosConfig";
 
 const SinglePage = ({ data }) => {
+  const toast = useToast();
+
+  const addToCart = (itemId) => {
+    axiosInstance
+      .post(`/api/carts/${itemId}`)
+      .then((res) => {
+        toast({
+          title: "Item added to cart.",
+          status: "success",
+          duration: 4000,
+          isClosable: true,
+          position: "top-right",
+        });
+      })
+      .catch((err) => {
+        toast({
+          title: er.response.data.message,
+          status: "error",
+          duration: 4000,
+          isClosable: true,
+          position: "top-right",
+        });
+      });
+  };
+
   let m = data.data;
-  let discount = Math.round(
-    ((m.original_price - m.current_price) / m.original_price) * 100
-  );
+  let discount = Math.round(((m.original_price - m.current_price) / m.original_price) * 100);
 
   return (
     <Box mt={5}>
       <Stack
-        flexDir={"row"}
+        flexDir={{ base: "column", md: "row" }}
         justifyContent={"center"}
-        alignItems="flex-start"
+        alignItems={{ base: "center", md: "flex-start" }}
         gap="24"
       >
-        <Box w="25%">
+        <Box width={{ base: "90%", md: "25%" }} m={{ base: "auto", md: "0" }}>
           <Carousel interval="5000" transitionTime="1000" autoPlay infiniteLoop>
             {m.images.map((el) => {
               return <img src={el} alt={el} />;
             })}
           </Carousel>
         </Box>
-        <Box>
+        <Box px="5">
           <Text as="b" fontSize="20px">
             {m.title}
           </Text>
@@ -49,6 +73,7 @@ const SinglePage = ({ data }) => {
               color={"white"}
               bgColor={"#333333"}
               variant="none"
+              onClick={() => addToCart(m._id)}
             >
               ADD TO CART
             </Button>
@@ -73,6 +98,7 @@ const SinglePage = ({ data }) => {
             color={"#333333"}
             bgColor={"#F3F3F3"}
             variant="none"
+            onClick={() => addToCart(m._id)}
           >
             ADD TO DREAMBOX
           </Button>
@@ -94,34 +120,21 @@ const SinglePage = ({ data }) => {
         <hr width="70%" />
       </HStack>
       <HStack justifyContent={"center"}>
-        <Box w={"70%"} mt={"20px"}>
-          <Text as={"b"} mb="20px">
-            SPECIFICATIONS
-          </Text>
-          <Text mt="30px" mb="20px">
-            {m.specifications}
-          </Text>
+        <Box w={"70%"} mt={"20px"} p="25px">
+          <Text as={"b"}>SPECIFICATIONS</Text>
+          <Text mt={"20px"}>{m.specifications}</Text>
         </Box>
       </HStack>
-      <Box
-        w={"70%"}
-        margin={"auto"}
-        display={"flex"}
-        justifyContent={"space-around"}
-      >
-        <Box bg={"#F3EFEF"} w={"35%"} mt={"20px"}>
-          <Text fontSize="18px" mt={"20px"} mr={"20px"} mb="20px" ml={"40px"}>
-            TYPE
-          </Text>
-          <Text mr={"20px"} mb="20px" ml={"40px"}>
+      <Box w={"70%"} margin={"auto"} display={"flex"} justifyContent={"space-around"}>
+        <Box bg={"#F3EFEF"} w={"35%"} mt={"20px"} p="20px">
+          <Text fontSize="18px">TYPE</Text>
+          <Text mr={"20px"} mt="20px">
             {m.type}
           </Text>
         </Box>
-        <Box bg={"#F3EFEF"} w={"35%"} mt={"20px"}>
-          <Text mt={"20px"} mr={"20px"} mb="20px" ml={"40px"}>
-            DESCRIPTION
-          </Text>
-          <Text mr={"20px"} mb="20px" ml={"40px"}>
+        <Box bg={"#F3EFEF"} w={"35%"} mt={"20px"} p="20px">
+          <Text>DESCRIPTION</Text>
+          <Text mr={"20px"} mt="20px">
             {m.product_details}
           </Text>
         </Box>
@@ -143,18 +156,3 @@ export const getServerSideProps = async (context) => {
     props: { data },
   };
 };
-
-// items = [
-//   {
-//     item: "87548548454dsffffs",
-//     quantity: 15,
-//   },
-//   {
-//     item: "87548548454dsffffs",
-//     quantity: 15,
-//   },
-//   {
-//     item: "87548548454dsffffs",
-//     quantity: 15,
-//   },
-// ];

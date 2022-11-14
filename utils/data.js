@@ -125,7 +125,7 @@ const data = {
 
 export const bottonLinks = [
   {
-    name: "NER ARRIVALS",
+    name: "NEW ARRIVALS",
     path: "newArrivals",
   },
   {
