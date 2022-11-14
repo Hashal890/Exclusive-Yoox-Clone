@@ -30,11 +30,10 @@ cart.post("/:itemId", authMiddleware, async (req, res) => {
   const itemId = req.params.itemId;
   try {
     let cartItems = await getCustomerCartItems(customer);
-    let checkItemExist = cartItems[0].items;
+    let checkItemExist = cartItems[0].items.find((el) => el.item._id == itemId);
     console.log(checkItemExist);
-    return res.send(cartItems);
-    let item = await addItemToCart(customer, itemId);
-    res.send({ message: "Item added successfully", data: item });
+    if (!checkItemExist) cartItems = await addItemToCart(customer, itemId);
+    res.send({ message: "Item added successfully" });
   } catch (error) {
     return sendError(res, error);
   }
