@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 6a3b6ca2f6e4122ac27b94373e3969ad77be0643
 import {
   Box,
   Image,
@@ -9,9 +12,13 @@ import {
   Text,
 } from "@chakra-ui/react";
 import Head from "next/head";
+<<<<<<< HEAD
 =======
 import { Box, Image, Img, Link, SimpleGrid, Stack, Text } from "@chakra-ui/react";
 >>>>>>> 9bce028703333093d70600e05b165649dcaddf4b
+=======
+import { Box, Image, Img, Link, SimpleGrid, Stack, Text } from "@chakra-ui/react";
+>>>>>>> 6a3b6ca2f6e4122ac27b94373e3969ad77be0643
 
 const HomeData = [
   {
@@ -43,6 +50,9 @@ const HomeData = [
 export default function Home() {
   return (
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 6a3b6ca2f6e4122ac27b94373e3969ad77be0643
     <>
       <Head>
         <title>YOOX | Shop Fashion / Design+Art</title>
@@ -103,6 +113,7 @@ export default function Home() {
         </SimpleGrid>
       </Box>
     </>
+<<<<<<< HEAD
 =======
     <Box w={"100%"}>
       <Stack w={"100%"}>
@@ -150,5 +161,7 @@ export default function Home() {
       </SimpleGrid>
     </Box>
 >>>>>>> 9bce028703333093d70600e05b165649dcaddf4b
+=======
+>>>>>>> 6a3b6ca2f6e4122ac27b94373e3969ad77be0643
   );
 }
