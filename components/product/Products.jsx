@@ -58,7 +58,18 @@ const Products = () => {
                 </AccordionButton>
               </h2>
               <AccordionPanel pb={4}>
-                <Checkbox type="linkedin">Shoes</Checkbox>
+                <Checkbox type="linkedin">Activewear</Checkbox>
+                <br />
+                <Checkbox type="linkedin">Coats & Jackets</Checkbox>
+                <br />
+                <Checkbox type="linkedin">Jeans and Denims</Checkbox>
+                <br />
+                <Checkbox type="linkedin">Jumpsuits and Overalls</Checkbox>
+                <br />
+                <Checkbox type="linkedin">Pants</Checkbox>
+                <br />
+                <Checkbox type="linkedin">Shirts</Checkbox>
+                <br />
               </AccordionPanel>
             </AccordionItem>
 
@@ -66,13 +77,24 @@ const Products = () => {
               <h2>
                 <AccordionButton>
                   <Box flex="1" textAlign="left">
-                    Section 2 title
+                    SLEEVE STYLE
                   </Box>
                   <AddIcon w={3} h={3} />
                 </AccordionButton>
               </h2>
               <AccordionPanel pb={4}>
-                <Checkbox type="linkedin">Shoes</Checkbox>
+                <Checkbox type="linkedin">Activewear</Checkbox>
+                <br />
+                <Checkbox type="linkedin">Coats & Jackets</Checkbox>
+                <br />
+                <Checkbox type="linkedin">Jeans and Denims</Checkbox>
+                <br />
+                <Checkbox type="linkedin">Jumpsuits and Overalls</Checkbox>
+                <br />
+                <Checkbox type="linkedin">Pants</Checkbox>
+                <br />
+                <Checkbox type="linkedin">Shirts</Checkbox>
+                <br />
               </AccordionPanel>
             </AccordionItem>
 
@@ -80,13 +102,24 @@ const Products = () => {
               <h2>
                 <AccordionButton>
                   <Box flex="1" textAlign="left">
-                    Section 2 title
+                    DESIGNERS
                   </Box>
                   <AddIcon w={3} h={3} />
                 </AccordionButton>
               </h2>
               <AccordionPanel pb={4}>
-                <Checkbox type="linkedin">Shoes</Checkbox>
+                <Checkbox type="linkedin">Activewear</Checkbox>
+                <br />
+                <Checkbox type="linkedin">Coats & Jackets</Checkbox>
+                <br />
+                <Checkbox type="linkedin">Jeans and Denims</Checkbox>
+                <br />
+                <Checkbox type="linkedin">Jumpsuits and Overalls</Checkbox>
+                <br />
+                <Checkbox type="linkedin">Pants</Checkbox>
+                <br />
+                <Checkbox type="linkedin">Shirts</Checkbox>
+                <br />
               </AccordionPanel>
             </AccordionItem>
 
@@ -94,83 +127,24 @@ const Products = () => {
               <h2>
                 <AccordionButton>
                   <Box flex="1" textAlign="left">
-                    Section 2 title
+                    PRICE RANGE
                   </Box>
                   <AddIcon w={3} h={3} />
                 </AccordionButton>
               </h2>
               <AccordionPanel pb={4}>
-                <Checkbox type="linkedin">Shoes</Checkbox>
-              </AccordionPanel>
-            </AccordionItem>
-
-            <AccordionItem>
-              <h2>
-                <AccordionButton>
-                  <Box flex="1" textAlign="left">
-                    Section 2 title
-                  </Box>
-                  <AddIcon w={3} h={3} />
-                </AccordionButton>
-              </h2>
-              <AccordionPanel pb={4}>
-                <Checkbox type="linkedin">Shoes</Checkbox>
-              </AccordionPanel>
-            </AccordionItem>
-
-            <AccordionItem>
-              <h2>
-                <AccordionButton>
-                  <Box flex="1" textAlign="left">
-                    Section 2 title
-                  </Box>
-                  <AddIcon w={3} h={3} />
-                </AccordionButton>
-              </h2>
-              <AccordionPanel pb={4}>
-                <Checkbox type="linkedin">Shoes</Checkbox>
-              </AccordionPanel>
-            </AccordionItem>
-
-            <AccordionItem>
-              <h2>
-                <AccordionButton>
-                  <Box flex="1" textAlign="left">
-                    Section 2 title
-                  </Box>
-                  <AddIcon w={3} h={3} />
-                </AccordionButton>
-              </h2>
-              <AccordionPanel pb={4}>
-                <Checkbox type="linkedin">Shoes</Checkbox>
-              </AccordionPanel>
-            </AccordionItem>
-
-            <AccordionItem>
-              <h2>
-                <AccordionButton>
-                  <Box flex="1" textAlign="left">
-                    Section 2 title
-                  </Box>
-                  <AddIcon w={3} h={3} />
-                </AccordionButton>
-              </h2>
-              <AccordionPanel pb={4}>
-                <Checkbox type="linkedin">Shoes</Checkbox>
-              </AccordionPanel>
-            </AccordionItem>
-
-            <AccordionItem>
-              <h2>
-                <AccordionButton>
-                  <Box flex="1" textAlign="left">
-                    Section 2 title
-                  </Box>
-                  <AddIcon w={3} h={3} />
-                </AccordionButton>
-              </h2>
-              <AccordionPanel pb={4}>
-                <Checkbox type="linkedin">Shoes</Checkbox>
+                <Checkbox type="linkedin">Activewear</Checkbox>
+                <br />
+                <Checkbox type="linkedin">Coats & Jackets</Checkbox>
+                <br />
+                <Checkbox type="linkedin">Jeans and Denims</Checkbox>
+                <br />
+                <Checkbox type="linkedin">Jumpsuits and Overalls</Checkbox>
+                <br />
+                <Checkbox type="linkedin">Pants</Checkbox>
+                <br />
+                <Checkbox type="linkedin">Shirts</Checkbox>
+                <br />
               </AccordionPanel>
             </AccordionItem>
           </Accordion>

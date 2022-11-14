@@ -19,6 +19,7 @@ import axios from "axios";
 import Link from "next/link";
 import { FiHeart } from "react-icons/fi";
 import { GrView } from "react-icons/gr";
+import Head from "next/head";
 const Products = () => {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
@@ -41,6 +42,10 @@ const Products = () => {
 
   return (
     <Box>
+      <Head>
+        <title>Exclusive | Product - Mens</title>
+        <meta property="og:title" content="My page title" key="title" />
+      </Head>
       <HStack justifyContent={"center"} as="b" fontSize="24px" mb="10" mt="5">
         <Text>CLOTHING NEW ARRIVALS</Text>
       </HStack>
