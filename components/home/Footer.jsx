@@ -54,7 +54,7 @@ export default function Footer() {
           alignItems="center"
           flexDirection={{ base: "column", md: "row" }}
         >
-          <HStack>
+          <HStack gap="14">
             <Stack alignItems={"center"}>
               <ListHeader textDecoration={"underline"}>Product</ListHeader>
               <Link href={"#"}>Overview</Link>
@@ -128,7 +128,7 @@ export default function Footer() {
               SIGN UP
             </Button>
           </Stack>
-          <HStack>
+          <HStack gap="14">
             <Stack alignItems={"center"}>
               <ListHeader textDecoration={"underline"}>Legal</ListHeader>
               <Link href={"/"}>Cookies Policy</Link>
