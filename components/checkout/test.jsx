@@ -1,7 +1,6 @@
 import { Button } from "@chakra-ui/react";
-import axios from "axios";
 import React from "react";
-import { axiosInstance } from "../utils/axiosConfig";
+import { axiosInstance } from "../../utils/axiosConfig";
 
 const test = () => {
   const initPayment = (data) => {
@@ -16,7 +15,7 @@ const test = () => {
       handler: async (response) => {
         try {
           const { data } = await axiosInstance.post("/api/orders/verify", response);
-          console.log(data);
+          // console.log(data);
         } catch (error) {
           console.log(error);
         }

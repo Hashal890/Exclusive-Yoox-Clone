@@ -9,21 +9,79 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useContext } from "react";
 import { BsCheckLg } from "react-icons/bs";
 import { AppContext } from "../../hoc/AppContext";
+import { CHECKOUT_SUCCESS } from "../../hoc/AppContext.Types";
+import { axiosInstance } from "../../utils/axiosConfig";
 
 const ReviewLeftSection = () => {
-  const { state } = useContext(AppContext);
+  const { state, dispatch } = useContext(AppContext);
   const toast = useToast();
+  const router = useRouter();
 
-  const checkoutDone = () => {
-    toast({
-      title: "Order placed successfully!",
-      status: "success",
-      isClosable: true,
-      position: `top`,
-    });
+  const initPayment = (data) => {
+    const options = {
+      key: process.env.NEXT_PUBLIC_RAZORYPAY_KEY_ID,
+      amount: data.amount,
+      currency: data.currency,
+      name: "Yoox Order Payment",
+      description: "Test Transaction",
+      image:
+        "https://www.psdstamps.com/wp-content/uploads/2022/04/grunge-exclusive-label-png.png",
+      order_id: data.id,
+      handler: async (response) => {
+        try {
+          const { data } = await axiosInstance.post(
+            "/api/orders/verify",
+            response
+          );
+          console.log(data);
+        } catch (error) {
+          console.log(error);
+        }
+      },
+      theme: {
+        color: "#C15CE5",
+      },
+    };
+    const rzp1 = new window.Razorpay(options);
+    rzp1.open();
+  };
+
+  const handleSubmit = async () => {
+    if (state.orderType == "razorpay") {
+      try {
+        const address = Object.values(state.addressData).join(", ");
+        const res = await axiosInstance.post("/api/orders", {
+          address: address,
+        });
+        // console.log(res.data);
+        await initPayment(res.data.data);
+        toast({
+          title: "Order placed successfully!",
+          status: "success",
+          isClosable: true,
+          position: `top-right`,
+        });
+        await dispatch({
+          type: CHECKOUT_SUCCESS,
+          payload: { address: state.addressData },
+        });
+        setTimeout(() => {
+          router.push("/");
+        }, 5000);
+      } catch (error) {
+        // console.log(error);
+        toast({
+          title: error.response.data.message,
+          status: "error",
+          isClosable: true,
+          position: `top-right`,
+        });
+      }
+    }
   };
 
   return (
@@ -203,24 +261,25 @@ const ReviewLeftSection = () => {
         <Flex fontWeight={"bold"} mt={6}>
           <Text>ORDER TOTAL</Text>
           <Spacer />
-          <Text>$ {state.totalCartPrice}</Text>
+          <Text>₹ {state.totalCartPrice}</Text>
         </Flex>
         <Flex flexDir={"row-reverse"}>
-          <Link href={"/men"}>
-            <Button
-              p={"12px 100px"}
-              bg={"#333333"}
-              color={"#ffffff"}
-              _hover={{ bg: "#333333", color: "gray.600" }}
-              minW={"120px"}
-              minH={"48px"}
-              borderRadius={0}
-              mt={10}
-              onClick={checkoutDone}
-            >
-              COMPLETE YOUR ORDER
-            </Button>
-          </Link>
+          {/* <Link href={"/men"}> */}
+          <Button
+            p={"12px 100px"}
+            bg={"#333333"}
+            color={"#ffffff"}
+            _hover={{ bg: "#333333", color: "gray.600" }}
+            minW={"120px"}
+            minH={"48px"}
+            borderRadius={0}
+            mt={10}
+            onClick={handleSubmit}
+            disabled={!state.cartData.length}
+          >
+            COMPLETE YOUR ORDER
+          </Button>
+          {/* </Link> */}
         </Flex>
       </Box>
       <Flex p={2} mb={10} alignItems={"center"}>
