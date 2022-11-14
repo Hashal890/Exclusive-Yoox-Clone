@@ -4,6 +4,7 @@ import ReviewLeftSection from "../../components/checkout/ReviewLeftSection";
 import RightSection from "../../components/checkout/RightSection";
 import { getCartItems } from "../../components/cart/Cart.Controller";
 import { AppContext } from "../../hoc/AppContext";
+import Head from "next/head";
 
 const Review = () => {
   const { dispatch } = useContext(AppContext);
@@ -14,6 +15,10 @@ const Review = () => {
 
   return (
     <>
+      <Head>
+        <title>Exclusive | Checkout - Review and Order</title>
+        <meta property="og:title" content="My page title" key="title" />
+      </Head>
       <Box bg={"#f3f3f3"} pt={10} color={"#333"}>
         <HStack
           w={["100%", "90%", "90%"]}

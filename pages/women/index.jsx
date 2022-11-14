@@ -5,6 +5,7 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { Product_slider } from "../../components/home/Product_slider";
 import { Threebox_div } from "../../components/home/Threebox_div";
 import { WomenSlider } from "../../components/Slider/WomenSlider";
+import Head from "next/head";
 
 const Home = () => {
   var object = [
@@ -52,6 +53,10 @@ const Home = () => {
 
   return (
     <div>
+      <Head>
+        <title>Exclusive | Women</title>
+        <meta property="og:title" content="My page title" key="title" />
+      </Head>
       <Box w={"100%"} p={"2rem 0rem"} bg={"green.300"} textAlign={"center"}>
         <Text fontWeight={600}>SINGLES'S DAY: GET UP TO 90% OFF</Text>
       </Box>

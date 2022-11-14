@@ -10,10 +10,11 @@ const CartNavbarFooter = () => {
 
   const giveAlertRedirect = () => {
     toast({
-      title: "Moving to checkout page!",
+      title: "Moving to shipping page.",
       status: "info",
       position: "top-right",
       isClosable: true,
+      duration: 3000
     });
   };
 

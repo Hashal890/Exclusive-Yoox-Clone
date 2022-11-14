@@ -64,6 +64,7 @@ const ReviewLeftSection = () => {
           status: "success",
           isClosable: true,
           position: `top-right`,
+          duration: 3000
         });
         await dispatch({
           type: CHECKOUT_SUCCESS,
@@ -79,6 +80,7 @@ const ReviewLeftSection = () => {
           status: "error",
           isClosable: true,
           position: `top-right`,
+          duration: 3000
         });
       }
     }

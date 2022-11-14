@@ -6,6 +6,7 @@ import RightSection from "../../components/checkout/RightSection";
 import { PaymentAccordionItems } from "../../components/checkout/AccordionData";
 import { getCartItems } from "../../components/cart/Cart.Controller";
 import { AppContext } from "../../hoc/AppContext";
+import Head from "next/head";
 
 const Payment = () => {
   const { dispatch } = useContext(AppContext);
@@ -16,6 +17,10 @@ const Payment = () => {
 
   return (
     <>
+      <Head>
+        <title>Exclusive | Checkout - Payment</title>
+        <meta property="og:title" content="My page title" key="title" />
+      </Head>
       <Box bg={"#f3f3f3"} pt={10} color={"#333"}>
         <HStack
           w={["100%", "90%", "90%"]}

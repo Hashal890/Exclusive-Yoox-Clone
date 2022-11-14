@@ -25,6 +25,7 @@ const PaymentLeftSection = () => {
       status: "info",
       position: "top-right",
       isClosable: true,
+      duration: 3000
     });
   };
 
