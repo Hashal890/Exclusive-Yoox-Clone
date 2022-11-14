@@ -88,10 +88,10 @@ const CartProductCard = ({
       <Td>
         <Box>
           <Text fontWeight={300} color={"gray.900"} textDecor={"line-through"}>
-            Actual:- $ {actual_price}
+            Actual:- ₹ {actual_price}
           </Text>
           <Text fontWeight={"bold"}>{off_percentage}</Text>
-          <Text>Discount:- $ {discount_price}</Text>
+          <Text>Discount:- ₹ {discount_price}</Text>
         </Box>
       </Td>
     </Tr>

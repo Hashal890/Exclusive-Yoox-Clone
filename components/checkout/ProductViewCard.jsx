@@ -5,27 +5,18 @@ const ProductViewCard = ({
   image,
   title,
   type,
-  colors,
+  color,
   qty,
   actual_price,
   discount_price,
 }) => {
   return (
-    <Flex
-      fontSize={"13px"}
-      maxH={"200px"}
-      pt={2}
-      pb={2}
-      overflowY={"scroll"}
-      color={"#333"}
-    >
+    <Flex fontSize={"13px"} pt={2} pb={2} color={"#333"} gap={3}>
       <Avatar src={image} alt={title} />
       <Box>
         <Text fontWeight={700}>{title}</Text>
         <Text>{type}</Text>
-        {colors.map((color, ind) => (
-          <Text key={ind + 1}>{color}</Text>
-        ))}
+        <Text >{color}</Text>
         <Text>Quantity: {qty}</Text>
         <Flex gap={2}>
           <Text textDecor={"line-through"} fontWeight={400}>

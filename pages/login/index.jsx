@@ -1,5 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Box, Button, Checkbox, Input, SimpleGrid, Text, useToast } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Checkbox,
+  Input,
+  SimpleGrid,
+  Text,
+  useToast,
+} from "@chakra-ui/react";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebookF, FaGithub } from "react-icons/fa";
 import { AppContext } from "../../hoc/AppContext";
@@ -81,8 +89,18 @@ function Login() {
   return (
     <div>
       <SimpleGrid columns={{ base: 1, sm: 1, md: 2 }} margin="auto" w={"70%"}>
-        <Box width={"70%"} h="90%" border={"0px solid"} m="auto" mt={"4rem"} textAlign="center">
-          <Text fontSize={{ base: "2sd", sm: "2xl", md: "10xl" }} fontWeight="700">
+        <Box
+          width={"70%"}
+          h="90%"
+          border={"0px solid"}
+          m="auto"
+          mt={"4rem"}
+          textAlign="center"
+        >
+          <Text
+            fontSize={{ base: "2sd", sm: "2xl", md: "10xl" }}
+            fontWeight="700"
+          >
             ARE YOU REGISTERED?
           </Text>
           <Text
@@ -190,8 +208,18 @@ function Login() {
           </Button>
         </Box>
 
-        <Box width={"70%"} h="90%" border={"0px solid"} m="auto" mt={"4rem"} textAlign="center">
-          <Text fontSize={{ base: "2sd", sm: "2xl", md: "2xl" }} fontWeight="700">
+        <Box
+          width={"70%"}
+          h="90%"
+          border={"0px solid"}
+          m="auto"
+          mt={"4rem"}
+          textAlign="center"
+        >
+          <Text
+            fontSize={{ base: "2sd", sm: "2xl", md: "2xl" }}
+            fontWeight="700"
+          >
             ARE YOU NEW
           </Text>
           <Text
@@ -224,8 +252,8 @@ function Login() {
               fontSize={{ base: "xs", sm: "xs", md: "5md" }}
               fontStyle="italic"
             >
-              I consent to recive YOOX newsletters via email.For further information,please consult
-              the Privacy Policy.
+              I consent to recive YOOX newsletters via email.For further
+              information,please consult the Privacy Policy.
             </Text>
           </Box>
 
@@ -247,8 +275,8 @@ function Login() {
             fontSize={"0.6rem"}
             fontWeight={600}
           >
-            Want to Checkout faster? Sign up for MYOOX and get speedy checkout <br /> on future
-            purchase
+            Want to Checkout faster? Sign up for MYOOX and get speedy checkout{" "}
+            <br /> on future purchase
           </Text>
           <Button
             colorScheme="#e9ecef"

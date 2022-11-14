@@ -42,7 +42,7 @@ const CheckoutForm = () => {
     return toast({
       title: title,
       status: status,
-      position: "top",
+      position: "top-right",
       isClosable: true,
     });
   };
@@ -59,13 +59,13 @@ const CheckoutForm = () => {
       checkoutDetails.state === "" ||
       checkoutDetails.country === ""
     ) {
-      giveAlert({ title: "Fill all input fields correctly!", status: "error" });
+      giveAlert({ title: "Fill all input fields correctly.", status: "error" });
     } else {
       dispatch({
         type: ADD_CHECKOUT_ADDRESS,
         payload: { data: checkoutDetails },
       });
-      giveAlert({ title: "Address added to backend!", status: "success" });
+      giveAlert({ title: "Moving to payment page.", status: "success" });
     }
   };
 
@@ -216,6 +216,7 @@ const CheckoutForm = () => {
             borderRadius={"none"}
             _hover={{ color: "#ffffff", bg: "#333333" }}
             color={"#ffffff"}
+            disabled={!state.cartData.length}
           >
             SHIP TO THIS ADDRESS
           </Button>
