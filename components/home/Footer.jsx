@@ -12,6 +12,7 @@ import {
   Input,
   Checkbox,
   Button,
+  HStack,
 } from "@chakra-ui/react";
 
 import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
@@ -48,34 +49,46 @@ export default function Footer() {
       color={useColorModeValue("gray.700", "gray.200")}
     >
       <Container as={Stack} maxW={"6xl"} py={10}>
-        <SimpleGrid columns={{ base: 1, sm: 2, md: 5 }} spacing={8}>
-          <Stack align={"flex-start"}>
-            <ListHeader textDecoration={"underline"}>Product</ListHeader>
-            <Link href={"#"}>Overview</Link>
-            <Stack direction={"row"} align={"center"} spacing={2}>
-              <Link href={"#"}>Features</Link>
-              <Tag
-                size={"sm"}
-                bg={useColorModeValue("green.300", "green.800")}
-                ml={2}
-                color={"white"}
-              >
-                New
-              </Tag>
+        <Stack
+          justifyContent={"space-around"}
+          alignItems="center"
+          flexDirection={{ base: "column", md: "row" }}
+        >
+          <HStack>
+            <Stack alignItems={"center"}>
+              <ListHeader textDecoration={"underline"}>Product</ListHeader>
+              <Link href={"#"}>Overview</Link>
+              <Stack direction={"row"} align={"center"} spacing={2}>
+                <Link href={"#"}>Features</Link>
+                <Tag
+                  size={"sm"}
+                  bg={useColorModeValue("green.300", "green.800")}
+                  ml={2}
+                  color={"white"}
+                >
+                  New
+                </Tag>
+              </Stack>
+              <Link href={"/"}>Tutorials</Link>
+              <Link href={"/"}>Pricing</Link>
+              <Link href={"/"}>Releases</Link>
             </Stack>
-            <Link href={"/"}>Tutorials</Link>
-            <Link href={"/"}>Pricing</Link>
-            <Link href={"/"}>Releases</Link>
-          </Stack>
-          <Stack align={"flex-start"}>
-            <ListHeader textDecoration={"underline"}>Company</ListHeader>
-            <Link href={"/"}>About Us</Link>
-            <Link href={"/"}>Press</Link>
-            <Link href={"/"}>Careers</Link>
-            <Link href={"/"}>Contact Us</Link>
-            <Link href={"/"}>Partners</Link>
-          </Stack>
-          <Stack bg={"white"} width={"100%"} p={"10px 40px"}>
+            <Stack alignItems={"center"}>
+              <ListHeader textDecoration={"underline"}>Company</ListHeader>
+              <Link href={"/"}>About Us</Link>
+              <Link href={"/"}>Press</Link>
+              <Link href={"/"}>Careers</Link>
+              <Link href={"/"}>Contact Us</Link>
+              <Link href={"/"}>Partners</Link>
+            </Stack>
+          </HStack>
+          <Stack
+            alignItems={"center"}
+            bg={"white"}
+            width={{ base: "90%", md: "28%" }}
+            m="auto"
+            p={"10px 40px"}
+          >
             <Box color={"gray.900"} margin={"auto"}>
               <AiOutlineMail fontSize={"2rem"} />
             </Box>
@@ -115,23 +128,25 @@ export default function Footer() {
               SIGN UP
             </Button>
           </Stack>
-          <Stack align={"flex-start"}>
-            <ListHeader textDecoration={"underline"}>Legal</ListHeader>
-            <Link href={"/"}>Cookies Policy</Link>
-            <Link href={"/"}>Privacy Policy</Link>
-            <Link href={"/"}>Terms of Service</Link>
-            <Link href={"/"}>Law Enforcement</Link>
-            <Link href={"/"}>Status</Link>
-          </Stack>
-          <Stack align={"flex-start"}>
-            <ListHeader textDecoration={"underline"}>Follow Us</ListHeader>
-            <Link href={"/"}>Facebook</Link>
-            <Link href={"/"}>Twitter</Link>
-            <Link href={"/"}>Dribbble</Link>
-            <Link href={"/"}>Instagram</Link>
-            <Link href={"/"}>LinkedIn</Link>
-          </Stack>
-        </SimpleGrid>
+          <HStack>
+            <Stack alignItems={"center"}>
+              <ListHeader textDecoration={"underline"}>Legal</ListHeader>
+              <Link href={"/"}>Cookies Policy</Link>
+              <Link href={"/"}>Privacy Policy</Link>
+              <Link href={"/"}>Terms of Service</Link>
+              <Link href={"/"}>Law Enforcement</Link>
+              <Link href={"/"}>Status</Link>
+            </Stack>
+            <Stack alignItems={"center"}>
+              <ListHeader textDecoration={"underline"}>Follow Us</ListHeader>
+              <Link href={"/"}>Facebook</Link>
+              <Link href={"/"}>Twitter</Link>
+              <Link href={"/"}>Dribbble</Link>
+              <Link href={"/"}>Instagram</Link>
+              <Link href={"/"}>LinkedIn</Link>
+            </Stack>
+          </HStack>
+        </Stack>
       </Container>
       <Box py={10}>
         <Flex
