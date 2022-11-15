@@ -1,4 +1,4 @@
-import { dbConnect } from "../../../configs/database";
+import { dbConnect } from "../../../server/config";
 import { getProducts } from "../../../server/controllers";
 import { sendError } from "../../../server/helper";
 

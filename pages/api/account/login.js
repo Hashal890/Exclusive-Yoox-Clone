@@ -1,4 +1,4 @@
-import { dbConnect } from "../../../configs/database";
+import { dbConnect } from "../../../server/config";
 import { getTokens } from "../../../server/controllers";
 import { sendError, sendRequiredFieldError } from "../../../server/helper";
 import { userModel } from "../../../server/models";

@@ -1,4 +1,4 @@
-import { dbConnect } from "../../../configs/database";
+import { dbConnect } from "../../../server/config";
 import { sendError } from "../../../server/helper";
 
 const handler = async (req, res) => {
