@@ -1,13 +1,4 @@
-import {
-  Avatar,
-  Box,
-  Button,
-  Flex,
-  IconButton,
-  Spacer,
-  Text,
-  useToast,
-} from "@chakra-ui/react";
+import { Avatar, Box, Button, Flex, IconButton, Spacer, Text, useToast } from "@chakra-ui/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useContext } from "react";
@@ -28,15 +19,11 @@ const ReviewLeftSection = () => {
       currency: data.currency,
       name: "Yoox Order Payment",
       description: "Test Transaction",
-      image:
-        "https://www.psdstamps.com/wp-content/uploads/2022/04/grunge-exclusive-label-png.png",
+      image: "https://www.psdstamps.com/wp-content/uploads/2022/04/grunge-exclusive-label-png.png",
       order_id: data.id,
       handler: async (response) => {
         try {
-          const { data } = await axiosInstance.post(
-            "/api/orders/verify",
-            response
-          );
+          const { data } = await axiosInstance.post("/api/orders/verify", response);
           console.log(data);
         } catch (error) {
           console.log(error);
@@ -64,7 +51,7 @@ const ReviewLeftSection = () => {
           status: "success",
           isClosable: true,
           position: `top-right`,
-          duration: 3000
+          duration: 3000,
         });
         await dispatch({
           type: CHECKOUT_SUCCESS,
@@ -80,7 +67,7 @@ const ReviewLeftSection = () => {
           status: "error",
           isClosable: true,
           position: `top-right`,
-          duration: 3000
+          duration: 3000,
         });
       }
     }
@@ -88,12 +75,7 @@ const ReviewLeftSection = () => {
 
   return (
     <Box w={["100%", "70%", "70%"]} mb={5} color={"#333"}>
-      <Flex
-        justifyContent={"space-between"}
-        mb={5}
-        bg={"whiteAlpha.900"}
-        p={"48px"}
-      >
+      <Flex justifyContent={"space-between"} mb={5} bg={"whiteAlpha.900"} p={"48px"}>
         <Box>
           <Flex alignItems={"center"} gap={3} mb={5}>
             <IconButton
@@ -110,29 +92,17 @@ const ReviewLeftSection = () => {
           <Text>
             You are ordering as{" "}
             <span style={{ fontWeight: "bold" }}>
-              {state.email === undefined || state.email === ""
-                ? "EMAIL-ID"
-                : state.email}
+              {state.email === undefined || state.email === "" ? "EMAIL-ID" : state.email}
             </span>
           </Text>
         </Box>
         <Link href={"/login"}>
-          <Button
-            textTransform={"uppercase"}
-            bg={"transparent"}
-            _hover={{ bg: "transparent" }}
-          >
+          <Button textTransform={"uppercase"} bg={"transparent"} _hover={{ bg: "transparent" }}>
             modify
           </Button>
         </Link>
       </Flex>
-      <Flex
-        justifyContent={"space-between"}
-        mb={5}
-        bg={"whiteAlpha.900"}
-        p={"48px"}
-        pb={"35px"}
-      >
+      <Flex justifyContent={"space-between"} mb={5} bg={"whiteAlpha.900"} p={"48px"} pb={"35px"}>
         <Box>
           <Flex alignItems={"center"} gap={3} mb={5}>
             <IconButton
@@ -153,8 +123,7 @@ const ReviewLeftSection = () => {
             {state.addressData.firstName} {state.addressData.lastName}
           </Text>
           <Text fontSize={"14px"} mb={3}>
-            {state.addressData.address} - {state.addressData.zipCode} -{" "}
-            {state.addressData.city}
+            {state.addressData.address} - {state.addressData.zipCode} - {state.addressData.city}
           </Text>
           <Text fontSize={"14px"} mb={5}>
             {state.addressData.zipCode}
@@ -167,22 +136,12 @@ const ReviewLeftSection = () => {
           </Text>
         </Box>
         <Link href={"/checkout"}>
-          <Button
-            textTransform={"uppercase"}
-            bg={"transparent"}
-            _hover={{ bg: "transparent" }}
-          >
+          <Button textTransform={"uppercase"} bg={"transparent"} _hover={{ bg: "transparent" }}>
             modify
           </Button>
         </Link>
       </Flex>
-      <Flex
-        justifyContent={"space-between"}
-        mb={5}
-        bg={"whiteAlpha.900"}
-        p={"48px"}
-        pb={"35px"}
-      >
+      <Flex justifyContent={"space-between"} mb={5} bg={"whiteAlpha.900"} p={"48px"} pb={"35px"}>
         <Box>
           <Flex alignItems={"center"} gap={3} mb={7}>
             <IconButton
@@ -197,22 +156,12 @@ const ReviewLeftSection = () => {
             </Text>
           </Flex>
           <Box>
-            <Text
-              fontWeight={"700"}
-              color={"gray.500"}
-              fontSize={"15px"}
-              mb={8}
-            >
+            <Text fontWeight={"700"} color={"gray.500"} fontSize={"15px"} mb={8}>
               1. PAYMENT METHOD :- {state.orderType}
             </Text>
           </Box>
           <Box>
-            <Text
-              fontWeight={"700"}
-              color={"gray.500"}
-              fontSize={"15px"}
-              mb={3}
-            >
+            <Text fontWeight={"700"} color={"gray.500"} fontSize={"15px"} mb={3}>
               2. BILLING ADDRESS
             </Text>
             <Text fontSize={"14px"} mb={3}>
@@ -220,26 +169,20 @@ const ReviewLeftSection = () => {
               {state.addressData.firstName} {state.addressData.lastName}
             </Text>
             <Text fontSize={"14px"} mb={3}>
-              <span style={{ fontWeight: 600 }}>Address:-</span>{" "}
-              {state.addressData.address} - {state.addressData.zipCode} -{" "}
-              {state.addressData.city}
+              <span style={{ fontWeight: 600 }}>Address:-</span> {state.addressData.address} -{" "}
+              {state.addressData.zipCode} - {state.addressData.city}
             </Text>
             <Text fontSize={"14px"} mb={3}>
-              <span style={{ fontWeight: 600 }}>Zip Code:-</span>{" "}
-              {state.addressData.zipCode}
+              <span style={{ fontWeight: 600 }}>Zip Code:-</span> {state.addressData.zipCode}
             </Text>
             <Text fontSize={"14px"} mb={5}>
-              <span style={{ fontWeight: 600 }}>Delivery Duration:-</span>{" "}
-              Standard - 8-10 business days
+              <span style={{ fontWeight: 600 }}>Delivery Duration:-</span> Standard - 8-10 business
+              days
             </Text>
           </Box>
         </Box>
         <Link href={"/checkout/payments"}>
-          <Button
-            textTransform={"uppercase"}
-            bg={"transparent"}
-            _hover={{ bg: "transparent" }}
-          >
+          <Button textTransform={"uppercase"} bg={"transparent"} _hover={{ bg: "transparent" }}>
             modify
           </Button>
         </Link>
@@ -251,14 +194,12 @@ const ReviewLeftSection = () => {
         <Box mt={10} p={5} pl={10} pr={10} border={"1px dotted gray"}>
           <Text mb={3}>Check your information and place order</Text>
           <Text fontWeight={"bold"}>
-            IF YOU CHANGE YOUR MIND, YOU CAN RETURN WITHIN 60 DAYS FROM
-            DELIVERY.
+            IF YOU CHANGE YOUR MIND, YOU CAN RETURN WITHIN 60 DAYS FROM DELIVERY.
           </Text>
         </Box>
         <Text mt={10} pr={15}>
-          By <span style={{ fontWeight: "bold" }}>completing your order</span>,
-          you declare that you are familiar with and accept YOOX General Terms
-          and Conditions of Sale.
+          By <span style={{ fontWeight: "bold" }}>completing your order</span>, you declare that you
+          are familiar with and accept YOOX General Terms and Conditions of Sale.
         </Text>
         <Flex fontWeight={"bold"} mt={6}>
           <Text>ORDER TOTAL</Text>
