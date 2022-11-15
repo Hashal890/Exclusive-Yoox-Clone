@@ -6,25 +6,29 @@ const handler = async (req, res) => {
   const { method } = req;
   await dbConnect();
 
-  if (method == "POST") {
-    const { firstName, lastName = "", email, password } = req.body;
-    if (!firstName || !email || !password) return sendRequiredFieldError(res);
+  try {
+    if (method == "POST") {
+      const { firstName, lastName = "", email, password } = req.body;
+      if (!firstName || !email || !password) return sendRequiredFieldError(res);
 
-    try {
-      let user = await checkAccount("email", email.toLowerCase());
-      if (user) {
-        return res.status(409).send({ status: false, message: "Email Id already exist" });
-      } else {
-        user = await createAccount(firstName, lastName, email, password);
-        await updateCart(user._id, []);
-        return res.send({
-          message: "Account created Successfully. Email sent for account activation",
-        });
+      try {
+        let user = await checkAccount("email", email.toLowerCase());
+        if (user) {
+          return res.status(409).send({ status: false, message: "Email Id already exist" });
+        } else {
+          user = await createAccount(firstName, lastName, email, password);
+          await updateCart(user._id, []);
+          return res.send({
+            message: "Account created Successfully. Email sent for account activation",
+          });
+        }
+      } catch (error) {
+        return sendError(res, error);
       }
-    } catch (error) {
-      return sendError(res, error);
     }
+    return res.status(401).json({ message: "Not a valid route" });
+  } catch (error) {
+    return sendError(res, error);
   }
-  return sendError(res, 401, "Not a valid route");
 };
 export default handler;

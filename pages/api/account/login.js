@@ -7,30 +7,34 @@ const handler = async (req, res) => {
   const { method } = req;
   await dbConnect();
 
-  if (method == "POST") {
-    const { email, password } = req.body;
+  try {
+    if (method == "POST") {
+      const { email, password } = req.body;
 
-    if (!email || !password) return sendRequiredFieldError(res);
-    try {
-      let user = await userModel.findOne({ email: email.toLowerCase(), password });
-      if (user) {
-        const { accessToken, refreshToken } = getTokens(user.id, user.firstName, user.email);
-        return res.send({
-          message: "Login Successfull",
-          data: {
-            accessToken,
-            refreshToken,
-            name: user.firstName + " " + user.lastName,
-            email: user.email,
-          },
-        });
-      } else {
-        return res.status(401).send({ status: false, message: "Credentials mismatch" });
+      if (!email || !password) return sendRequiredFieldError(res);
+      try {
+        let user = await userModel.findOne({ email: email.toLowerCase(), password });
+        if (user) {
+          const { accessToken, refreshToken } = getTokens(user.id, user.firstName, user.email);
+          return res.send({
+            message: "Login Successfull",
+            data: {
+              accessToken,
+              refreshToken,
+              name: user.firstName + " " + user.lastName,
+              email: user.email,
+            },
+          });
+        } else {
+          return res.status(401).send({ status: false, message: "Credentials mismatch" });
+        }
+      } catch (error) {
+        return sendError(res, error);
       }
-    } catch (error) {
-      return sendError(res, error);
     }
+    return res.status(401).json({ message: "Not a valid route" });
+  } catch (error) {
+    return sendError(res, error);
   }
-  return sendError(res, 401, "Not a valid route");
 };
 export default handler;

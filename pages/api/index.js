@@ -1,11 +1,18 @@
-import { dbConnect } from "../../../server/config";
+//template
+
+import { dbConnect } from "../../../configs/database";
 import { sendError } from "../../../server/helper";
 
 const handler = async (req, res) => {
   const { method } = req;
   await dbConnect();
-  if (method == "GET") {
+
+  try {
+    if (method == "GET") {
+    }
+    return res.status(401).json({ message: "Not a valid route" });
+  } catch (error) {
+    return sendError(res, error);
   }
-  return sendError(res, 401, "Not a valid route");
 };
 export default handler;
