@@ -2,9 +2,9 @@ import { Box, Text, Image, Button, HStack, Stack, useToast } from "@chakra-ui/re
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import React from "react";
-import axios from "axios";
 import "react-image-gallery/styles/css/image-gallery.css";
 import { axiosInstance } from "../../utils/axiosConfig";
+import axios from "axios";
 
 const SinglePage = ({ data }) => {
   const toast = useToast();
@@ -150,7 +150,7 @@ export default SinglePage;
 
 export const getServerSideProps = async (context) => {
   const { id } = context.params;
-  const resp = await axios.get(`http://localhost:3000/api/product/${id}`);
+  const resp = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/product/${id}`);
   const data = resp.data;
   return {
     props: { data },

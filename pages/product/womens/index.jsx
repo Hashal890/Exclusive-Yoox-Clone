@@ -16,10 +16,8 @@ import {
 } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import Link from "next/link";
 import { FiHeart } from "react-icons/fi";
-import { GrView } from "react-icons/gr";
 import Head from "next/head";
 import { axiosInstance } from "../../../utils/axiosConfig";
 const Products = () => {
@@ -53,14 +51,14 @@ const Products = () => {
 
   const handleChange = (e) => setSort(e.target.value);
 
-  let m = fetch(
-    `http://localhost:3000/api/product?ideal_for=women&page=${page}&sortBy=current_price&order=${sort}`
-  ).then((res) => res.json());
+  let m = axiosInstance.get(
+    `/api/product?ideal_for=women&page=${page}&sortBy=current_price&order=${sort}`
+  );
 
   useEffect(
     (page, sort) => {
       let d = m.then((res) => {
-        setData(res.data);
+        setData(res.data.data);
       });
     },
     [page, sort]

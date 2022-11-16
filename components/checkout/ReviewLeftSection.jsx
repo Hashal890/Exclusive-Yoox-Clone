@@ -24,9 +24,27 @@ const ReviewLeftSection = () => {
       handler: async (response) => {
         try {
           const { data } = await axiosInstance.post("/api/order/verify", response);
-          console.log(data);
+          toast({
+            title: "Order placed successfully!",
+            status: "success",
+            isClosable: true,
+            position: `top-right`,
+            duration: 3000,
+          });
+          await dispatch({
+            type: CHECKOUT_SUCCESS,
+            payload: { address: state.addressData },
+          });
+          setTimeout(() => router.push("/"), 5000);
         } catch (error) {
           console.log(error);
+          toast({
+            title: error.response.data.message,
+            status: "error",
+            isClosable: true,
+            position: `top-right`,
+            duration: 3000,
+          });
         }
       },
       theme: {
@@ -44,22 +62,8 @@ const ReviewLeftSection = () => {
         const res = await axiosInstance.post("/api/order", {
           address: address,
         });
-        // console.log(res.data);
+
         await initPayment(res.data.data);
-        toast({
-          title: "Order placed successfully!",
-          status: "success",
-          isClosable: true,
-          position: `top-right`,
-          duration: 3000,
-        });
-        await dispatch({
-          type: CHECKOUT_SUCCESS,
-          payload: { address: state.addressData },
-        });
-        setTimeout(() => {
-          router.push("/");
-        }, 5000);
       } catch (error) {
         // console.log(error);
         toast({

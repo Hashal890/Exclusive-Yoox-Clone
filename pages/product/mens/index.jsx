@@ -52,15 +52,12 @@ const Products = () => {
     setSort(e.target.value);
   };
 
-  let m = fetch(
-    `http://localhost:3000/api/product?ideal_for=men&page=${page}&sortBy=current_price&order=${sort}`
-  ).then((res) => res.json());
-
+  let m = axiosInstance.get(
+    `/api/product?ideal_for=men&page=${page}&sortBy=current_price&order=${sort}`
+  );
   useEffect(() => {
-    console.log(m);
     let d = m.then((res) => {
-      console.log(res);
-      setData(res.data);
+      setData(res.data.data);
     });
   }, [page, sort]);
 
