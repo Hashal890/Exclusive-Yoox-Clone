@@ -13,10 +13,10 @@ nextApp
   .then(() => {
     const app = express();
     app.use(express.json());
-    app.use("/api/users", userRouter);
-    app.use("/api/products", productRouter);
-    app.use("/api/orders", orderRouter);
-    app.use("/api/carts", cartRouter);
+    app.use("/apii/users", userRouter);
+    app.use("/apii/products", productRouter);
+    app.use("/apii/orders", orderRouter);
+    app.use("/apii/carts", cartRouter);
 
     //Keep in last
     app.get("*", (req, res) => {

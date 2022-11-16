@@ -1,14 +1,5 @@
 import React, { useContext, useState } from "react";
-import {
-  Box,
-  Button,
-  Checkbox,
-  Input,
-  SimpleGrid,
-  Text,
-  Link,
-  useToast,
-} from "@chakra-ui/react";
+import { Box, Button, Checkbox, Input, SimpleGrid, Text, Link, useToast } from "@chakra-ui/react";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebookF } from "react-icons/fa";
 import { AppContext } from "../../hoc/AppContext";
@@ -29,7 +20,7 @@ const Register = () => {
 
   const signUp = async (data) => {
     try {
-      let response = await axiosInstance.post("/api/users/signup", data);
+      let response = await axiosInstance.post("/api/account/signup", data);
       toast({
         title: response.data.message,
         status: "success",
@@ -47,7 +38,6 @@ const Register = () => {
     }
   };
   const handleClick = () => {
-    console.log(formdata);
     signUp(formdata);
   };
 
@@ -58,18 +48,8 @@ const Register = () => {
         <meta property="og:title" content="My page title" key="title" />
       </Head>
       <SimpleGrid columns={{ base: 1, sm: 1, md: 1 }} margin="auto" w={"70%"}>
-        <Box
-          width={"40%"}
-          h="90%"
-          border={"0px solid"}
-          m="auto"
-          mt={"4rem"}
-          textAlign="center"
-        >
-          <Text
-            fontSize={{ base: "0.9rem", sm: "1rem", md: "1rem" }}
-            fontWeight="00"
-          >
+        <Box width={"40%"} h="90%" border={"0px solid"} m="auto" mt={"4rem"} textAlign="center">
+          <Text fontSize={{ base: "0.9rem", sm: "1rem", md: "1rem" }} fontWeight="00">
             REGISTER WITH YOUR SOCIAL MEDIA ACCOUNT
           </Text>
           <Link href="https://github.com/login/oauth/authorize?client_id=c2f67dde713515d40dc2">
@@ -199,8 +179,8 @@ const Register = () => {
             fontWeight="500"
             textAlign={"left"}
           >
-            If you are over 18 years old, celebrate your birthday with us: We
-            have a surprise for you.
+            If you are over 18 years old, celebrate your birthday with us: We have a surprise for
+            you.
           </Text>
 
           <Input
@@ -245,35 +225,27 @@ const Register = () => {
             paddingRight="1rem"
             fontStyle="italic"
           >
-            By entering your phone number, you agree to be contacted by SMS for
-            marketing and promotional purposes.
+            By entering your phone number, you agree to be contacted by SMS for marketing and
+            promotional purposes.
           </Text>
 
           <Box w="100%" mt={"2rem"} height={"20x"} bg={"#eceef1"}>
             <Text fontSize={"0.7rem"}>
-              I declare that I have read and accept the MYOOX Terms and
-              Conditions of Use
+              I declare that I have read and accept the MYOOX Terms and Conditions of Use
             </Text>
           </Box>
 
-          <Box
-            display={"flex"}
-            alignItems="center"
-            bg={"#eceef1"}
-            mt="3rem"
-            p={"10px"}
-          >
+          <Box display={"flex"} alignItems="center" bg={"#eceef1"} mt="3rem" p={"10px"}>
             <Checkbox border={"3px solid grey"} size="sm" />
 
             <Box w="100%" height={"100%"}>
               <Text fontSize={"0.7rem"} color="grey">
-                I agree to the use of my personal data in order to be updated on
-                new arrivals, informed about exclusive items and contacted as
-                part of targeted marketing initiatives related to services
-                offered by YOOX. By analyzing my personal data, order history
-                and browsing habits, YOOX can improve my shopping experience
-                with suggestions that correspond to my interests. For further
-                information, please consult the Privacy Policy.
+                I agree to the use of my personal data in order to be updated on new arrivals,
+                informed about exclusive items and contacted as part of targeted marketing
+                initiatives related to services offered by YOOX. By analyzing my personal data,
+                order history and browsing habits, YOOX can improve my shopping experience with
+                suggestions that correspond to my interests. For further information, please consult
+                the Privacy Policy.
               </Text>
             </Box>
           </Box>

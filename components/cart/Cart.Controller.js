@@ -7,13 +7,10 @@ import { axiosInstance } from "../../utils/axiosConfig";
 
 const getCartItems = async (dispatch) => {
   try {
-    const res = await axiosInstance.get("/api/carts");
+    const res = await axiosInstance.get("/api/cart");
     const data = res.data.data[0].items;
     // console.log(data);
-    let total = data.reduce(
-      (prev, curr) => prev + curr.item.current_price * curr.quantity,
-      0
-    );
+    let total = data.reduce((prev, curr) => prev + curr.item.current_price * curr.quantity, 0);
     // console.log(total);
     if (total <= 250) total += 9.95;
     dispatch({ type: GET_CART_SUCCESS, payload: { data, total } });
@@ -24,10 +21,7 @@ const getCartItems = async (dispatch) => {
 
 const updateCartItems = async (dispatch, data) => {
   try {
-    const total = data.reduce(
-      (prev, curr) => prev + curr.item.current_price * curr.quantity,
-      0
-    );
+    const total = data.reduce((prev, curr) => prev + curr.item.current_price * curr.quantity, 0);
     dispatch({ type: POST_PATCH_CART_SUCCESS, payload: { data, total } });
     const items = data.map((el) => {
       return {
@@ -35,7 +29,7 @@ const updateCartItems = async (dispatch, data) => {
         quantity: el.quantity,
       };
     });
-    let res = await axiosInstance.patch("/api/carts", { items });
+    let res = await axiosInstance.patch("/api/cart", { items });
     // console.log(res);
   } catch (err) {
     console.log(err.message);

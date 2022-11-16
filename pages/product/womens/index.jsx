@@ -30,7 +30,7 @@ const Products = () => {
 
   const addToCart = (itemId) => {
     axiosInstance
-      .post(`/api/carts/${itemId}`)
+      .post(`/api/cart/${itemId}`)
       .then((res) => {
         toast({
           title: "Item added to cart.",
@@ -51,12 +51,10 @@ const Products = () => {
       });
   };
 
-  const handleChange = (e) => {
-    setSort(e.target.value);
-  };
+  const handleChange = (e) => setSort(e.target.value);
 
   let m = fetch(
-    `http://localhost:3000/api/products?ideal_for=women&page=${page}&sortBy=current_price&order=${sort}`
+    `http://localhost:3000/api/product?ideal_for=women&page=${page}&sortBy=current_price&order=${sort}`
   ).then((res) => res.json());
 
   useEffect(
@@ -238,7 +236,7 @@ const Products = () => {
             {data.map((el) => {
               return (
                 <Box key={el._id} w="310px" mb={"20px"} borderWidth="1px">
-                  <Link href={`/product/₹{el._id}`}>
+                  <Link href={`/product/${el._id}`}>
                     <HStack justifyContent={"center"}>
                       <Image width="250px" src={el.images[0]} alt={el.name} />
                     </HStack>

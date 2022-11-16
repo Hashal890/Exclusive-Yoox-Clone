@@ -14,7 +14,7 @@ const test = () => {
       order_id: data.id,
       handler: async (response) => {
         try {
-          const { data } = await axiosInstance.post("/api/orders/verify", response);
+          const { data } = await axiosInstance.post("/api/order/verify", response);
           // console.log(data);
         } catch (error) {
           console.log(error);
@@ -30,7 +30,7 @@ const test = () => {
 
   const handlePayment = async () => {
     try {
-      const res = await axiosInstance.post("/api/orders", { address: "My address" });
+      const res = await axiosInstance.post("/api/order", { address: "My address" });
       console.log(res.data);
       initPayment(res.data.data);
     } catch (error) {

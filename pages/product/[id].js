@@ -11,7 +11,7 @@ const SinglePage = ({ data }) => {
 
   const addToCart = (itemId) => {
     axiosInstance
-      .post(`/api/carts/${itemId}`)
+      .post(`/api/cart/${itemId}`)
       .then((res) => {
         toast({
           title: "Item added to cart.",
@@ -150,7 +150,7 @@ export default SinglePage;
 
 export const getServerSideProps = async (context) => {
   const { id } = context.params;
-  const resp = await axios.get(`http://localhost:3000/api/products/${id}`);
+  const resp = await axios.get(`http://localhost:3000/api/product/${id}`);
   const data = resp.data;
   return {
     props: { data },

@@ -14,10 +14,8 @@ import {
 } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import Link from "next/link";
 import { FiHeart } from "react-icons/fi";
-import { GrView } from "react-icons/gr";
 import { axiosInstance } from "../../utils/axiosConfig";
 const Products = () => {
   const [data, setData] = useState([]);
@@ -26,7 +24,7 @@ const Products = () => {
 
   const addToCart = (itemId) => {
     axiosInstance
-      .post(`/api/carts/${itemId}`)
+      .post(`/api/cart/${itemId}`)
       .then((res) => {
         toast({
           title: "Item added to cart.",
@@ -47,7 +45,7 @@ const Products = () => {
       });
   };
 
-  let m = fetch(`http://localhost:3000/api/products?page=${page}`).then((res) => res.json());
+  let m = fetch(`http://localhost:3000/api/product?page=${page}`).then((res) => res.json());
 
   useEffect(
     (page) => {

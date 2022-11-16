@@ -222,9 +222,8 @@ const PaymentOptions = () => {
             </FormControl>
           </Flex>
           <Text fontSize={"14px"} mb={5}>
-            YOOX may contact you for further payment verification prior to
-            shipping your order. In this case, delivery times may be subject to
-            delay.
+            Exlcusive may contact you for further payment verification prior to shipping your order.
+            In this case, delivery times may be subject to delay.
           </Text>
           <Checkbox size={"lg"} mb={3}>
             <Text fontSize={"14px"}>Save this card in MYOOX</Text>

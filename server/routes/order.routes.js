@@ -14,8 +14,6 @@ const order = express.Router();
 
 order.post("/", authMiddleware, async (req, res) => {
   let { userId, address } = req.body;
-  // console.log("userId: " + userId)
-  // console.log("address: " + address)
   try {
     let customerCartItems = await getCustomerCartItems(req.body.userId);
     let items = customerCartItems[0].items;

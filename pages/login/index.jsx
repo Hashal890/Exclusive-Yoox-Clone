@@ -1,13 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import {
-  Box,
-  Button,
-  Checkbox,
-  Input,
-  SimpleGrid,
-  Text,
-  useToast,
-} from "@chakra-ui/react";
+import { Box, Button, Checkbox, Input, SimpleGrid, Text, useToast } from "@chakra-ui/react";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebookF, FaGithub } from "react-icons/fa";
 import { AppContext } from "../../hoc/AppContext";
@@ -22,7 +14,7 @@ function Login() {
   const { state, dispatch } = useContext(AppContext);
   const toast = useToast();
   const router = useRouter();
-  const [gitHubCode, setGitHubCode] = useState(null);
+  const [gitHubCode, setGitHubCode] = useState(router.query.code || null);
 
   useEffect(() => {
     if (state.accessToken) {
@@ -52,17 +44,42 @@ function Login() {
       });
   };
 
-  useEffect(() => {
-    if (router.query.code) setGitHubCode(router.query.code);
-  }, []);
+  const googleLogin = () => {
+    axiosInstance
+      .get(`/api/users/google`)
+      .then((res) => {
+        dispatch({ type: LOGIN_SUCCESS, payload: res.data.data });
+        toast({
+          title: res.data.message,
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        toast({
+          title: "err.response.data.message",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
+      });
+  };
 
   useEffect(() => {
+    console.log(router.query, "EFF");
+    if (router.query.code) gitHubLogin(router.query.code);
+  }, [gitHubCode]);
+
+  useEffect(() => {
+    console.log(gitHubCode);
     if (gitHubCode) gitHubLogin(gitHubCode);
   }, [gitHubCode]);
 
   const login = (data) => {
     axiosInstance
-      .post("/api/users/login", data)
+      .post("/api/account/login", data)
       .then((res) => {
         dispatch({ type: LOGIN_SUCCESS, payload: res.data.data });
         toast({
@@ -83,6 +100,7 @@ function Login() {
   };
 
   const handleClick = () => login(values);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
@@ -95,18 +113,8 @@ function Login() {
         <meta property="og:title" content="My page title" key="title" />
       </Head>
       <SimpleGrid columns={{ base: 1, sm: 1, md: 2 }} margin="auto" w={"70%"}>
-        <Box
-          width={"70%"}
-          h="90%"
-          border={"0px solid"}
-          m="auto"
-          mt={"4rem"}
-          textAlign="center"
-        >
-          <Text
-            fontSize={{ base: "2sd", sm: "2xl", md: "10xl" }}
-            fontWeight="700"
-          >
+        <Box width={"70%"} h="90%" border={"0px solid"} m="auto" mt={"4rem"} textAlign="center">
+          <Text fontSize={{ base: "2sd", sm: "2xl", md: "10xl" }} fontWeight="700">
             ARE YOU REGISTERED?
           </Text>
           <Text
@@ -210,23 +218,14 @@ function Login() {
             mt="0.5rem"
             fontSize={"0.7rem"}
             bg={"#eceef1"}
+            onClick={googleLogin}
           >
             <FcGoogle size={"1.5rem"} />
           </Button>
         </Box>
 
-        <Box
-          width={"70%"}
-          h="90%"
-          border={"0px solid"}
-          m="auto"
-          mt={"4rem"}
-          textAlign="center"
-        >
-          <Text
-            fontSize={{ base: "2sd", sm: "2xl", md: "2xl" }}
-            fontWeight="700"
-          >
+        <Box width={"70%"} h="90%" border={"0px solid"} m="auto" mt={"4rem"} textAlign="center">
+          <Text fontSize={{ base: "2sd", sm: "2xl", md: "2xl" }} fontWeight="700">
             ARE YOU NEW
           </Text>
           <Text
@@ -259,8 +258,8 @@ function Login() {
               fontSize={{ base: "xs", sm: "xs", md: "5md" }}
               fontStyle="italic"
             >
-              I consent to recive YOOX newsletters via email.For further
-              information,please consult the Privacy Policy.
+              I consent to recive YOOX newsletters via email.For further information,please consult
+              the Privacy Policy.
             </Text>
           </Box>
 
@@ -282,8 +281,8 @@ function Login() {
             fontSize={"0.6rem"}
             fontWeight={600}
           >
-            Want to Checkout faster? Sign up for MYOOX and get speedy checkout{" "}
-            <br /> on future purchase
+            Want to Checkout faster? Sign up for MYOOX and get speedy checkout <br /> on future
+            purchase
           </Text>
           <Button
             colorScheme="#e9ecef"
