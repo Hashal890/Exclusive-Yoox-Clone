@@ -23,7 +23,7 @@ const ReviewLeftSection = () => {
       order_id: data.id,
       handler: async (response) => {
         try {
-          const { data } = await axiosInstance.post("/api/orders/verify", response);
+          const { data } = await axiosInstance.post("/api/order/verify", response);
           console.log(data);
         } catch (error) {
           console.log(error);
@@ -41,7 +41,7 @@ const ReviewLeftSection = () => {
     if (state.orderType == "razorpay") {
       try {
         const address = Object.values(state.addressData).join(", ");
-        const res = await axiosInstance.post("/api/orders", {
+        const res = await axiosInstance.post("/api/order", {
           address: address,
         });
         // console.log(res.data);

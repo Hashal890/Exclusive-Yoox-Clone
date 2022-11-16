@@ -6,7 +6,9 @@ const withAuth = (handler) => {
     if (accessToken) {
       try {
         let user = verifyAccessToken(accessToken);
-        req.body.userId = user.userid;
+        let body = req.body;
+        req.body = {};
+        req.body = { ...body, userId: user.userid };
         return handler(req, res);
       } catch (error) {
         return res.status(498).send({ status: false, message: error.message });

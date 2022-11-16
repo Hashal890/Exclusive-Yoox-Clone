@@ -79,7 +79,7 @@ function Login() {
 
   const login = (data) => {
     axiosInstance
-      .post("/api/users/login", data)
+      .post("/api/account/login", data)
       .then((res) => {
         dispatch({ type: LOGIN_SUCCESS, payload: res.data.data });
         toast({

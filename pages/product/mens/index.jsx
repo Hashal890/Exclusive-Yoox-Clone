@@ -28,7 +28,7 @@ const Products = () => {
 
   const addToCart = (itemId) => {
     axiosInstance
-      .post(`/api/carts/${itemId}`)
+      .post(`/api/cart/${itemId}`)
       .then((res) => {
         toast({
           title: "Item added to cart.",
@@ -53,7 +53,7 @@ const Products = () => {
   };
 
   let m = fetch(
-    `http://localhost:3000/api/products?ideal_for=men&page=${page}&sortBy=current_price&order=${sort}`
+    `http://localhost:3000/api/product?ideal_for=men&page=${page}&sortBy=current_price&order=${sort}`
   ).then((res) => res.json());
 
   useEffect(() => {
