@@ -31,7 +31,7 @@ const handler = async (req, res) => {
 
       let customerCartItems = await getCustomerCartItems(req.body.userId);
       let items = customerCartItems[0].items;
-      if (!items.length) throw new Error("Cart can not be empty.");
+      if (!items.length) return res.status(400).send({ message: "Cart can not be empty" });
       let amount = items.reduce((acc, el) => acc + el.item.current_price * el.quantity, 0);
 
       //razorpay options
@@ -41,23 +41,23 @@ const handler = async (req, res) => {
         receipt: crypto.randomBytes(10).toString("hex"),
       };
 
-      RazorpayInstance.orders.create(options, async (error, order) => {
+      //order options
+      let orderData = {
+        customer: userId,
+        amount,
+        items,
+        deliveryAddress: address,
+      };
+
+      let customerOrder = await addOrder(orderData);
+      await clearCustomerCart(userId);
+
+      await RazorpayInstance.orders.create(options, (error, order) => {
         if (error) return res.status(500).send({ message: "Something Went Wrong!" });
-
-        let orderData = {
-          customer: userId,
-          amount,
-          items,
-          deliveryAddress: address,
-        };
-
-        let customerOrder = await addOrder(orderData);
-        await clearCustomerCart(userId);
         console.log(order);
-        return res.end({ message: "Order created", data: order });
+        return res.send({ message: "Order created", data: order });
       });
     }
-
     return res.status(401).json({ message: "Not a valid route" });
   } catch (error) {
     return sendError(res, error);

@@ -38,7 +38,6 @@ const Register = () => {
     }
   };
   const handleClick = () => {
-    console.log(formdata);
     signUp(formdata);
   };
 

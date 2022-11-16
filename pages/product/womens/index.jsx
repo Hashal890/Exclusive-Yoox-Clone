@@ -51,9 +51,7 @@ const Products = () => {
       });
   };
 
-  const handleChange = (e) => {
-    setSort(e.target.value);
-  };
+  const handleChange = (e) => setSort(e.target.value);
 
   let m = fetch(
     `http://localhost:3000/api/product?ideal_for=women&page=${page}&sortBy=current_price&order=${sort}`

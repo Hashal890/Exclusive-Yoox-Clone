@@ -12,7 +12,7 @@ const handler = async (req, res) => {
       const customer = req.body.userId;
 
       let cartItems = await getCustomerCartItems(customer);
-      res.send({ message: "Data found", data: cartItems });
+      return res.send({ message: "Data found", data: cartItems });
     }
 
     if (method == "PATCH") {

@@ -9,6 +9,7 @@ const withAuth = (handler) => {
         let body = req.body;
         req.body = {};
         req.body = { ...body, userId: user.userid };
+        // req.body.userId = user.userid;
         return handler(req, res);
       } catch (error) {
         return res.status(498).send({ status: false, message: error.message });
