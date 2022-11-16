@@ -44,13 +44,11 @@ const Products = () => {
         });
       });
   };
-
-  let m = fetch(`http://localhost:3000/api/product?page=${page}`).then((res) => res.json());
-
+  let m = axiosInstance.get(`/api/product?page=${page}`);
   useEffect(
     (page) => {
       let d = m.then((res) => {
-        setData(res.data);
+        setData(res.data.data);
       });
     },
     [page]
