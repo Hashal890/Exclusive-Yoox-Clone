@@ -15,6 +15,7 @@ function Login() {
   const toast = useToast();
   const router = useRouter();
   const [gitHubCode, setGitHubCode] = useState(router.query.code || null);
+  console.log(gitHubCode);
 
   useEffect(() => {
     if (state.accessToken) {
@@ -24,7 +25,7 @@ function Login() {
 
   const gitHubLogin = (code) => {
     axiosInstance
-      .get(`/api/users/github?code=${code}`)
+      .get(`/api/account/github?code=${code}`)
       .then((res) => {
         dispatch({ type: LOGIN_SUCCESS, payload: res.data.data });
         toast({

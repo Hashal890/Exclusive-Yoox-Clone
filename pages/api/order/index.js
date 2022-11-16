@@ -15,6 +15,7 @@ let RazorpayInstance = new Razorpay({
   key_id: process.env.NEXT_PUBLIC_RAZORYPAY_KEY_ID,
   key_secret: process.env.NEXT_PUBLIC_RAZORYPAY_KEY_SECRET,
 });
+
 const handler = async (req, res) => {
   const { method } = req;
   await dbConnect();
@@ -49,14 +50,14 @@ const handler = async (req, res) => {
         deliveryAddress: address,
       };
 
-      let customerOrder = await addOrder(orderData);
+      await addOrder(orderData);
       await clearCustomerCart(userId);
 
-      await RazorpayInstance.orders.create(options, (error, order) => {
+      return RazorpayInstance.orders.create(options, (error, order) => {
         if (error) return res.status(500).send({ message: "Something Went Wrong!" });
-        console.log(order);
         return res.send({ message: "Order created", data: order });
       });
+      console.log(4);
     }
     return res.status(401).json({ message: "Not a valid route" });
   } catch (error) {
