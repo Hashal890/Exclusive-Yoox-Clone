@@ -1,5 +1,6 @@
 import { sendError } from "../../../server/helper";
 import { dbConnect } from "../../../server/config";
+import { checkAccount, createAccount, getGithubData, getTokens } from "../../../server/controllers";
 
 const handler = async (req, res) => {
   const { method } = req;
@@ -7,10 +8,7 @@ const handler = async (req, res) => {
 
   try {
     if (method == "GET") {
-      console.log(req.query, "Hi");
-      return res.send({ data: req.query });
       const userData = await getGithubData(req.query.code);
-
       let user = await checkAccount("email", userData.email.toLowerCase());
       if (!user) user = await createAccount(userData.name, "", userData.email, v4(), true);
       const { accessToken, refreshToken } = getTokens(user._id, user.name, user.email);

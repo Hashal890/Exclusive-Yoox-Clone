@@ -6,6 +6,7 @@ const {
   getTokens,
   verifyAccessToken,
 } = require("./jwt.controller");
+const { getGithubData } = require("./github.controller");
 const passport = require("./google.controller");
 const { getProducts, getProductById } = require("./product.controller");
 const { addOrder, getOrder } = require("./order.controller");
@@ -24,6 +25,7 @@ module.exports = {
   getAccessToken,
   getRefreshToken,
   getTokens,
+  getGithubData,
   verifyAccessToken,
   passport,
   getProducts,

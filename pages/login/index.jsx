@@ -9,23 +9,20 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import Head from "next/head";
 
-function Login() {
+function Login({ gitCode }) {
   const [values, setValues] = useState({});
   const { state, dispatch } = useContext(AppContext);
   const toast = useToast();
   const router = useRouter();
-  const [gitHubCode, setGitHubCode] = useState(router.query.code || null);
-  console.log(gitHubCode);
+  const [gitHubCode, setGitHubCode] = useState(gitCode);
 
   useEffect(() => {
-    if (state.accessToken) {
-      router.push("/");
-    }
-  }, [state]);
+    if (state.accessToken) router.push("/");
+  }, [state.accessToken]);
 
-  const gitHubLogin = (code) => {
+  const gitHubLogin = (gitCode) => {
     axiosInstance
-      .get(`/api/account/github?code=${code}`)
+      .get(`/api/account/github?code=${gitCode}`)
       .then((res) => {
         dispatch({ type: LOGIN_SUCCESS, payload: res.data.data });
         toast({
@@ -69,12 +66,6 @@ function Login() {
   };
 
   useEffect(() => {
-    console.log(router.query, "EFF");
-    if (router.query.code) gitHubLogin(router.query.code);
-  }, [gitHubCode]);
-
-  useEffect(() => {
-    console.log(gitHubCode);
     if (gitHubCode) gitHubLogin(gitHubCode);
   }, [gitHubCode]);
 
@@ -303,4 +294,12 @@ function Login() {
     </div>
   );
 }
+
+export const getServerSideProps = (ctx) => {
+  let { code = null } = ctx.query;
+  return {
+    props: { gitCode: code }, // will be passed to the page component as props
+  };
+};
+
 export default Login;
