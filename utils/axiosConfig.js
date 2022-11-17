@@ -8,7 +8,7 @@ export const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   (config) => {
-    let accessToken = getLocalStorageItem("accessToken");
+    let accessToken = getLocalStorageItem("accessToken") || null;
     if (accessToken) config.headers["access-token"] = accessToken;
     return config;
   },
