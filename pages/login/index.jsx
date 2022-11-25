@@ -44,7 +44,7 @@ function Login({ gitCode }) {
 
   const googleLogin = () => {
     axiosInstance
-      .get(`/api/users/google`)
+      .get(`/api/account/google`)
       .then((res) => {
         dispatch({ type: LOGIN_SUCCESS, payload: res.data.data });
         toast({
