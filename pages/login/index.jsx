@@ -33,6 +33,7 @@ function Login({ gitCode }) {
         });
       })
       .catch((err) => {
+        console.log(err.response);
         toast({
           title: err.response.data.message,
           status: "error",
